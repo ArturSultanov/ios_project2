@@ -6,5 +6,6 @@
 int main(){
     fork();
     printf("Hello World!\n");
+    printf("hi!");
     return 0;
 }
