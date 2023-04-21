@@ -3,9 +3,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(){
-    fork();
-    printf("Hello World!\n");
-    printf("hi!");
+int main(int argc, char* argv[]){
+    int id = fork();
+    printf("Hello World! from id: %d\n", id);
     return 0;
 }
