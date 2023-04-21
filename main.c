@@ -7,6 +7,5 @@ int main(){
     fork();
     printf("Hello World!\n");
     printf("hi!");
-    printf("test");
     return 0;
 }
