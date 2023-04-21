@@ -5,6 +5,9 @@
 
 int main(int argc, char* argv[]){
     int id = fork();
-    printf("Hello World! from id: %d\n", id);
+    printf("Hello World, parent\n");
+    if (id == 0){
+        printf("Hello World, child\n");
+    }
     return 0;
 }
