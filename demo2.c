@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <time.h>
 #include <errno.h>
+#include <sys/wait.h>
 
 int main(int argc, char* argv[]){
     int id1 = fork();
