@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
 
     }
     
-    while (wait (NULL) != - 1 || errno != ECHILD){
+    while (wait (NULL) != - 1 || errno != ECHILD){      // while(wait(NULL) > 0 ); - na konci mainu
         printf("Waited for a child to finishin\n");
     }
 
