@@ -22,14 +22,6 @@
 //#define FILE_NAME "proj2.out"
 #define NUM_SERVICES 3
 
-// Function prototypes
-void customer_process(int idZ, int NZ, int TZ, int F);
-void clerk_process(int idU, int TU, int F);
-void semaphore_create();
-void semaphore_kill();
-int random_number(int min, int max);
-SharedMemory* init_shared_memory(const char *name);
-
 //global values
 sem_t *semaphore = NULL;
 FILE *file;
@@ -43,6 +35,19 @@ typedef struct {
     int activity_queues[3];
     int post_office_closed;
 } SharedMemory;
+
+
+
+// Function prototypes
+void customer_process(int idZ, int NZ, int TZ, int F);
+void clerk_process(int idU, int TU, int F);
+void semaphore_create();
+void semaphore_kill();
+int random_number(int min, int max);
+SharedMemory* init_shared_memory(const char *name);
+
+
+// Funcrions
 
 SharedMemory* init_shared_memory(const char *name) {
     int shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
