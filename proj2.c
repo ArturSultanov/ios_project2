@@ -13,11 +13,15 @@
 #include <fcntl.h>
 #include <semaphore.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
+#include <sys/mman.h>
 
 
 #define SEMAPHORE_NAME "/xsulta01_iosproj2_"
-#define FILE_NAME "proj2.out"
+//#define FILE_NAME "proj2.out"
 #define NUM_SERVICES 3
+
+FILE *file;
 
 typedef struct {
     int action_counter;
@@ -27,7 +31,6 @@ typedef struct {
 
 //global values
 sem_t *semaphore = NULL;
-
 
 
 void semaphore_create(){
@@ -71,7 +74,11 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     }
-      
+    file = fopen("proj2.out", "w");
+    setbuf(file, NULL);
+
+    SharedData *shared_data = mmap(NULL, sizeof(SharedData), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    
 
     // Initialize shared memory and semaphores
     // ...
