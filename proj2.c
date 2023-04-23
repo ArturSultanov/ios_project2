@@ -29,16 +29,16 @@ int semaphore_init(void);
 void shared_memory_dest(void);
 int shared_memory_init(void);
 void customer_process(int idZ, int NZ, int TZ, int F);
-void clerk_process(int idU, int TU, int F);
+void clerk_process(int idU, int NU, int TU, int F);
 int random_number(int min, int max);
 
 //global values
 FILE *file;
-int NZ;
-int NU;
-int TZ;
-int TU;
-int F;
+// int NZ;
+// int NU;
+// int TZ;
+// int TU;
+// int F;
 
 // deklaracia zdielannych premennych
 int *num_proc = NULL; 
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 
     int NZ = atoi(argv[1]); //počet zákazníků
     int NU = atoi(argv[2]); //počet úředníků
-    int TZ = atoi(argv[3]);
+    int TZ = atoi(argv[3]); 
     int TU = atoi(argv[4]);
     int F = atoi(argv[5]);
 
@@ -68,14 +68,15 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     }
-    //
-    srand(time(NULL)); // for 
+    
     pid_t wpid;
     int status = 0;
-    // 
+
+    // Set output file and output buffer
     file = fopen("proj2.out", "w");
     setbuf(file, NULL);
-    ///////////
+    
+    // Initialize shared memory and semaphores
     if(shared_memory_init()){
         fprintf(stderr, "Cannot alocate shared memory!\n");
         return 1;
@@ -84,29 +85,68 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Cannot open semaphores!\n");
         return 1;
     }
-    ///////////
+    // Fork customer processes
+    for(int id  = 1; id <=NZ;id++){
+        pid_t pid = fork();
+        if(pid==0){
+            customer_process(id, NZ, TZ, F);
+            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
+            exit(0);
+        }
+        else if (pid==-1){
+            fprintf(stderr, "Fork customer processes error!\n");
+            shared_memory_dest();
+            semaphore_dest();
+            fclose(file);
+            exit(1);
+        }
+    }
 
-    //
+    // Fork clerk processes
+    for(int id  = 1; id <=NZ;id++){
+        pid_t pid = fork();
+        if(pid==0){
+            clerk_process(id, NZ, TZ, F);
+            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
+            exit(0);
+        }
+        else if (pid==-1){
+            fprintf(stderr, "Fork customer processes error!\n");
+            shared_memory_dest();
+            semaphore_dest();
+            fclose(file);
+            exit(1);
+        }
+    }
 
 
-    // SharedMemory *shared_memory = init_shared_memory(shm_name);
-    // if (shared_memory == NULL) {
-    //     return 1;
-    // }    
 
 
 
-    // Initialize shared memory and semaphores
-    // ...
 
+
+
+
+
+
+
+
+
+
+
+
+
+    // usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
+
+    // // Close the post office
+    // sem_wait(semaphore);
+    // fprintf(output, "closing\n");
+    // sem_post(semaphore);
 
     // Clean up shared memory and semaphores
-    // ...
-
     while ((wpid = wait(&status)) > 0);
-
-
-   
+    shared_memory_dest();
+    semaphore_dest();
     fclose(file);
 
     return 0;
@@ -116,7 +156,8 @@ int main(int argc, char *argv[]) {
 //FUNCTIONS
 // Semaphores destruction
 void semaphore_dest(void){
-    sem_close(sem_queue);         sem_unlink(SEMAPHORE_QUEUE);
+    sem_close(sem_queue);         
+    sem_unlink(SEMAPHORE_QUEUE);
 }
 
 // Semaphores initialization
@@ -177,7 +218,7 @@ void customer_process(int idZ, int NZ, int TZ, int F) {
 }
 
 // Clerk process function
-void clerk_process(int idU, int TU, int F) {
+void clerk_process(int idU, int NU, int TU, int F) {
     // Clerk process logic
 }
 
