@@ -224,11 +224,8 @@ void customer_process(int idZ, int NZ, int TZ, int F) {
         // Print the initial message
     printf("A: Z %d: started\n", idZ);
 
-    // Seed the random number generator with the current time
-    srand(time(NULL) + idZ);
-
     // Wait for a random time between 0 and TZ
-    usleep(rand() % (TZ + 1));
+    upsleep_for_random_time(TZ);
 
     // Check if the post office is closed
     if (post_is_closed) {
