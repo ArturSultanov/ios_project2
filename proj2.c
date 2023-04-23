@@ -18,6 +18,11 @@
 #include <sys/mman.h>
 
 #define SEMAPHORE_QUEUE "/xsulta01_iosproj2_sem_queue"
+#define SEMAPHORE_MUTEX "/xsulta01_iosproj2_sem_mutex"
+#define SEMAPHORE_CUSTOMER_SERVICE1 "/xsulta01_iosproj2_sem_customer_service1" //
+#define SEMAPHORE_CUSTOMER_SERVICE2 "/xsulta01_iosproj2_sem_customer_service2" //
+#define SEMAPHORE_CUSTOMER_SERVICE3 "/xsulta01_iosproj2_sem_customer_service3" //
+
 #define SHM_MEM = "/proj2_shm"
 #define NUM_SERVICES 3
 
@@ -38,14 +43,15 @@ FILE *file;
 
 
 // deklaracia zdielannych premennych
-bool *post_is_closed = 0;
-int *num_proc = NULL; 
-int *oxy_cnt = NULL; // pocitadlo aktualnej kyslikovej fronty
-int *post_servises_queues[3]; // 
+bool *post_is_closed;
+int *action_number;
+int *customer_services_queue[3]; // service
 
 
 // deklaracia semaforov
+sem_t *sem_mutex = 1;
 sem_t *sem_queue = NULL;
+sem_t *sem_customer_services[3]; //service
 
 
 ////////////////////////////    MAIN START  ////////////////////////////
@@ -73,6 +79,10 @@ int main(int argc, char *argv[]) {
     // Set output file and output buffer
     file = fopen("proj2.out", "w");
     setbuf(file, NULL);
+    setbuf(stdout, NULL);
+    setbuf(stderr, NULL);
+
+
     
     // Initialize shared memory and semaphores
     if(shared_memory_init()){
@@ -121,21 +131,6 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
 
     // // Close the post office
@@ -153,32 +148,59 @@ int main(int argc, char *argv[]) {
 }
 ////////////////////////////    MAIN END    ////////////////////////////
 
-//FUNCTIONS
+////////////////////////////    SEMAPHORES  ////////////////////////////
 // Semaphores destruction
 void semaphore_dest(void){
-    sem_close(sem_queue);         
-    sem_unlink(SEMAPHORE_QUEUE);
+    sem_close(sem_queue);                   sem_unlink(SEMAPHORE_QUEUE);
+    sem_close(sem_mutex);                   sem_unlink(SEMAPHORE_MUTEX);
+    sem_close(sem_customer_services[0]);        sem_unlink(SEMAPHORE_CUSTOMER_SERVICE1);
+    sem_close(sem_customer_services[1]);        sem_unlink(SEMAPHORE_CUSTOMER_SERVICE2);
+    sem_close(sem_customer_services[2]);        sem_unlink(SEMAPHORE_CUSTOMER_SERVICE3);
+
+    
 }
 
 // Semaphores initialization
 int semaphore_init(void){
     semaphore_dest();
+    
     sem_queue = sem_open(SEMAPHORE_QUEUE, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_queue == SEM_FAILED){
+        return 1;
+    }
+
+    sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
+    if (sem_mutex == SEM_FAILED){
+        return 1;
+    }
+
+    sem_customer_services[0] = sem_open(SEMAPHORE_CUSTOMER_SERVICE1, O_CREAT | O_EXCL, 0666, 1) ;
+    if (sem_mutex == SEM_FAILED){
+        return 1;
+    }
+
+    sem_customer_services[1] = sem_open(SEMAPHORE_CUSTOMER_SERVICE2, O_CREAT | O_EXCL, 0666, 1) ;
+    if (sem_mutex == SEM_FAILED){
+        return 1;
+    }
+
+    sem_customer_services[2] = sem_open(SEMAPHORE_CUSTOMER_SERVICE3, O_CREAT | O_EXCL, 0666, 1) ;
+    if (sem_mutex == SEM_FAILED){
         return 1;
     }
 
     return 0;
 }
 
+////////////////////////////    SHARED MEMORY  ////////////////////////////
 // Shared memory destruction
 void shared_memory_dest(void){
-    munmap(num_proc, sizeof(int*));
-    munmap(oxy_cnt, sizeof(int*));
+
     munmap(post_is_closed, sizeof(bool*));
+    munmap(action_number, sizeof(int*));
 
     for (int i = 0; i < 3; i++) {
-        munmap(post_servises_queues[i], sizeof(int));
+        munmap(customer_services_queue[i], sizeof(int));
     }
 }
 
@@ -186,52 +208,63 @@ void shared_memory_dest(void){
 int shared_memory_init(void){
     void shared_memory_dest(void);
 
-    num_proc = mmap(NULL, sizeof(*num_proc), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == num_proc) {
-        return 1;
-    }
-    oxy_cnt = mmap(NULL, sizeof(*num_proc), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == oxy_cnt) {
-        return 1;
-    }
-
     post_is_closed = mmap(NULL, sizeof(*post_is_closed), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == post_is_closed) {
         return 1;
     }
 
     for (int i = 0; i < 3; i++) {
-        post_servises_queues[i] = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-        if (MAP_FAILED == post_servises_queues[i]) {
+        customer_services_queue[i] = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+        if (MAP_FAILED == customer_services_queue[i]) {
             return 1;
         }
     }
 
+    action_number = mmap(NULL, sizeof(*action_number), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == action_number) {
+        return 1;
+    }
+
     // inicializacia zdielanych premennych
-    *num_proc=1;
-    *oxy_cnt=0;
     *post_is_closed=0;
+    *action_number=0;
 
     for (int i = 0; i < 3; i++) {
-        *post_servises_queues[i] = 0;
+        *customer_services_queue[i] = 0;
     }
 
     return 0;
 }
 
+////////////////////////////    PROCESSES   ////////////////////////////
 // Customer process function
 void customer_process(int idZ, int NZ, int TZ, int F) {
-        // Print the initial message
-    printf("A: Z %d: started\n", idZ);
+    sem_wait(sem_mutex);
+    int action = ++action_number;
+    // Print the initial message
+    fprintf(file, "%d: Z %d: started\n", action, idZ);
+    sem_post(sem_mutex);
 
     // Wait for a random time between 0 and TZ
     upsleep_for_random_time(TZ);
 
+    sem_wait(sem_mutex);
     // Check if the post office is closed
     if (post_is_closed) {
-        printf("A: Z %d: going home\n", idZ);
-        return;
+        action = ++action_number;
+        fprintf(file, "%d: Z %d: going home\n", action, idZ);
+        exit(0);
     }
+
+    int service = rand() % NUM_SERVICES;
+
+    customer_services_queue[service]++;
+    action = ++action_number;
+    fprintf(file, "%d: Z %d: entering office for a service %d\n", action, idZ, service + 1);
+    sem_post(sem_mutex);
+
+    //sem_wait(sem_customer[service]);
+
 }
 
 // Clerk process function
@@ -240,7 +273,7 @@ void clerk_process(int idU, int NU, int TU, int F) {
     return;
 }
 
-// Other functions
+////////////////////////////    OTHER FUNCTIONS ////////////////////////////
 int random_number(int min, int max)
 {
     int number = rand() % (max-min+1);
