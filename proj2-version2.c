@@ -16,7 +16,6 @@
 #include <sys/wait.h>
 #include <sys/mman.h>
 
-
 #define SEMAPHORE_QUEUE "/xsulta01_iosproj2_sem_queue"
 #define SHM_MEM = "/proj2_shm"
 #define NUM_SERVICES 3
@@ -34,25 +33,68 @@ FILE *file;
 
 // deklaracia zdielannych premennych
 int *num_proc = NULL; 
+int *oxy_cnt = NULL; // pocitadlo aktualnej kyslikovej fronty
+int *post_servises_queues[3]; // 
+
 
 // deklaracia semaforov
 sem_t *sem_queue = NULL;
 
 
+// Semaphore functions
 
-// Functions
-void semaphore_kill(){
+void semaphore_dest(){
     sem_close(sem_queue);         sem_unlink(SEMAPHORE_QUEUE);
 }
 
-int semaphore_create(){
-    semaphore_kill();
+int semaphore_init(){
+    semaphore_dest();
     sem_queue = sem_open(SEMAPHORE_QUEUE, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_queue == SEM_FAILED){
         return 1;
     }
 
     return 0;
+}
+
+// Shared memory values functions
+int shared_memory_init(){
+    num_proc = mmap(NULL, sizeof(*num_proc), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == num_proc) {
+        return 1;
+    }
+    oxy_cnt = mmap(NULL, sizeof(*num_proc), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == oxy_cnt) {
+        return 1;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        post_servises_queues[i] = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+        if (MAP_FAILED == post_servises_queues[i]) {
+            return 1;
+        }
+    }
+
+    // inicializacia zdielanych premennych
+    *num_proc=1;
+    *oxy_cnt=0;
+
+    for (int i = 0; i < 3; i++) {
+        *post_servises_queues[i] = 0;
+    }
+
+    return 0;
+}
+
+
+// destructor zdielanych premennych
+void shared_memory_dest(){
+    munmap(num_proc, sizeof(int*));
+    munmap(oxy_cnt, sizeof(int*));
+
+    for (int i = 0; i < 3; i++) {
+        munmap(post_servises_queues[i], sizeof(int));
+    }
 }
 
 
@@ -64,6 +106,8 @@ void customer_process(int idZ, int NZ, int TZ, int F) {
 void clerk_process(int idU, int TU, int F) {
     // Clerk process logic
 }
+
+// Other functions
 
 int random_number(int min, int max)
 {
