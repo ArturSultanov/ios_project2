@@ -22,10 +22,12 @@
 
 
 // Function prototypes
+void semaphore_dest();
+int semaphore_init();
+void shared_memory_dest();
+int shared_memory_init();
 void customer_process(int idZ, int NZ, int TZ, int F);
 void clerk_process(int idU, int TU, int F);
-void semaphore_queue_create();
-void semaphore_queue_kill();
 int random_number(int min, int max);
 
 //global values
@@ -42,7 +44,6 @@ sem_t *sem_queue = NULL;
 
 
 // Semaphore functions
-
 void semaphore_dest(){
     sem_close(sem_queue);         sem_unlink(SEMAPHORE_QUEUE);
 }
@@ -58,7 +59,19 @@ int semaphore_init(){
 }
 
 // Shared memory values functions
+
+void shared_memory_dest(){
+    munmap(num_proc, sizeof(int*));
+    munmap(oxy_cnt, sizeof(int*));
+
+    for (int i = 0; i < 3; i++) {
+        munmap(post_servises_queues[i], sizeof(int));
+    }
+}
+
 int shared_memory_init(){
+    void shared_memory_dest();
+
     num_proc = mmap(NULL, sizeof(*num_proc), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == num_proc) {
         return 1;
@@ -85,18 +98,6 @@ int shared_memory_init(){
 
     return 0;
 }
-
-
-// destructor zdielanych premennych
-void shared_memory_dest(){
-    munmap(num_proc, sizeof(int*));
-    munmap(oxy_cnt, sizeof(int*));
-
-    for (int i = 0; i < 3; i++) {
-        munmap(post_servises_queues[i], sizeof(int));
-    }
-}
-
 
 //processes functions
 void customer_process(int idZ, int NZ, int TZ, int F) {
