@@ -2,6 +2,7 @@
 //xsulta01
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
@@ -34,13 +35,10 @@ int random_number(int min, int max);
 
 //global values
 FILE *file;
-// int NZ;
-// int NU;
-// int TZ;
-// int TU;
-// int F;
+
 
 // deklaracia zdielannych premennych
+bool *post_is_closed = 0;
 int *num_proc = NULL; 
 int *oxy_cnt = NULL; // pocitadlo aktualnej kyslikovej fronty
 int *post_servises_queues[3]; // 
@@ -90,6 +88,7 @@ int main(int argc, char *argv[]) {
         pid_t pid = fork();
         if(pid==0){
             customer_process(id, NZ, TZ, F);
+            printf("CUSTOMER\n");
             srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
             exit(0);
         }
@@ -103,15 +102,16 @@ int main(int argc, char *argv[]) {
     }
 
     // Fork clerk processes
-    for(int id  = 1; id <=NZ;id++){
+    for(int id  = 1; id <=NU;id++){
         pid_t pid = fork();
         if(pid==0){
-            clerk_process(id, NZ, TZ, F);
+            clerk_process(id, NU, TU, F);
+            printf("CLERK\n");
             srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
             exit(0);
         }
         else if (pid==-1){
-            fprintf(stderr, "Fork customer processes error!\n");
+            fprintf(stderr, "Fork clerk processes error!\n");
             shared_memory_dest();
             semaphore_dest();
             fclose(file);
@@ -175,6 +175,7 @@ int semaphore_init(void){
 void shared_memory_dest(void){
     munmap(num_proc, sizeof(int*));
     munmap(oxy_cnt, sizeof(int*));
+    munmap(post_is_closed, sizeof(bool*));
 
     for (int i = 0; i < 3; i++) {
         munmap(post_servises_queues[i], sizeof(int));
@@ -194,6 +195,11 @@ int shared_memory_init(void){
         return 1;
     }
 
+    post_is_closed = mmap(NULL, sizeof(*post_is_closed), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == post_is_closed) {
+        return 1;
+    }
+
     for (int i = 0; i < 3; i++) {
         post_servises_queues[i] = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
         if (MAP_FAILED == post_servises_queues[i]) {
@@ -204,6 +210,7 @@ int shared_memory_init(void){
     // inicializacia zdielanych premennych
     *num_proc=1;
     *oxy_cnt=0;
+    *post_is_closed=0;
 
     for (int i = 0; i < 3; i++) {
         *post_servises_queues[i] = 0;
@@ -214,12 +221,26 @@ int shared_memory_init(void){
 
 // Customer process function
 void customer_process(int idZ, int NZ, int TZ, int F) {
-    // Customer process logic
+        // Print the initial message
+    printf("A: Z %d: started\n", idZ);
+
+    // Seed the random number generator with the current time
+    srand(time(NULL) + idZ);
+
+    // Wait for a random time between 0 and TZ
+    usleep(rand() % (TZ + 1));
+
+    // Check if the post office is closed
+    if (post_is_closed) {
+        printf("A: Z %d: going home\n", idZ);
+        return;
+    }
 }
 
 // Clerk process function
 void clerk_process(int idU, int NU, int TU, int F) {
     // Clerk process logic
+    return;
 }
 
 // Other functions
