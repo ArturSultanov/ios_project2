@@ -20,6 +20,8 @@
 #define SHM_MEM = "/proj2_shm"
 #define NUM_SERVICES 3
 
+#define upsleep_for_random_time(time_max) { usleep((rand() % (time_max + 1)) * 1000); }
+
 
 // Function prototypes
 void semaphore_dest(void);
@@ -32,6 +34,11 @@ int random_number(int min, int max);
 
 //global values
 FILE *file;
+int NZ;
+int NU;
+int TZ;
+int TU;
+int F;
 
 // deklaracia zdielannych premennych
 int *num_proc = NULL; 
@@ -45,9 +52,6 @@ sem_t *sem_queue = NULL;
 
 ////////////////////////////    MAIN START  ////////////////////////////
 int main(int argc, char *argv[]) {
-
-
-
     if (argc != 6) {
         fprintf(stderr, "Error: Invalid number of arguments.\n");
         return 1;
@@ -64,13 +68,26 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     }
-
     //
+    srand(time(NULL)); // for 
     pid_t wpid;
     int status = 0;
     // 
     file = fopen("proj2.out", "w");
     setbuf(file, NULL);
+    ///////////
+    if(shared_memory_init()){
+        fprintf(stderr, "Cannot alocate shared memory!\n");
+        return 1;
+    }
+    if(semaphore_init()){
+        fprintf(stderr, "Cannot open semaphores!\n");
+        return 1;
+    }
+    ///////////
+
+    //
+
 
     // SharedMemory *shared_memory = init_shared_memory(shm_name);
     // if (shared_memory == NULL) {
