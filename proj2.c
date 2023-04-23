@@ -97,11 +97,12 @@ int main(int argc, char *argv[]) {
 ////////////////////////////    MAIN END    ////////////////////////////
 
 //FUNCTIONS
-// Semaphore functions
+// Semaphores destruction
 void semaphore_dest(void){
     sem_close(sem_queue);         sem_unlink(SEMAPHORE_QUEUE);
 }
 
+// Semaphores initialization
 int semaphore_init(void){
     semaphore_dest();
     sem_queue = sem_open(SEMAPHORE_QUEUE, O_CREAT | O_EXCL, 0666, 1) ;
@@ -112,8 +113,7 @@ int semaphore_init(void){
     return 0;
 }
 
-// Shared memory values functions
-
+// Shared memory destruction
 void shared_memory_dest(void){
     munmap(num_proc, sizeof(int*));
     munmap(oxy_cnt, sizeof(int*));
@@ -123,6 +123,7 @@ void shared_memory_dest(void){
     }
 }
 
+// Shared memory initialization
 int shared_memory_init(void){
     void shared_memory_dest(void);
 
@@ -153,17 +154,17 @@ int shared_memory_init(void){
     return 0;
 }
 
-//processes functions
+// Customer process function
 void customer_process(int idZ, int NZ, int TZ, int F) {
     // Customer process logic
 }
 
+// Clerk process function
 void clerk_process(int idU, int TU, int F) {
     // Clerk process logic
 }
 
 // Other functions
-
 int random_number(int min, int max)
 {
     int number = rand() % (max-min+1);
