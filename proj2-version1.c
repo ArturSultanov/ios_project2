@@ -23,11 +23,11 @@
 #define NUM_SERVICES 3
 
 //global values
-sem_t *semaphore = NULL;
 FILE *file;
+// deklaracia semaforov
+sem_t *semaphore_queue = NULL;
 
-//
-
+// struktura
 typedef struct {
     int customers[NUM_SERVICES];
     int closing;
@@ -41,8 +41,8 @@ typedef struct {
 // Function prototypes
 void customer_process(int idZ, int NZ, int TZ, int F);
 void clerk_process(int idU, int TU, int F);
-void semaphore_create();
-void semaphore_kill();
+void semaphore_queue_create();
+void semaphore_queue_kill();
 int random_number(int min, int max);
 SharedMemory* init_shared_memory(const char *name);
 
@@ -78,15 +78,13 @@ SharedMemory* init_shared_memory(const char *name) {
 }
 
 
-
-
-
-void semaphore_create(){
-    semaphore = sem_open(SEMAPHORE_NAME, O_CREAT, 0666, 1) ;
+void semaphore_queue_create(){
+    semaphore_queue_kill();
+    semaphore_queue = sem_open(SEMAPHORE_NAME, O_CREAT, 0666, 1) ;
 }
 
-void semaphore_kill(){
-    sem_close(semaphore);     
+void semaphore_queue_kill(){
+    sem_close(semaphore_queue);     
     sem_unlink(SEMAPHORE_NAME);
 }
 
@@ -106,6 +104,9 @@ void clerk_process(int idU, int TU, int F) {
 
 
 int main(int argc, char *argv[]) {
+
+
+
     if (argc != 6) {
         fprintf(stderr, "Error: Invalid number of arguments.\n");
         return 1;
@@ -122,6 +123,11 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     }
+
+    //
+    pid_t wpid;
+    int status = 0;
+    // 
     file = fopen("proj2.out", "w");
     setbuf(file, NULL);
 
@@ -131,12 +137,16 @@ int main(int argc, char *argv[]) {
         return 1;
     }    
 
+
+
     // Initialize shared memory and semaphores
     // ...
 
 
     // Clean up shared memory and semaphores
     // ...
+
+    while ((wpid = wait(&status)) > 0);
 
     if (munmap(shared_memory, sizeof(SharedMemory)) == -1) {
         perror("munmap");
@@ -146,7 +156,7 @@ int main(int argc, char *argv[]) {
         perror("shm_unlink");
     }
 
-    while (wait (NULL) != - 1 || errno != ECHILD)
+    fclose(file);
 
     return 0;
 }
