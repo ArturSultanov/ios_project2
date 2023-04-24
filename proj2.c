@@ -55,16 +55,23 @@ sem_t *sem_customer_services[3]; //service
 
 ////////////////////////////    MAIN START  ////////////////////////////
 int main(int argc, char *argv[]) {
-    if (argc != 6) {
-        fprintf(stderr, "Error: Invalid number of arguments.\n");
-        return 1;
-    }
+    // if (argc != 6) {
+    //     fprintf(stderr, "Error: Invalid number of arguments.\n");
+    //     return 1;
+    // }
 
-    int NZ = atoi(argv[1]); //počet zákazníků
-    int NU = atoi(argv[2]); //počet úředníků
-    int TZ = atoi(argv[3]); 
-    int TU = atoi(argv[4]);
-    int F = atoi(argv[5]);
+    // int NZ = atoi(argv[1]); //počet zákazníků
+    // int NU = atoi(argv[2]); //počet úředníků
+    // int TZ = atoi(argv[3]); 
+    // int TU = atoi(argv[4]);
+    // int F = atoi(argv[5]);
+
+
+    int NZ = 3; //počet zákazníků
+    int NU = 2; //počet úředníků
+    int TZ = 3; 
+    int TU = 3;
+    int F = 5;
 
     // Check if input values are within allowed range
     if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
@@ -263,13 +270,15 @@ void customer_process(int idZ, int TZ) {
 
     int service = rand() % NUM_SERVICES;
 
-    *customer_services_queue[service]=(*customer_services_queue[service])++;
+    *customer_services_queue[service]+=1;
     action = ++(*action_number);
     fprintf(file, "%d: Z %d: entering office for a service %d\n", action, idZ, service + 1);
     sem_post(sem_mutex);
-
+    
+    printf("Before\n");
     sem_wait(sem_customer_services[service]);
-
+    printf("After\n"); //FIX
+    
     sem_wait(sem_mutex);
     action = ++(*action_number);
     fprintf(file, "%d: Z %d: called by office worker\n", action, idZ);
@@ -321,7 +330,7 @@ void clerk_process(int idU, int TU) {
             fprintf(file, "%d: U %d: break finished\n", action, idU);
             sem_post(sem_mutex);
         } else {
-        *customer_services_queue[service]=(*customer_services_queue[service])--;
+        *customer_services_queue[service]-=1;
         action = ++(*action_number);
         fprintf(file, "%d: U %d: serving customer at service %d\n", action, idU, service + 1);
         sem_post(sem_mutex);
