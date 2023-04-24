@@ -1,0 +1,17 @@
+1: Z 1: started
+2: Z 2: started
+3: U 1: started
+4: U 1: taking break
+5: U 2: started
+6: U 2: taking break
+7: Z 1: entering office for a service 2
+8: Z 2: entering office for a service 2
+9: U 1: break finished
+10: U 1: taking break
+11: U 2: break finished
+12: U 2: taking break
+13: closing
+14: U 1: break finished
+15: U 1: going home
+16: U 2: break finished
+17: U 2: going home
