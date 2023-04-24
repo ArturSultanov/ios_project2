@@ -19,9 +19,10 @@
 
 #define SEMAPHORE_QUEUE "/xsulta01_iosproj2_sem_queue"
 #define SEMAPHORE_MUTEX "/xsulta01_iosproj2_sem_mutex"
-#define SEMAPHORE_SERVICE1 "/xsulta01_iosproj2_service1" //
-#define SEMAPHORE_SERVICE2 "/xsulta01_iosproj2_service2" //
-#define SEMAPHORE_SERVICE3 "/xsulta01_iosproj2_service3" //
+#define SEMAPHORE_SERVICE1 "/xsulta01_iosproj2_service1" 
+#define SEMAPHORE_SERVICE2 "/xsulta01_iosproj2_service2" 
+#define SEMAPHORE_SERVICE3 "/xsulta01_iosproj2_service3" 
+#define SEMAPHORE_CUSWAITING "/xsulta01_iosproj2_cuswaiting"
 
 #define NUM_SERVICES 3
 //#define upsleep_for_random_time(time_max) { usleep((rand() % (time_max + 1)) * 1000); }
@@ -51,6 +52,7 @@ int *customer_services_queue[3]; // service
 sem_t *sem_mutex;
 sem_t *sem_queue;
 sem_t *sem_customer_services[3]; //service
+sem_t *sem_customer_waiting;
 
 
 ////////////////////////////    MAIN START  ////////////////////////////
@@ -100,7 +102,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Cannot open semaphores!\n");
         return 1;
     }
-    srand(time(NULL));
+    //srand(time(NULL));
     //printf("END");
     //return 0; 
     // Fork customer processes
@@ -108,7 +110,7 @@ int main(int argc, char *argv[]) {
         pid_t pid = fork();
         if(pid==0){
             printf("CUSTOMER\n");
-            //srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
+            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
             customer_process(idZ, TZ);
             exit(0);
         }
@@ -126,7 +128,7 @@ int main(int argc, char *argv[]) {
         pid_t pid = fork();
         if(pid==0){
             printf("CLERK\n");
-            //srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
+            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
             clerk_process(idU, TU);
             exit(0);
         }
@@ -168,6 +170,7 @@ void semaphore_dest(void){
     sem_close(sem_customer_services[0]);        sem_unlink(SEMAPHORE_SERVICE1);
     sem_close(sem_customer_services[1]);        sem_unlink(SEMAPHORE_SERVICE2);
     sem_close(sem_customer_services[2]);        sem_unlink(SEMAPHORE_SERVICE3);
+    sem_close(sem_customer_waiting);        sem_unlink(SEMAPHORE_CUSWAITING);
 
     
 }
@@ -198,6 +201,10 @@ int semaphore_init(void){
 
     sem_customer_services[2] = sem_open(SEMAPHORE_SERVICE3, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_customer_services[2] == SEM_FAILED){
+        return 1;
+    }
+    sem_customer_waiting = sem_open(SEMAPHORE_CUSWAITING, O_CREAT | O_EXCL, 0666, 0) ;
+    if (sem_customer_waiting == SEM_FAILED){
         return 1;
     }
 
@@ -276,10 +283,12 @@ void customer_process(int idZ, int TZ) {
     sem_post(sem_mutex);
     
     sem_wait(sem_customer_services[service]);
+    //sem_post(sem_customer_waiting);
     
     sem_wait(sem_mutex);
     action = ++(*action_number);
     fprintf(file, "%d: Z %d: called by office worker\n", action, idZ);
+    sem_post(sem_customer_waiting);
     sem_post(sem_mutex);
 
     upsleep_for_random_time(10);
@@ -302,8 +311,8 @@ void clerk_process(int idU, int TU) {
     sem_post(sem_mutex);
 
     while (1) {
-        int service = -1;
         sem_wait(sem_mutex);
+        int service = -1;
         for (int i = 0; i < NUM_SERVICES; i++) {
             if (*customer_services_queue[i] > 0) {
                 service = i;
@@ -327,7 +336,16 @@ void clerk_process(int idU, int TU) {
             action = ++(*action_number);
             fprintf(file, "%d: U %d: break finished\n", action, idU);
             sem_post(sem_mutex);
+            continue;
         } else {
+
+        sem_post(sem_mutex);
+        
+        sem_post(sem_customer_services[service]);
+
+        sem_wait(sem_customer_waiting);
+
+        sem_wait(sem_mutex);
         *customer_services_queue[service]-=1;
         action = ++(*action_number);
         fprintf(file, "%d: U %d: serving customer at service %d\n", action, idU, service + 1);
@@ -335,7 +353,6 @@ void clerk_process(int idU, int TU) {
 
         usleep(rand() % 11);
 
-        sem_post(sem_customer_services[service]);
 
         sem_wait(sem_mutex);
         action = ++(*action_number);
