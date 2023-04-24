@@ -141,10 +141,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-
-
     usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
-    //usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
 
    //Close the post office
     sem_wait(sem_mutex);
