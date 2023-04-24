@@ -71,9 +71,9 @@ int main(int argc, char *argv[]) {
 
     int NZ = 3; //počet zákazníků
     int NU = 2; //počet úředníků
-    int TZ = 3; 
-    int TU = 3;
-    int F = 5;
+    int TZ = 100; 
+    int TU = 100;
+    int F = 100;
 
     // Check if input values are within allowed range
     if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
@@ -144,6 +144,7 @@ int main(int argc, char *argv[]) {
 
 
     usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
+    //usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
 
    //Close the post office
     sem_wait(sem_mutex);
@@ -272,6 +273,7 @@ void customer_process(int idZ, int TZ) {
     if (*post_is_closed) {
         action = ++(*action_number);
         fprintf(file, "%d: Z %d: going home\n", action, idZ);
+        sem_post(sem_mutex);
         exit(0);
     }
 
