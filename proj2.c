@@ -17,10 +17,10 @@
 #include <sys/wait.h>
 #include <sys/mman.h>
 
-#define SEMAPHORE_MUTEX "/xsulta01_iosproj2_sem_mutex"
-#define SEMAPHORE_CUSTOMER_SERVICE1 "/xsulta01_iosproj2_sem_service1"
-#define SEMAPHORE_CUSTOMER_SERVICE2 "/xsulta01_iosproj2_sem_customer_service2"
-#define SEMAPHORE_CUSTOMER_SERVICE3 "/xsulta01_iosproj2_sem_customer_service3"
+#define SEMAPHORE_MUTEX "/xsulta01_iosproj2_mutex"
+#define SEMAPHORE_SERVICE1 "/xsulta01_iosproj2_service1"
+#define SEMAPHORE_SERVICE2 "/xsulta01_iosproj2_service2"
+#define SEMAPHORE_SERVICE3 "/xsulta01_iosproj2_service3"
 
 #define NUM_SERVICES 3
 //#define upsleep_for_random_time(time_max) { usleep((rand() % (time_max + 1)) * 1000); }
@@ -94,6 +94,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     srand(time(NULL));
+    
+
+    semaphore_dest();
+    printf("END");
+    return 0;
     // Fork customer processes
     for(int idZ  = 1; idZ <=NZ;idZ++){
         pid_t pid = fork();
@@ -154,9 +159,17 @@ int main(int argc, char *argv[]) {
 void semaphore_dest(void){
     sem_close(sem_mutex);                   
     sem_unlink(SEMAPHORE_MUTEX);
-    
-                                        
 
+    sem_close(sem_customer_service1);
+    sem_unlink(SEMAPHORE_SERVICE1);
+
+    sem_close(sem_customer_service2);
+    sem_unlink(SEMAPHORE_SERVICE2);
+
+    sem_close(sem_customer_service3);
+    sem_unlink(SEMAPHORE_SERVICE3);
+
+    
     return;
 }
 
@@ -170,6 +183,31 @@ int semaphore_init(void){
         return 1;
     }
 
+    sem_customer_service1 = sem_open(SEMAPHORE_SERVICE1, O_CREAT | O_EXCL, 0644, 0) ;
+    if (sem_customer_service1 == SEM_FAILED){
+         return 1;
+    }
+
+        sem_customer_service2 = sem_open(SEMAPHORE_SERVICE2, O_CREAT | O_EXCL, 0644, 0) ;
+    if (sem_customer_service2 == SEM_FAILED){
+         return 1;
+    }
+
+        sem_customer_service3 = sem_open(SEMAPHORE_SERVICE3, O_CREAT | O_EXCL, 0644, 0) ;
+    if (sem_customer_service3 == SEM_FAILED){
+         return 1;
+    }
+    
+
+    // sem_customer_service1 = sem_open(SEMAPHORE_CUSTOMER_SERVICE1, O_CREAT | O_EXCL, 0644, 0) ;
+    // if (sem_customer_service2 == SEM_FAILED){
+    //      return 1;
+    // }
+
+    // sem_customer_service1 = sem_open(SEMAPHORE_CUSTOMER_SERVICE1, O_CREAT | O_EXCL, 0644, 0) ;
+    // if (sem_customer_service2 == SEM_FAILED){
+    //      return 1;
+    // }
 
 
     // sem_customer_service2 = sem_open(SEMAPHORE_CUSTOMER_SERVICE2, O_CREAT | O_EXCL, 0666, 0) ;
