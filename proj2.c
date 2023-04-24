@@ -275,9 +275,7 @@ void customer_process(int idZ, int TZ) {
     fprintf(file, "%d: Z %d: entering office for a service %d\n", action, idZ, service + 1);
     sem_post(sem_mutex);
     
-    printf("Before\n");
     sem_wait(sem_customer_services[service]);
-    printf("After\n"); //FIX
     
     sem_wait(sem_mutex);
     action = ++(*action_number);
