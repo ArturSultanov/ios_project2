@@ -69,8 +69,8 @@ int main(int argc, char *argv[]) {
     // int F = atoi(argv[5]);
 
 
-    int NZ = 3; //počet zákazníků
-    int NU = 2; //počet úředníků
+    int NZ = 30; //počet zákazníků
+    int NU = 20; //počet úředníků
     int TZ = 100; 
     int TU = 100;
     int F = 100;
@@ -315,6 +315,7 @@ void clerk_process(int idU, int TU) {
         for (int i = 0; i < NUM_SERVICES; i++) {
             if (*customer_services_queue[i] > 0) {
                 service = i;
+                sem_post(sem_mutex);
                 break;
             }
         }
