@@ -146,8 +146,7 @@ int main(int argc, char *argv[]) {
    //Close the post office
     sem_wait(sem_mutex);
     *post_is_closed = 1;
-    ++(*action_number);
-    fprintf(file, "%d: closing\n", *action_number);
+    fprintf(file, "%d: closing\n", ++(*action_number));
     sem_post(sem_mutex);
 
     // Clean up shared memory and semaphores
@@ -257,9 +256,8 @@ int shared_memory_init(void){
 // Customer process function
 void customer_process(int idZ, int TZ) {
     sem_wait(sem_mutex);
-    int action = ++(*action_number);
     // Print the initial message
-    fprintf(file, "%d: Z %d: started\n", action, idZ);
+    fprintf(file, "%d: Z %d: started\n", ++(*action_number), idZ);
     sem_post(sem_mutex);
 
     // Wait for a random time between 0 and TZ
@@ -268,33 +266,29 @@ void customer_process(int idZ, int TZ) {
     sem_wait(sem_mutex);
     // Check if the post office is closed
     if (*post_is_closed) {
-        action = ++(*action_number);
-        fprintf(file, "%d: Z %d: going home\n", action, idZ);
+        fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
         sem_post(sem_mutex);
         exit(0);
     }
 
     int service = rand() % NUM_SERVICES;
 
-    *customer_services_queue[service]+=1;
-    action = ++(*action_number);
-    fprintf(file, "%d: Z %d: entering office for a service %d\n", action, idZ, service + 1);
+    (*customer_services_queue[service])++;
+    fprintf(file, "%d: Z %d: entering office for a service %d\n", ++(*action_number), idZ, service + 1);
     sem_post(sem_mutex);
     
     sem_wait(sem_customer_services[service]);
     //sem_post(sem_customer_waiting);
     
     sem_wait(sem_mutex);
-    action = ++(*action_number);
-    fprintf(file, "%d: Z %d: called by office worker\n", action, idZ);
+    fprintf(file, "%d: Z %d: called by office worker\n", ++(*action_number), idZ);
     sem_post(sem_customer_waiting);
     sem_post(sem_mutex);
 
     upsleep_for_random_time(10);
 
     sem_wait(sem_mutex);
-    action = ++(*action_number);
-    fprintf(file, "%d: Z %d: going home\n", action, idZ);
+    fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
     sem_post(sem_mutex);
 
     exit(0);
@@ -305,36 +299,33 @@ void customer_process(int idZ, int TZ) {
 void clerk_process(int idU, int TU) {
     
     sem_wait(sem_mutex);
-    int action = ++(*action_number);
-    fprintf(file, "%d: U %d: started\n", action, idU);
+    fprintf(file, "%d: U %d: started\n", ++(*action_number), idU);
     sem_post(sem_mutex);
 
     while (1) {
         sem_wait(sem_mutex);
         int service = -1;
         for (int i = 0; i < NUM_SERVICES; i++) {
-            if (*customer_services_queue[i] > 0) {
+            if ((*customer_services_queue[i]) > 0) {
                 service = i;
-                sem_post(sem_mutex);
+                //sem_post(sem_mutex);
                 break;
             }
         }
+        //fprintf(file, "%d: SERVICE %d is %d \n", ++(*action_number), service+1, (*customer_services_queue[service]));
 
         if (service == -1 && *post_is_closed) {
-            action = ++(*action_number);
-            fprintf(file, "%d: U %d: going home\n", action, idU);
+            fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
             sem_post(sem_mutex);
             exit(0);
         } else if (service == -1) {
-            action = ++(*action_number);
-            fprintf(file, "%d: U %d: taking break\n", action, idU);
+            fprintf(file, "%d: U %d: taking break\n", ++(*action_number), idU);
             sem_post(sem_mutex);
 
             upsleep_for_random_time(TU);
 
             sem_wait(sem_mutex);
-            action = ++(*action_number);
-            fprintf(file, "%d: U %d: break finished\n", action, idU);
+            fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
             continue;
         } else {
@@ -346,17 +337,15 @@ void clerk_process(int idU, int TU) {
         sem_wait(sem_customer_waiting);
 
         sem_wait(sem_mutex);
-        *customer_services_queue[service]-=1;
-        action = ++(*action_number);
-        fprintf(file, "%d: U %d: serving customer at service %d\n", action, idU, service + 1);
+        (*customer_services_queue[service])--;
+        fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service + 1);
         sem_post(sem_mutex);
 
         usleep(rand() % 11);
 
 
         sem_wait(sem_mutex);
-        action = ++(*action_number);
-        fprintf(file, "%d: U %d: finished serving customer\n", action, idU);
+        fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
         sem_post(sem_mutex);
         }
     }
