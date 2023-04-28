@@ -370,34 +370,34 @@ void clerk_process(int idU, int TU) {
     sem_post(sem_mutex);
 
     while (1) {
-        int services_queues[3] = {0, 0, 0};
-        int service = -1;
+        int service = 0;
 
+        sem_wait(sem_clerk);
         if (*first_service_queue)
         {   
-            ++service;
-            services_queues[service] = 1;
-            
+            service++;
         }
         if (*second_service_queue)
         {
-            ++service;
-            services_queues[service] = 2;
-
+            service++;
         }    
         if (*third_service_queue)
         {
-            ++service;
-            services_queues[service] = 3;
+            service++;
         }
 
-        if ((service == -1) && (*post_is_closed)) {
+        if ((service == 0) && (*post_is_closed)) {
+            sem_post(sem_clerk);
+
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
             sem_post(sem_mutex);
+
             (*clerks_number)--;
             exit(0);
-        } else if (service == -1) {
+        } else if (service == 0) {
+            sem_post(sem_clerk);
+
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: taking break\n", ++(*action_number), idU);
             sem_post(sem_mutex);
@@ -408,7 +408,23 @@ void clerk_process(int idU, int TU) {
             fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
         } else {
-            
+            int service = (rand() % service) + 1;
+
+            switch (service)
+            {
+            case 1:
+                
+
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                /* code */
+                break;
+            default:
+                break;
+            }            
 
         
 
