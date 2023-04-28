@@ -52,11 +52,10 @@ void customer_process(int idZ, int TZ);
 void clerk_process(int idU, int TU);
 int random_number(int min, int max);
 
-//global values
+// Global values
 FILE *file;
 
-
-// shared memory declaration
+// Shared memory declaration
 bool *post_is_closed;
 int *first_service_queue;
 int *second_service_queue;
@@ -73,8 +72,6 @@ sem_t *sem_second_service;
 sem_t *sem_third_service;
 sem_t *sem_clerk;
 sem_t *sem_customer;
-
-
 
 ////////////////////////////    MAIN START  ////////////////////////////
 int main(int argc, char *argv[]) {
@@ -168,7 +165,7 @@ int main(int argc, char *argv[]) {
 
    //Close the post office
     sem_wait(sem_mutex);
-    (*post_is_closed) = 1;
+    (*post_is_closed) = true;
     fprintf(file, "%d: closing\n", ++(*action_number));
     sem_post(sem_mutex);
 
@@ -183,7 +180,6 @@ int main(int argc, char *argv[]) {
 }
 ////////////////////////////    MAIN END    ////////////////////////////
 
-////////////////////////////    SEMAPHORES  ////////////////////////////
 // Semaphores destruction
 void semaphore_dest(void){
     sem_close(sem_mutex);   
@@ -246,7 +242,6 @@ int semaphore_init(void){
     return 0;
 }
 
-////////////////////////////    SHARED MEMORY  ////////////////////////////
 // Shared memory destruction
 void shared_memory_dest(void){
 
@@ -311,9 +306,9 @@ int shared_memory_init(void){
     return 0;
 }
 
-////////////////////////////    PROCESSES   ////////////////////////////
 // Customer process function
 void customer_process(int idZ, int TZ) {
+    (*customers_numbers)++;
 
     sem_wait(sem_mutex);
     // Print the initial message
@@ -325,45 +320,76 @@ void customer_process(int idZ, int TZ) {
 
     sem_wait(sem_mutex);
     // Check if the post office is closed
-    if ((*post_is_closed) > 0) {
+    if (*post_is_closed) {
         fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
         sem_post(sem_mutex);
         exit(0);
-    } else {
+    }
 
     int service = rand() % NUM_SERVICES;
-    (*customer_services_queue[service])++;
     fprintf(file, "%d: Z %d: entering office for a service %d\n", ++(*action_number), idZ, service + 1);
     sem_post(sem_mutex);
-    printf("customer_services_queue %d : %d \n", service, (*customer_services_queue[service]));
-    sem_wait(sem_customer_services[service]);
+
+    switch(service) {
+    case 0:
+        (*first_service_queue)++;
+        sem_wait(sem_first_service);
+        break;
+    case 1:
+        (*second_service_queue)++;
+        sem_wait(sem_second_service);
+        break;
+    case 2:
+        (*third_service_queue)++;
+        sem_wait(sem_third_service);
+        break;
+    default:
+        printf("SERVICE ERROR\n");
+        exit(1);
+    }
     
     sem_wait(sem_mutex);
     fprintf(file, "%d: Z %d: called by office worker\n", ++(*action_number), idZ);
-    sem_post(sem_customer_waiting);
     sem_post(sem_mutex);
 
     upsleep_for_random_time(10);
 
     sem_wait(sem_mutex);
     fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
-    (*customers_amount)--;
     sem_post(sem_mutex);
 
     exit(0);
-
-    }
 }
 
 // Clerk process function
 void clerk_process(int idU, int TU) {
-    (*clerks_amount)++;
+    (*clerks_number)++;
+
     sem_wait(sem_mutex);
     fprintf(file, "%d: U %d: started\n", ++(*action_number), idU);
     sem_post(sem_mutex);
 
     while (1) {
+        int service = -1;
+
         
+
+        if (*first_service_queue)
+        {
+            service = 0;
+        } else if (*second_service_queue)
+        {
+            service = 1;
+        } else if (*third_service_queue)
+        {
+            service = 2;
+        }
+        
+
+        
+        
+
+
         //sem_wait(sem_mutex);
         int service = -1;
         for (int i = 0; i < NUM_SERVICES; i++) {
