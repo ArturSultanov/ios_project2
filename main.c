@@ -231,7 +231,7 @@ void worker_fun(int idU, int TU, int NZ, int NU) {
     if (*NZA == NZ && *NUR == NU) {
         //sem_post(process_start);
     }
-    
+
     while (1) {
         int available_queues = 0;
         int queue_indices[3] = {0};
@@ -251,6 +251,7 @@ void worker_fun(int idU, int TU, int NZ, int NU) {
         }
         //printf("-----available queues: %d\n", available_queues);
         if (available_queues > 0) {
+            
             int selected_queue = generate_random_number(0, available_queues-1);
             available_queues = 0;
             int task_number = 0;
