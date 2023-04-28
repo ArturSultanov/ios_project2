@@ -271,22 +271,22 @@ void clerk_process(int idU, int TU) {
     while (1) {
         sem_wait(sem_clerk); 
 
-        int service_type_queue[3] = {0};
+        int service_type[3] = {0};
         int  occupied = 0; //number of occupited services
 
         if ((*first_service_queue) > 0)
         {   
-            service_type_queue[occupied] = 1;
+            service_type[occupied] = 1;
             occupied++;
         }
         if ((*second_service_queue) > 0)
         {
-            service_type_queue[occupied] = 2;
+            service_type[occupied] = 2;
             occupied++;
         }    
         if ((*third_service_queue) > 0)
         {
-            service_type_queue[occupied] = 3;
+            service_type[occupied] = 3;
             occupied++;
 
         }
@@ -316,10 +316,9 @@ void clerk_process(int idU, int TU) {
 
             occupied = (rand() % occupied) + 1;
 
-            switch (service_type_queue[occupied]])
+            switch (service_type[occupied])
             {
             case 1:
-                if(*first_service_queue)
                 (*first_service_queue)--;
                 sem_post(sem_first_service);
                 break;
@@ -333,14 +332,14 @@ void clerk_process(int idU, int TU) {
 
                 break;
             default:
-                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", selected_service);
+                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", service_type[occupied]);
                 exit(1);
                 break;
             }            
-
+            sem_post(sem_clerk);
         
             sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, selected_service);
+            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service_type[occupied]);
             sem_post(sem_mutex);
         
             usleep(rand() % 11);
@@ -349,7 +348,6 @@ void clerk_process(int idU, int TU) {
             fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
             sem_post(sem_mutex);
 
-            sem_post(sem_clerk);
 
         }
         ////////////////////////////////
