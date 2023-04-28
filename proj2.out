@@ -1,0 +1,165 @@
+1: Z 1: started
+2: Z 1: entering office for a service 2
+3: Z 2: started
+4: Z 2: entering office for a service 1
+5: Z 3: started
+6: Z 3: entering office for a service 2
+7: Z 4: started
+8: Z 4: entering office for a service 3
+9: Z 5: started
+10: Z 5: entering office for a service 3
+11: Z 6: started
+12: Z 7: started
+13: Z 8: started
+14: Z 8: entering office for a service 2
+15: Z 9: started
+16: Z 10: started
+17: Z 11: started
+18: Z 11: entering office for a service 1
+19: Z 12: started
+20: Z 13: started
+21: Z 14: started
+22: Z 14: entering office for a service 3
+23: Z 15: started
+24: Z 15: entering office for a service 1
+25: Z 16: started
+26: Z 16: entering office for a service 1
+27: Z 17: started
+28: Z 17: entering office for a service 1
+29: Z 18: started
+30: Z 18: entering office for a service 3
+31: Z 19: started
+32: Z 20: started
+33: Z 20: entering office for a service 1
+34: Z 21: started
+35: Z 22: started
+36: Z 23: started
+37: Z 23: entering office for a service 1
+38: Z 24: started
+39: Z 25: started
+40: Z 26: started
+41: Z 26: entering office for a service 1
+42: Z 27: started
+43: Z 28: started
+44: Z 28: entering office for a service 3
+45: Z 29: started
+46: Z 29: entering office for a service 3
+47: Z 30: started
+48: Z 30: entering office for a service 2
+49: U 1: started
+50: Z 2: called by office worker
+51: U 1: serving customer at service 1
+52: U 1: finished serving customer
+53: Z 11: called by office worker
+54: U 1: serving customer at service 1
+55: U 1: finished serving customer
+56: U 2: started
+57: Z 15: called by office worker
+58: Z 15: going home
+59: U 1: serving customer at service 1
+60: Z 16: called by office worker
+61: U 3: started
+62: U 1: finished serving customer
+63: U 2: serving customer at service 1
+64: Z 17: called by office worker
+65: Z 20: called by office worker
+66: U 4: started
+67: U 2: finished serving customer
+68: U 3: serving customer at service 1
+69: U 1: serving customer at service 1
+70: Z 23: called by office worker
+71: U 3: finished serving customer
+72: Z 26: called by office worker
+73: U 1: finished serving customer
+74: U 4: serving customer at service 1
+75: U 2: serving customer at service 1
+76: U 5: started
+77: U 4: finished serving customer
+78: U 2: finished serving customer
+79: Z 1: called by office worker
+80: Z 8: called by office worker
+81: U 6: started
+82: Z 3: called by office worker
+83: U 3: serving customer at service 1
+84: U 1: serving customer at service 1
+85: U 5: serving customer at service 2
+86: Z 30: called by office worker
+87: U 3: finished serving customer
+88: U 1: finished serving customer
+89: U 5: finished serving customer
+90: U 4: serving customer at service 2
+91: U 7: started
+92: U 4: finished serving customer
+93: U 8: started
+94: U 9: started
+95: U 10: started
+96: U 11: started
+97: U 12: started
+98: U 13: started
+99: U 14: started
+100: Z 3: going home
+101: U 15: started
+102: U 16: started
+103: U 17: started
+104: U 18: started
+105: U 19: started
+106: U 20: started
+107: Z 20: going home
+108: Z 8: going home
+109: Z 30: going home
+110: Z 7: entering office for a service 2
+111: Z 12: entering office for a service 2
+112: Z 7: called by office worker
+113: Z 12: called by office worker
+114: U 2: serving customer at service 2
+115: U 6: serving customer at service 2
+116: U 2: finished serving customer
+117: U 6: finished serving customer
+118: Z 11: going home
+119: Z 19: entering office for a service 2
+120: Z 19: called by office worker
+121: U 3: serving customer at service 2
+122: U 3: finished serving customer
+123: Z 23: going home
+124: Z 16: going home
+125: Z 17: going home
+126: Z 24: entering office for a service 3
+127: Z 1: going home
+128: Z 27: entering office for a service 3
+129: Z 22: entering office for a service 1
+130: Z 2: going home
+131: Z 22: called by office worker
+132: U 1: serving customer at service 2
+133: U 1: finished serving customer
+134: Z 26: going home
+135: Z 12: going home
+136: Z 6: entering office for a service 2
+137: Z 6: called by office worker
+138: U 5: serving customer at service 2
+139: U 5: finished serving customer
+140: Z 19: going home
+141: Z 9: entering office for a service 1
+142: Z 13: entering office for a service 3
+143: Z 9: called by office worker
+144: U 7: serving customer at service 2
+145: U 7: finished serving customer
+146: Z 4: called by office worker
+147: U 4: serving customer at service 2
+148: Z 10: entering office for a service 1
+149: U 4: finished serving customer
+150: Z 10: called by office worker
+151: Z 10: going home
+152: U 8: serving customer at service 2
+153: U 8: finished serving customer
+154: Z 21: entering office for a service 3
+155: Z 25: entering office for a service 1
+156: Z 25: called by office worker
+157: U 9: serving customer at service 2
+158: U 9: finished serving customer
+159: Z 7: going home
+160: Z 4: going home
+161: Z 25: going home
+162: Z 22: going home
+163: Z 9: going home
+164: Z 6: going home
+165: closing

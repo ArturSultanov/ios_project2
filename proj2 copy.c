@@ -16,30 +16,16 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/mman.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <sys/ipc.h>
-#include <sys/shm.h>
-#include <sys/types.h>
 
-
-#define SEMAPHORE_MUTEX "/xsulta01_sem_mutex"
-#define SEMAPHORE_SERVICEFRST "/xsulta01_servicefrst" 
-#define SEMAPHORE_SERVICESCND "/xsulta01_servicescnd" 
-#define SEMAPHORE_SERVICETHRD "/xsulta01_servicethrd" 
-#define SEMAPHORE_CLERK "/xsulta01_clerk"
-#define SEMAPHORE_CUSTOMER "/xsulta01_customer"
-
-typedef struct {
-    int NZ; //number of clients
-    int NU; //number of workers
-    int TZ; //Time in ms where client waiting to go for post
-    int TU; //worker rest, in ms
-    int F; //in ms, time after that post office will be closed  
-}args_t;
+#define SEMAPHORE_QUEUE "/xsulta01_iosproj2_sem_queue" //delete
+#define SEMAPHORE_MUTEX "/xsulta01_iosproj2_sem_mutex"
+#define SEMAPHORE_SERVICE1 "/xsulta01_iosproj2_service1" 
+#define SEMAPHORE_SERVICE2 "/xsulta01_iosproj2_service2" 
+#define SEMAPHORE_SERVICE3 "/xsulta01_iosproj2_service3" 
+#define SEMAPHORE_CUSWAITING "/xsulta01_iosproj2_cuswaiting"
 
 #define NUM_SERVICES 3
+//#define upsleep_for_random_time(time_max) { usleep((rand() % (time_max + 1)) * 1000); }
 #define upsleep_for_random_time(time_max) usleep((rand() % (time_max + 1)) * 1000)
 
 
@@ -56,24 +42,18 @@ int random_number(int min, int max);
 FILE *file;
 
 
-// shared memory declaration
-bool *post_is_closed;
-int *first_service_queue;
-int *second_service_queue;
-int *third_service_queue;
+// deklaracia zdielannych premennych
+int *post_is_closed;
 int *action_number;
-int *clerks_number;
-int *customer_numbers;
-
+int *customer_services_queue[3]; // service
+int *customers_amount;
+int *clerks_amount;
 
 // deklaracia semaforov
 sem_t *sem_mutex;
-sem_t *sem_first_service;
-sem_t *sem_second_service;
-sem_t *sem_third_service;
-sem_t *sem_clerk;
-sem_t *sem_customer;
-
+sem_t *sem_queue;
+sem_t *sem_customer_services[3]; //service
+sem_t *sem_customer_waiting;
 
 
 ////////////////////////////    MAIN START  ////////////////////////////
@@ -101,33 +81,31 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     }
+    semaphore_dest();
+
+    pid_t wpid;
+    int status = 0;
+
+    // Set output file and output buffer
+    file = fopen("proj2.out", "w");
+    setbuf(file, NULL);
+    setbuf(stdout, NULL);
+    setbuf(stderr, NULL);
+
+
     
-
-    //pid_t wpid;
-    //int status = 0;
-
-
-
     // Initialize shared memory and semaphores
     if(shared_memory_init()){
         fprintf(stderr, "Cannot alocate shared memory!\n");
         return 1;
     }
-
     if(semaphore_init()){
         fprintf(stderr, "Cannot open semaphores!\n");
         return 1;
     }
-
-    // Set output file and output buffer
-    if ((file = fopen("proj2.out", "w+")) == NULL) {
-        fprintf(stderr, "ERROR: Output file could not be opened\n");
-        return 1;
-    }
-    setbuf(file, NULL);
-    setbuf(stdout, NULL);
-    //setbuf(stderr, NULL);
-
+    //srand(time(NULL));
+    //printf("END");
+    //return 0; 
     // Fork customer processes
     for(int idZ  = 1; idZ <=NZ;idZ++){
         pid_t pid = fork();
@@ -173,8 +151,8 @@ int main(int argc, char *argv[]) {
     sem_post(sem_mutex);
 
     // Clean up shared memory and semaphores
-    //while ((wpid = wait(&status)) > 0);
-    while(wait(NULL)>0);
+    while ((wpid = wait(&status)) > 0);
+    //while(wait(NULL)>0);
     shared_memory_dest();
     semaphore_dest();
     fclose(file);
@@ -186,60 +164,46 @@ int main(int argc, char *argv[]) {
 ////////////////////////////    SEMAPHORES  ////////////////////////////
 // Semaphores destruction
 void semaphore_dest(void){
-    sem_close(sem_mutex);   
-    sem_unlink(SEMAPHORE_MUTEX);
+    sem_close(sem_queue);                   sem_unlink(SEMAPHORE_QUEUE);
+    sem_close(sem_mutex);                   sem_unlink(SEMAPHORE_MUTEX);
+    sem_close(sem_customer_services[0]);        sem_unlink(SEMAPHORE_SERVICE1);
+    sem_close(sem_customer_services[1]);        sem_unlink(SEMAPHORE_SERVICE2);
+    sem_close(sem_customer_services[2]);        sem_unlink(SEMAPHORE_SERVICE3);
+    sem_close(sem_customer_waiting);        sem_unlink(SEMAPHORE_CUSWAITING);
 
-    sem_close(sem_first_service);   
-    sem_unlink(SEMAPHORE_SERVICEFRST);
-
-    sem_close(sem_second_service);   
-    sem_unlink(SEMAPHORE_SERVICESCND);
-
-    sem_close(sem_third_service);   
-    sem_unlink(SEMAPHORE_SERVICEFRST);
-
-    sem_close(sem_clerk);   
-    sem_unlink(SEMAPHORE_CLERK);
-
-
-    sem_close(sem_customer);   
-    sem_unlink(SEMAPHORE_CUSTOMER);
-
-    if (file != NULL) fclose(file);
-
-    return;
+    
 }
 
 // Semaphores initialization
 int semaphore_init(void){
-    semaphore_dest();
+    //semaphore_dest();
+    
+    sem_queue = sem_open(SEMAPHORE_QUEUE, O_CREAT | O_EXCL, 0666, 1) ;
+    if (sem_queue == SEM_FAILED){
+        return 1;
+    }
 
     sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_mutex == SEM_FAILED){
         return 1;
     }
-    sem_first_service = sem_open(SEMAPHORE_SERVICEFRST, O_CREAT | O_EXCL, 0666, 0) ;
-    if (sem_first_service == SEM_FAILED){
+
+    sem_customer_services[0] = sem_open(SEMAPHORE_SERVICE1, O_CREAT | O_EXCL, 0666, 0) ;
+    if (sem_customer_services[0] == SEM_FAILED){
         return 1;
     }
 
-    sem_second_service = sem_open(SEMAPHORE_SERVICESCND, O_CREAT | O_EXCL, 0666, 0) ;
-    if (sem_second_service == SEM_FAILED){
+    sem_customer_services[1] = sem_open(SEMAPHORE_SERVICE2, O_CREAT | O_EXCL, 0666, 0) ;
+    if (sem_customer_services[1] == SEM_FAILED){
         return 1;
     }
 
-    sem_third_service = sem_open(SEMAPHORE_SERVICETHRD, O_CREAT | O_EXCL, 0666, 0) ;
-    if (sem_third_service == SEM_FAILED){
+    sem_customer_services[2] = sem_open(SEMAPHORE_SERVICE3, O_CREAT | O_EXCL, 0666, 0) ;
+    if (sem_customer_services[2] == SEM_FAILED){
         return 1;
     }
-
-    sem_clerk = sem_open(SEMAPHORE_CLERK, O_CREAT | O_EXCL, 0666, 1) ;
-    if (sem_clerk == SEM_FAILED){
-        return 1;
-    }
-
-    sem_customer = sem_open(SEMAPHORE_CUSTOMER, O_CREAT | O_EXCL, 0666, 0) ;
-    if (sem_customer == SEM_FAILED){
+    sem_customer_waiting = sem_open(SEMAPHORE_CUSWAITING, O_CREAT | O_EXCL, 0666, 0) ;
+    if (sem_customer_waiting == SEM_FAILED){
         return 1;
     }
 
@@ -250,63 +214,55 @@ int semaphore_init(void){
 // Shared memory destruction
 void shared_memory_dest(void){
 
-    munmap(post_is_closed, sizeof(bool));
-    munmap(first_service_queue, sizeof(int));
-    munmap(second_service_queue, sizeof(int));
-    munmap(third_service_queue, sizeof(int));
+    munmap(post_is_closed, sizeof(int));
     munmap(action_number, sizeof(int));
-    munmap(clerks_number, sizeof(int));
-    munmap(customer_numbers, sizeof(int));
+    munmap(customers_amount, sizeof(int));
+    munmap(clerks_amount, sizeof(int));
 
-    return;
+    for (int i = 0; i < 3; i++) {
+        munmap(customer_services_queue[i], sizeof(int*));
+    }
 }
 
 // Shared memory initialization
 int shared_memory_init(void){
     void shared_memory_dest(void);
 
-    post_is_closed = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    post_is_closed = mmap(NULL, sizeof(bool), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == post_is_closed) {
         return 1;
     }
 
-    first_service_queue = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == first_service_queue) {
-        return 1;
-    }
-    second_service_queue = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == second_service_queue) {
-        return 1;
-    }
-    third_service_queue = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == third_service_queue) {
-        return 1;
+    for (int i = 0; i < 3; i++) {
+        customer_services_queue[i] = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+        if (MAP_FAILED == customer_services_queue[i]) {
+            return 1;
+        }
     }
 
-    action_number = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    action_number = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == action_number) {
         return 1;
     }
 
-
-    clerks_number = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == clerks_number) {
+    clerks_amount = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == clerks_amount) {
         return 1;
     }
 
-    customer_numbers = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == customer_numbers) {
+    customers_amount = mmap(NULL, sizeof(int), PROT_READ|PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == customers_amount) {
         return 1;
     }
 
     // inicializacia zdielanych premennych
-    *post_is_closed = false;
-    *first_service_queue = 0;
-    *second_service_queue = 0;
-    *third_service_queue = 0;
+    *post_is_closed = 0;
     *action_number = 0;
-    *clerks_number = 0;
-    *customer_numbers = 0;
+    *clerks_amount = 0;
+    *customers_amount = 0;
+    for (int i = 0; i < 3; i++) {
+        (*customer_services_queue[i]) = 0;
+    }
 
     return 0;
 }
