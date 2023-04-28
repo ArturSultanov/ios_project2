@@ -216,7 +216,7 @@ void customer_process(int idZ, int TZ) {
 
     //sem_wait(sem_customer);////
     // Check if the post office is closed
-    if (*post_is_closed) {
+    if ((*post_is_closed)>0) {
         sem_wait(sem_mutex);
         fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
         sem_post(sem_mutex);
@@ -314,7 +314,7 @@ void clerk_process(int idU, int TU) {
             sem_post(sem_mutex);
         } else if (occupied > 0) {
 
-            int service = (rand() % occupied) + 1;
+            int service = (rand() % occupied);
 
             switch (service_type[service])
             {
@@ -518,6 +518,7 @@ int main(int argc, char *argv[]) {
 
     // Clean up shared memory and semaphores
     while ((wpid = wait(&status)) > 0);
+    printf("HELLO\n");
     //while(wait(NULL)>0);
     shared_memory_dest();
     semaphore_dest();
