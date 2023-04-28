@@ -430,8 +430,8 @@ int main(int argc, char *argv[]) {
     // int F = atoi(argv[5]);
 
 
-    int NZ = 3; //počet zákazníků
-    int NU = 2; //počet úředníků
+    int NZ = 300; //počet zákazníků
+    int NU = 200; //počet úředníků
     int TZ = 20; 
     int TU = 20;
     int F = 20;
