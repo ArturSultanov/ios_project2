@@ -97,12 +97,10 @@ int main(int argc, char *argv[]) {
     if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
-    }
-    
+    }    
 
-    //pid_t wpid;
-    //int status = 0;
-
+    pid_t wpid;
+    int status = 0;
 
 
     // Initialize shared memory and semaphores
@@ -170,8 +168,8 @@ int main(int argc, char *argv[]) {
     sem_post(sem_mutex);
 
     // Clean up shared memory and semaphores
-    //while ((wpid = wait(&status)) > 0);
-    while(wait(NULL)>0);
+    while ((wpid = wait(&status)) > 0);
+    //while(wait(NULL)>0);
     shared_memory_dest();
     semaphore_dest();
     fclose(file);
@@ -197,13 +195,9 @@ void semaphore_dest(void){
     sem_close(sem_clerk);   
     sem_unlink(SEMAPHORE_CLERK);
 
-
     sem_close(sem_customer);   
     sem_unlink(SEMAPHORE_CUSTOMER);
 
-    if (file != NULL) fclose(file);
-
-    return;
 }
 
 // Semaphores initialization
@@ -212,30 +206,36 @@ int semaphore_init(void){
 
     sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_mutex == SEM_FAILED){
+        printf("mutex_sem_faidled");
         return 1;
     }
     sem_first_service = sem_open(SEMAPHORE_SERVICEFRST, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_first_service == SEM_FAILED){
+        printf("frst_sem_faidled");
         return 1;
     }
 
     sem_second_service = sem_open(SEMAPHORE_SERVICESCND, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_second_service == SEM_FAILED){
+        printf("mutex_sem_faidled");
         return 1;
     }
 
     sem_third_service = sem_open(SEMAPHORE_SERVICETHRD, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_third_service == SEM_FAILED){
+        printf("thrd_sem_faidled");
         return 1;
     }
 
     sem_clerk = sem_open(SEMAPHORE_CLERK, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_clerk == SEM_FAILED){
+        printf("clekr_sem_faidled");
         return 1;
     }
 
     sem_customer = sem_open(SEMAPHORE_CUSTOMER, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_customer == SEM_FAILED){
+        printf("customer_sem_faidled");
         return 1;
     }
 
