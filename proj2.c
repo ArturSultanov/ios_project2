@@ -344,7 +344,7 @@ void customer_process(int idZ, int TZ) {
         sem_wait(sem_third_service);
         break;
     default:
-        printf("SERVICE ERROR\n");
+        printf("CUSTOMER FUNCTION SERVICE ERROR\n");
         exit(1);
     }
     
@@ -413,22 +413,39 @@ void clerk_process(int idU, int TU) {
             switch (service)
             {
             case 1:
-                
+                (*first_service_queue)--;
+                sem_post(sem_first_service);
+                sem_post(sem_clerk);
 
                 break;
             case 2:
-                
+                (*second_service_queue)--;
+                sem_post(sem_second_service);
+                sem_post(sem_clerk);
+
                 break;
             case 3:
-                /* code */
+                (*third_service_queue)--;
+                sem_post(sem_third_service);
+                sem_post(sem_clerk);
+
                 break;
             default:
+                sem_post(sem_clerk);
+                printf("ERROR IN CLERK FUNCTION - SERVICE\n");
+                exit(1);
                 break;
             }            
 
+            sem_wait(sem_mutex);
+            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service);
+            sem_post(sem_mutex);
         
+            usleep(rand() % 11);
 
-
+            sem_wait(sem_mutex);
+            fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
+            sem_post(sem_mutex);
 
 
 
@@ -444,55 +461,55 @@ void clerk_process(int idU, int TU) {
         
 
 
-        //sem_wait(sem_mutex);
-        int service = -1;
-        for (int i = 0; i < NUM_SERVICES; i++) {
-            if ((*customer_services_queue[i]) > 0) {
-                service = i;
-                //sem_post(sem_mutex);
-                break;
-            }
-        }
-        sem_wait(sem_mutex);
+        // //sem_wait(sem_mutex);
+        // int service = -1;
+        // for (int i = 0; i < NUM_SERVICES; i++) {
+        //     if ((*customer_services_queue[i]) > 0) {
+        //         service = i;
+        //         //sem_post(sem_mutex);
+        //         break;
+        //     }
+        // }
+        // sem_wait(sem_mutex);
 
-        sem_post(sem_mutex);
-        if ((service == -1) && ((*post_is_closed) > 0)) {
-            sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
-            (*clerks_amount)--;
-            sem_post(sem_mutex);
-            exit(0);
-        } else if (service == -1) {
-            sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: taking break\n", ++(*action_number), idU);
-            sem_post(sem_mutex);
+        // sem_post(sem_mutex);
+        // if ((service == -1) && ((*post_is_closed) > 0)) {
+        //     sem_wait(sem_mutex);
+        //     fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
+        //     (*clerks_amount)--;
+        //     sem_post(sem_mutex);
+        //     exit(0);
+        // } else if (service == -1) {
+        //     sem_wait(sem_mutex);
+        //     fprintf(file, "%d: U %d: taking break\n", ++(*action_number), idU);
+        //     sem_post(sem_mutex);
 
-            upsleep_for_random_time(TU);
+        //     upsleep_for_random_time(TU);
 
-            sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
-            sem_post(sem_mutex);
-            //continue;
-        } else {
+        //     sem_wait(sem_mutex);
+        //     fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
+        //     sem_post(sem_mutex);
+        //     //continue;
+        // } else {
 
-        //sem_post(sem_mutex);
+        // //sem_post(sem_mutex);
         
-        sem_post(sem_customer_services[service]);
-        sem_wait(sem_customer_waiting); //waiting for customer to come.
+        // sem_post(sem_customer_services[service]);
+        // sem_wait(sem_customer_waiting); //waiting for customer to come.
 
 
-        sem_wait(sem_mutex);
-        fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service + 1);
-        (*customer_services_queue[service])--;
-        sem_post(sem_mutex);
+        // sem_wait(sem_mutex);
+        // fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service + 1);
+        // (*customer_services_queue[service])--;
+        // sem_post(sem_mutex);
 
-        usleep(rand() % 11);
+        // usleep(rand() % 11);
 
 
-        sem_wait(sem_mutex);
-        fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
-        sem_post(sem_mutex);
-        }
+        // sem_wait(sem_mutex);
+        // fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
+        // sem_post(sem_mutex);
+        // }
     }
     //return;
 }
