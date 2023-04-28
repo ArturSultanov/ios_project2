@@ -272,23 +272,23 @@ void clerk_process(int idU, int TU) {
         sem_wait(sem_clerk); 
 
         int service_type_queue[3] = {0};
-        int  = 0;
+        int  occupied = 0; //number of occupited services
 
         if ((*first_service_queue) > 0)
         {   
-            service_type[service++] = 1;
+            service_type_queue[occupied++] = 1;
         }
         if ((*second_service_queue) > 0)
         {
-            service_type[service++] = 2;
+            service_type_queue[occupied++] = 2;
         }    
         if ((*third_service_queue) > 0)
         {
-            service_type[service++] = 3;
+            service_type_queue[occupied++] = 3;
 
         }
 
-        if ((service == 0) && (*post_is_closed)) {
+        if ((occupied == 0) && (*post_is_closed)) {
             sem_post(sem_clerk);
 
             sem_wait(sem_mutex);
@@ -297,7 +297,7 @@ void clerk_process(int idU, int TU) {
             (*clerks_number)--;
 
             exit(0);
-        } else if (service == 0) {
+        } else if (occupied == 0) {
             sem_post(sem_clerk);
 
             sem_wait(sem_mutex);
