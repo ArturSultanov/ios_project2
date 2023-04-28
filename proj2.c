@@ -430,11 +430,11 @@ int main(int argc, char *argv[]) {
     // int F = atoi(argv[5]);
 
 
-    int NZ = 300; //počet zákazníků
-    int NU = 200; //počet úředníků
-    int TZ = 20; 
-    int TU = 20;
-    int F = 20;
+    int NZ = 999; //počet zákazníků
+    int NU = 999; //počet úředníků
+    int TZ = 99; 
+    int TU = 99;
+    int F = 99;
 
     // Check if input values are within allowed range
     if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
