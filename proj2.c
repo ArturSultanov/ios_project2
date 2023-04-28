@@ -408,7 +408,7 @@ void clerk_process(int idU, int TU) {
             fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
         } else {
-            int service = (rand() % service) + 1;
+            service = (rand() % service) + 1;
 
             switch (service)
             {
@@ -432,7 +432,7 @@ void clerk_process(int idU, int TU) {
                 break;
             default:
                 sem_post(sem_clerk);
-                printf("ERROR IN CLERK FUNCTION - SERVICE\n");
+                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", service);
                 exit(1);
                 break;
             }            
