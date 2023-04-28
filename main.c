@@ -161,6 +161,7 @@ void customer(int idZ, int TZ, int NZ, int NU) {
     sem_wait(print);
     printf("%d: Z %d: started\n", (*line)++, idZ);
     sem_post(print);
+
     if (*NZA == NZ && *NUR == NU) {
         //sem_post(process_start);
     }
@@ -194,7 +195,9 @@ void customer(int idZ, int TZ, int NZ, int NU) {
     sem_wait(print);
     printf("%d: Z %d: called by office worker\n", (*line)++, idZ);
     sem_post(print);
+    
     usleep(generate_random_number(0, 10)*1000);
+
     sem_wait(print);
     printf("%d: Z %d: going home\n", (*line)++, idZ);
     sem_post(print);
@@ -220,12 +223,15 @@ int find_first_non_zero(int *array, int size) {
 }
 void worker_fun(int idU, int TU, int NZ, int NU) {
     (*NUR)++;
+
     sem_wait(print);
     printf("%d: U %d: started\n", (*line)++, idU);
     sem_post(print);
+
     if (*NZA == NZ && *NUR == NU) {
         //sem_post(process_start);
     }
+    
     while (1) {
         int available_queues = 0;
         int queue_indices[3] = {0};
