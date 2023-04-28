@@ -63,7 +63,7 @@ int *second_service_queue;
 int *third_service_queue;
 int *action_number;
 int *clerks_number;
-int *customer_numbers;
+int *customers_numbers;
 
 
 // deklaracia semaforov
@@ -256,7 +256,7 @@ void shared_memory_dest(void){
     munmap(third_service_queue, sizeof(int));
     munmap(action_number, sizeof(int));
     munmap(clerks_number, sizeof(int));
-    munmap(customer_numbers, sizeof(int));
+    munmap(customers_numbers, sizeof(int));
 
     return;
 }
@@ -294,8 +294,8 @@ int shared_memory_init(void){
         return 1;
     }
 
-    customer_numbers = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == customer_numbers) {
+    customers_numbers = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == customers_numbers) {
         return 1;
     }
 
@@ -306,7 +306,7 @@ int shared_memory_init(void){
     *third_service_queue = 0;
     *action_number = 0;
     *clerks_number = 0;
-    *customer_numbers = 0;
+    *customers_numbers = 0;
 
     return 0;
 }
