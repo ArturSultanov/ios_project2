@@ -190,7 +190,7 @@ void semaphore_dest(void){
     sem_unlink(SEMAPHORE_SERVICESCND);
 
     sem_close(sem_third_service);   
-    sem_unlink(SEMAPHORE_SERVICEFRST);
+    sem_unlink(SEMAPHORE_SERVICETHRD);
 
     sem_close(sem_clerk);   
     sem_unlink(SEMAPHORE_CLERK);
