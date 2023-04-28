@@ -314,9 +314,9 @@ void clerk_process(int idU, int TU) {
             sem_post(sem_mutex);
         } else if (occupied > 0) {
 
-            occupied = (rand() % occupied) + 1;
+            int service = (rand() % occupied) + 1;
 
-            switch (service_type[occupied])
+            switch (service_type[service])
             {
             case 1:
                 (*first_service_queue)--;
@@ -332,14 +332,14 @@ void clerk_process(int idU, int TU) {
 
                 break;
             default:
-                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", service_type[occupied]);
+                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", service_type[service]);
                 exit(1);
                 break;
             }            
             sem_post(sem_clerk);
         
             sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service_type[occupied]);
+            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service_type[service]);
             sem_post(sem_mutex);
         
             usleep(rand() % 11);
@@ -512,7 +512,7 @@ int main(int argc, char *argv[]) {
 
    //Close the post office
     sem_wait(sem_mutex);
-    *post_is_closed = 1;
+    (*post_is_closed) = 1;
     fprintf(file, "%d: closing\n", ++(*action_number));
     sem_post(sem_mutex);
 
