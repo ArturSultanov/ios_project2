@@ -276,15 +276,18 @@ void clerk_process(int idU, int TU) {
 
         if ((*first_service_queue) > 0)
         {   
-            service_type_queue[occupied++] = 1;
+            service_type_queue[occupied] = 1;
+            occupied++;
         }
         if ((*second_service_queue) > 0)
         {
-            service_type_queue[occupied++] = 2;
+            service_type_queue[occupied] = 2;
+            occupied++;
         }    
         if ((*third_service_queue) > 0)
         {
-            service_type_queue[occupied++] = 3;
+            service_type_queue[occupied] = 3;
+            occupied++;
 
         }
 
@@ -309,11 +312,11 @@ void clerk_process(int idU, int TU) {
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
-        } else if (service > 0) {
+        } else if (occupied > 0) {
 
-            service = (rand() % service) + 1;
+            occupied = (rand() % occupied) + 1;
 
-            switch (service_queues[service])
+            switch (service_type_queue[occupied]])
             {
             case 1:
                 if(*first_service_queue)
