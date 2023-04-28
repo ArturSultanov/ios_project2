@@ -73,110 +73,6 @@ sem_t *sem_third_service;
 sem_t *sem_clerk;
 sem_t *sem_customer;
 
-////////////////////////////    MAIN START  ////////////////////////////
-int main(int argc, char *argv[]) {
-    // if (argc != 6) {
-    //     fprintf(stderr, "Error: Invalid number of arguments.\n");
-    //     return 1;
-    // }
-
-    // int NZ = atoi(argv[1]); //počet zákazníků
-    // int NU = atoi(argv[2]); //počet úředníků
-    // int TZ = atoi(argv[3]); 
-    // int TU = atoi(argv[4]);
-    // int F = atoi(argv[5]);
-
-
-    int NZ = 30; //počet zákazníků
-    int NU = 20; //počet úředníků
-    int TZ = 20; 
-    int TU = 20;
-    int F = 20;
-
-    // Check if input values are within allowed range
-    if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
-        fprintf(stderr, "Error: Invalid input values.\n");
-        return 1;
-    }    
-
-    pid_t wpid;
-    int status = 0;
-
-
-    // Initialize shared memory and semaphores
-    if(shared_memory_init()){
-        fprintf(stderr, "Cannot alocate shared memory!\n");
-        return 1;
-    }
-
-    if(semaphore_init()){
-        fprintf(stderr, "Cannot open semaphores!\n");
-        return 1;
-    }
-
-    // Set output file and output buffer
-    if ((file = fopen("proj2.out", "w+")) == NULL) {
-        fprintf(stderr, "ERROR: Output file could not be opened\n");
-        return 1;
-    }
-    setbuf(file, NULL);
-    setbuf(stdout, NULL);
-    //setbuf(stderr, NULL);
-
-    // Fork customer processes
-    for(int idZ  = 1; idZ <=NZ;idZ++){
-        pid_t pid = fork();
-        if(pid==0){
-            //printf("CUSTOMER\n");
-            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
-            customer_process(idZ, TZ);
-            exit(0);
-        }
-        else if (pid==-1){
-            fprintf(stderr, "Fork customer processes error!\n");
-            shared_memory_dest();
-            semaphore_dest();
-            fclose(file);
-            exit(1);
-        }
-    }
-
-    // Fork clerk processes
-    for(int idU  = 1; idU <=NU;idU++){
-        pid_t pid = fork();
-        if(pid==0){
-            //printf("CLERK\n");
-            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
-            clerk_process(idU, TU);
-            exit(0);
-        }
-        else if (pid==-1){
-            fprintf(stderr, "Fork clerk processes error!\n");
-            shared_memory_dest();
-            semaphore_dest();
-            fclose(file);
-            exit(1);
-        }
-    }
-
-    usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
-
-   //Close the post office
-    sem_wait(sem_mutex);
-    (*post_is_closed) = true;
-    fprintf(file, "%d: closing\n", ++(*action_number));
-    sem_post(sem_mutex);
-
-    // Clean up shared memory and semaphores
-    while ((wpid = wait(&status)) > 0);
-    //while(wait(NULL)>0);
-    shared_memory_dest();
-    semaphore_dest();
-    fclose(file);
-
-    return 0;
-}
-////////////////////////////    MAIN END    ////////////////////////////
 
 // Semaphores destruction
 void semaphore_dest(void){
@@ -265,37 +161,37 @@ int shared_memory_init(void){
         return 1;
     }
 
-    first_service_queue = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    first_service_queue = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == first_service_queue) {
         return 1;
     }
-    second_service_queue = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    second_service_queue = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == second_service_queue) {
         return 1;
     }
-    third_service_queue = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    third_service_queue = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == third_service_queue) {
         return 1;
     }
 
-    action_number = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    action_number = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == action_number) {
         return 1;
     }
 
 
-    clerks_number = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    clerks_number = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == clerks_number) {
         return 1;
     }
 
-    customers_numbers = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    customers_numbers = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == customers_numbers) {
         return 1;
     }
 
     // inicializacia zdielanych premennych
-    *post_is_closed = false;
+    *post_is_closed = 0;
     *first_service_queue = 0;
     *second_service_queue = 0;
     *third_service_queue = 0;
@@ -318,28 +214,31 @@ void customer_process(int idZ, int TZ) {
     // Wait for a random time between 0 and TZ
     upsleep_for_random_time(TZ);
 
-    sem_wait(sem_mutex);
+    //sem_wait(sem_customer);////
     // Check if the post office is closed
     if (*post_is_closed) {
+        sem_wait(sem_mutex);
         fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
         sem_post(sem_mutex);
+        //sem_post(sem_customer);
         exit(0);
     }
 
-    int service = rand() % NUM_SERVICES;
-    fprintf(file, "%d: Z %d: entering office for a service %d\n", ++(*action_number), idZ, service + 1);
+    int service = (rand() % NUM_SERVICES) + 1;
+    sem_wait(sem_mutex);
+    fprintf(file, "%d: Z %d: entering office for a service %d\n", ++(*action_number), idZ, service);
     sem_post(sem_mutex);
 
     switch(service) {
-    case 0:
+    case 1:
         (*first_service_queue)++;
         sem_wait(sem_first_service);
         break;
-    case 1:
+    case 2:
         (*second_service_queue)++;
         sem_wait(sem_second_service);
         break;
-    case 2:
+    case 3:
         (*third_service_queue)++;
         sem_wait(sem_third_service);
         break;
@@ -370,20 +269,23 @@ void clerk_process(int idU, int TU) {
     sem_post(sem_mutex);
 
     while (1) {
-        int service = 0;
+        sem_wait(sem_clerk); 
 
-        sem_wait(sem_clerk);
-        if (*first_service_queue)
+        int service_type_queue[3] = {0};
+        int  = 0;
+
+        if ((*first_service_queue) > 0)
         {   
-            service++;
+            service_type[service++] = 1;
         }
-        if (*second_service_queue)
+        if ((*second_service_queue) > 0)
         {
-            service++;
+            service_type[service++] = 2;
         }    
-        if (*third_service_queue)
+        if ((*third_service_queue) > 0)
         {
-            service++;
+            service_type[service++] = 3;
+
         }
 
         if ((service == 0) && (*post_is_closed)) {
@@ -392,8 +294,8 @@ void clerk_process(int idU, int TU) {
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
             sem_post(sem_mutex);
-
             (*clerks_number)--;
+
             exit(0);
         } else if (service == 0) {
             sem_post(sem_clerk);
@@ -407,38 +309,35 @@ void clerk_process(int idU, int TU) {
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
-        } else {
+        } else if (service > 0) {
+
             service = (rand() % service) + 1;
 
-            switch (service)
+            switch (service_queues[service])
             {
             case 1:
+                if(*first_service_queue)
                 (*first_service_queue)--;
                 sem_post(sem_first_service);
-                sem_post(sem_clerk);
-
                 break;
             case 2:
                 (*second_service_queue)--;
                 sem_post(sem_second_service);
-                sem_post(sem_clerk);
-
                 break;
             case 3:
                 (*third_service_queue)--;
                 sem_post(sem_third_service);
-                sem_post(sem_clerk);
 
                 break;
             default:
-                sem_post(sem_clerk);
-                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", service);
+                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", selected_service);
                 exit(1);
                 break;
             }            
 
+        
             sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service);
+            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, selected_service);
             sem_post(sem_mutex);
         
             usleep(rand() % 11);
@@ -447,12 +346,7 @@ void clerk_process(int idU, int TU) {
             fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
             sem_post(sem_mutex);
 
-
-
-
-
-
-
+            sem_post(sem_clerk);
 
         }
         ////////////////////////////////
@@ -520,3 +414,115 @@ void clerk_process(int idU, int TU) {
 //     int number = rand() % (max-min+1);
 //     return number+min;
 // }
+
+////////////////////////////    MAIN START  ////////////////////////////
+int main(int argc, char *argv[]) {
+    // if (argc != 6) {
+    //     fprintf(stderr, "Error: Invalid number of arguments.\n");
+    //     return 1;
+    // }
+
+    // int NZ = atoi(argv[1]); //počet zákazníků
+    // int NU = atoi(argv[2]); //počet úředníků
+    // int TZ = atoi(argv[3]); 
+    // int TU = atoi(argv[4]);
+    // int F = atoi(argv[5]);
+
+
+    int NZ = 3; //počet zákazníků
+    int NU = 2; //počet úředníků
+    int TZ = 20; 
+    int TU = 20;
+    int F = 20;
+
+    // Check if input values are within allowed range
+    if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
+        fprintf(stderr, "Error: Invalid input values.\n");
+        return 1;
+    }    
+
+    pid_t wpid;
+    int status = 0;
+
+
+    // Initialize shared memory and semaphores
+    if(shared_memory_init()){
+        fprintf(stderr, "Cannot alocate shared memory!\n");
+        return 1;
+    }
+
+    if(semaphore_init()){
+        fprintf(stderr, "Cannot open semaphores!\n");
+        return 1;
+    }
+
+    // Set output file and output buffer
+    if ((file = fopen("proj2.out", "w+")) == NULL) {
+        fprintf(stderr, "ERROR: Output file could not be opened\n");
+        return 1;
+    }
+    setbuf(file, NULL);
+    setbuf(stdout, NULL);
+    setbuf(stderr, NULL);
+
+
+    // shared_memory_dest();
+    // semaphore_dest();
+    // fclose(file);
+    // return 0; 
+
+    // Fork customer processes
+    for(int idZ  = 1; idZ <=NZ;idZ++){
+        pid_t pid = fork();
+        if(pid==0){
+            //printf("CUSTOMER\n");
+            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
+            customer_process(idZ, TZ);
+            exit(0);
+        }
+        else if (pid==-1){
+            fprintf(stderr, "Fork customer processes error!\n");
+            shared_memory_dest();
+            semaphore_dest();
+            fclose(file);
+            exit(1);
+        }
+    }
+
+    // Fork clerk processes
+    for(int idU  = 1; idU <=NU;idU++){
+        pid_t pid = fork();
+        if(pid==0){
+            //printf("CLERK\n");
+            srand((int)time(0) % getpid()); // for upsleep_for_random_time(time_max)
+            clerk_process(idU, TU);
+            exit(0);
+        }
+        else if (pid==-1){
+            fprintf(stderr, "Fork clerk processes error!\n");
+            shared_memory_dest();
+            semaphore_dest();
+            fclose(file);
+            exit(1);
+        }
+    }
+
+    usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
+
+   //Close the post office
+    sem_wait(sem_mutex);
+    *post_is_closed = 1;
+    fprintf(file, "%d: closing\n", ++(*action_number));
+    sem_post(sem_mutex);
+
+    // Clean up shared memory and semaphores
+    while ((wpid = wait(&status)) > 0);
+    //while(wait(NULL)>0);
+    shared_memory_dest();
+    semaphore_dest();
+    fclose(file);
+
+    return 0;
+}
+////////////////////////////    MAIN END    ////////////////////////////
+
