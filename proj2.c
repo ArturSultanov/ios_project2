@@ -14,7 +14,6 @@ sem_t *sem_first_service;
 sem_t *sem_second_service;
 sem_t *sem_third_service;
 sem_t *sem_clerk;
-sem_t *sem_customer;
 
 // Shared memory declaration
 bool *post_is_closed = NULL;
@@ -35,38 +34,28 @@ int semaphore_init(void){
 
     sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_mutex == SEM_FAILED){
-        printf("mutex_sem_faidled");
         return 1;
     }
     sem_first_service = sem_open(SEMAPHORE_SERVICEFRST, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_first_service == SEM_FAILED){
-        printf("frst_sem_faidled");
         return 1;
     }
 
     sem_second_service = sem_open(SEMAPHORE_SERVICESCND, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_second_service == SEM_FAILED){
-        printf("mutex_sem_faidled");
         return 1;
     }
 
     sem_third_service = sem_open(SEMAPHORE_SERVICETHRD, O_CREAT | O_EXCL, 0666, 0) ;
     if (sem_third_service == SEM_FAILED){
-        printf("thrd_sem_faidled");
         return 1;
     }
 
     sem_clerk = sem_open(SEMAPHORE_CLERK, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_clerk == SEM_FAILED){
-        printf("clekr_sem_faidled");
         return 1;
     }
 
-    sem_customer = sem_open(SEMAPHORE_CUSTOMER, O_CREAT | O_EXCL, 0666, 0) ;
-    if (sem_customer == SEM_FAILED){
-        printf("customer_sem_faidled");
-        return 1;
-    }
     return 0;
 }
 
@@ -86,9 +75,6 @@ void semaphore_dest(void){
 
     sem_close(sem_clerk);   
     sem_unlink(SEMAPHORE_CLERK);
-
-    sem_close(sem_customer);   
-    sem_unlink(SEMAPHORE_CUSTOMER);
 }
 
 // Shared memory initialization(mapping) function.
@@ -171,7 +157,6 @@ void customer_process(int idZ, int TZ) {
         sem_wait(sem_mutex);
         fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
         sem_post(sem_mutex);
-        //sem_post(sem_customer);
         exit(0);
     }
 

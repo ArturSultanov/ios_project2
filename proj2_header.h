@@ -20,14 +20,11 @@
 #include <sys/mman.h>   // shared memory functions
 #include <signal.h>     // signal handling functions
 
-
 #define SEMAPHORE_MUTEX "/xsulta01_sem_mutex"
 #define SEMAPHORE_SERVICEFRST "/xsulta01_servicefrst" 
 #define SEMAPHORE_SERVICESCND "/xsulta01_servicescnd" 
 #define SEMAPHORE_SERVICETHRD "/xsulta01_servicethrd" 
 #define SEMAPHORE_CLERK "/xsulta01_clerk"
-#define SEMAPHORE_CUSTOMER "/xsulta01_customer"
-
 
 #define NUM_SERVICES 3  // Number of Post services: dopisy:1, balíky:2, peněžní služby:3.
 #define upsleep_for_random_time(time_max) usleep((rand() % (time_max + 1)) * 1000) // Macros for usleep random time in range [0; time_max].
