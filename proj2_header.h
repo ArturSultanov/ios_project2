@@ -27,7 +27,7 @@
 #define SEMAPHORE_CLERK "/xsulta01_clerk"
 
 #define NUM_SERVICES 3  // Number of Post services: dopisy:1, balíky:2, peněžní služby:3.
-#define upsleep_for_random_time(time_max) usleep((rand() % (time_max + 1)) * 1000) // Macros for usleep random time in range [0; time_max].
+#define upsleep_for_random_time(time_max) usleep((rand() % (time_max + 1)) * 1000) // Macros for wait random time in range from 0 to time_max(inclusive).
 
 // Function prototypes
 

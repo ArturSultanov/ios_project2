@@ -31,7 +31,6 @@ void kill_child_processes(void) {
 
 // Semaphores initialization(opening) function.
 int semaphore_init(void){
-
     sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_mutex == SEM_FAILED){
         return 1;
@@ -79,7 +78,6 @@ void semaphore_dest(void){
 
 // Shared memory initialization(mapping) function.
 int shared_memory_init(void){
-
     post_is_closed = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if ( MAP_FAILED == post_is_closed) {
         return 1;
@@ -115,7 +113,6 @@ int shared_memory_init(void){
 
 // Shared memory destruction(unmapping) function.
 int shared_memory_dest(void){
-
     if(munmap(post_is_closed, sizeof(bool))){
         return 1;
     }
@@ -145,27 +142,24 @@ void cleanup(void){
 // Customer-process logic.
 void customer_process(int idZ, int TZ) {
     sem_wait(sem_mutex);
-    // Print the initial message
-    fprintf(file, "%d: Z %d: started\n", ++(*action_number), idZ);
+    fprintf(file, "%d: Z %d: started\n", ++(*action_number), idZ); // Print the initial message
     sem_post(sem_mutex);
 
-    // Wait for a random time between 0 and TZ
-    upsleep_for_random_time(TZ);
+    upsleep_for_random_time(TZ); // Wait for a random time between 0 and TZ
 
-    // Check if the post office is closed
-    if ((*post_is_closed)>0) {
+    if (*post_is_closed) { // Check if the post office is closed.
         sem_wait(sem_mutex);
-        fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
+        fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ); // If it's closed, customer will go home.
         sem_post(sem_mutex);
         exit(0);
     }
 
-    int service = (rand() % NUM_SERVICES) + 1;
+    int service = (rand() % NUM_SERVICES) + 1; // Customer chooses a random service in range from 1 to 3 (inclided).
     sem_wait(sem_mutex);
     fprintf(file, "%d: Z %d: entering office for a service %d\n", ++(*action_number), idZ, service);
     sem_post(sem_mutex);
 
-    switch(service) {
+    switch(service) { //Customer si waiting for service in appropriate service queue.
     case 1:
         (*first_service_queue)++;
         sem_wait(sem_first_service);
@@ -179,7 +173,7 @@ void customer_process(int idZ, int TZ) {
         sem_wait(sem_third_service);
         break;
     default:
-        printf("CUSTOMER FUNCTION SERVICE ERROR\n");
+        fprintf(stderr, "Error: customer function service error.\n");
         exit(1);
     }
     
@@ -199,54 +193,54 @@ void customer_process(int idZ, int TZ) {
 // Clerk-process logic.
 void clerk_process(int idU, int TU) {
     sem_wait(sem_mutex);
-    fprintf(file, "%d: U %d: started\n", ++(*action_number), idU);
+    fprintf(file, "%d: U %d: started\n", ++(*action_number), idU);  // Print the initial message
     sem_post(sem_mutex);
 
     while (1) {
-        sem_wait(sem_clerk); 
+        sem_wait(sem_clerk); // Semaphore to prevent changing of variables value caused by another clerk process.
 
-        int service_type[3] = {0};
-        int  occupied = 0; //number of occupited services
+        int service_type[3] = {0};  // Array is needed to store info about how many and what kind of services are occupied by customers at the moment.
+        int  occupied = 0;          // Number of occupited services.
 
-        if ((*first_service_queue) > 0)
+        if (*first_service_queue)   // If there is any customer in service_1 queue 
         {   
             service_type[occupied] = 1;
             occupied++;
         }
-        if ((*second_service_queue) > 0)
+        if (*second_service_queue)  // If there is any customer in service_2 queue 
         {
             service_type[occupied] = 2;
             occupied++;
         }    
-        if ((*third_service_queue) > 0)
+        if (*third_service_queue)   // If there is any customer in service_2 queue 
         {
             service_type[occupied] = 3;
             occupied++;
         }
 
-        if ((occupied == 0) && (*post_is_closed)) {
+        if ((occupied == 0) && (*post_is_closed)) { // If there are no customers in the queues and post office is closed,
             sem_post(sem_clerk);
 
             sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
+            fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU); // clerk will home.
             sem_post(sem_mutex);
 
             exit(0);
-        } else if (occupied == 0) {
-            sem_post(sem_clerk);
+        } else if (occupied == 0) { // If there are no customers in the queues, but post office is still open,
 
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: taking break\n", ++(*action_number), idU);
             sem_post(sem_mutex);
 
-            upsleep_for_random_time(TU);
+            upsleep_for_random_time(TU); // clerk will take a break for random time in range from 0 to TU(inclusive).
+            sem_post(sem_clerk);
 
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: break finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
-        } else if (occupied > 0) {
+        } else if (occupied > 0) { // If there is any customer in any queue,
 
-            int service = (rand() % occupied);
+            int service = (rand() % occupied); // clerk will choose random service from number of occupied services.
 
             switch (service_type[service])
             {
@@ -264,7 +258,8 @@ void clerk_process(int idU, int TU) {
 
                 break;
             default:
-                printf("ERROR IN CLERK FUNCTION - SERVICE; %d\n", service_type[service]);
+                fprintf(stderr,"Error; error in clerk function - service switch. Unavailable service type: %d\n", service_type[service]);
+                sem_post(sem_clerk);
                 exit(1);
                 break;
             }            
@@ -274,14 +269,16 @@ void clerk_process(int idU, int TU) {
             fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service_type[service]);
             sem_post(sem_mutex);
         
-            usleep(rand() % 11);
+            usleep(rand() % 11); 
 
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
             sem_post(sem_mutex);
 
-        } else {
-
+        } else if (occupied < 0){
+            fprintf(stderr, "Error: clerk function service error");
+            sem_post(sem_clerk);
+            exit(1);
         }
     }
 }
