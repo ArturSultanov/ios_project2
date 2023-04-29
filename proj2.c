@@ -267,13 +267,13 @@ void clerk_process(int idU, int TU) {
             sem_post(sem_clerk);
         
             sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: serving customer at service %d\n", ++(*action_number), idU, service_type[service]);
+            fprintf(file, "%d: U %d: serving a service of type %d\n", ++(*action_number), idU, service_type[service]);
             sem_post(sem_mutex);
         
             usleep(rand() % 11); 
 
             sem_wait(sem_mutex);
-            fprintf(file, "%d: U %d: finished serving customer\n", ++(*action_number), idU);
+            fprintf(file, "%d: U %d: service finished\n", ++(*action_number), idU);
             sem_post(sem_mutex);
 
         } else if (occupied < 0){
@@ -399,4 +399,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
