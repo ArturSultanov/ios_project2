@@ -1,6 +1,7 @@
-// Artur Sultanov
-// xsulta01
-// IOS project 2 2023
+// Author:  Artur Sultanov
+// xlogin:  xsulta01
+// Date:    Aprill 2023
+// Task:    IOS project 2
 
 #ifndef PROJ2_HEADER_FILE
 #define PROJ2_HEADER_FILE

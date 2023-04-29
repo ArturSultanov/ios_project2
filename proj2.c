@@ -1,6 +1,8 @@
 // Author:  Artur Sultanov
 // xlogin:  xsulta01
-// task:    IOS project 2 2023
+// Date:    Aprill 2023
+// Task:    IOS project 2
+
 #include "proj2_header.h"
 
 // Global values declaration
