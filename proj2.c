@@ -22,8 +22,6 @@ int *first_service_queue = NULL;
 int *second_service_queue = NULL;
 int *third_service_queue = NULL;
 int *action_number = NULL;
-int *clerks_number = NULL;
-int *customers_numbers = NULL;
 
 // Kill all Child-processes were created by Main-process.
 void kill_child_processes(void) {
@@ -119,25 +117,12 @@ int shared_memory_init(void){
         return 1;
     }
 
-
-    clerks_number = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == clerks_number) {
-        return 1;
-    }
-
-    customers_numbers = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if ( MAP_FAILED == customers_numbers) {
-        return 1;
-    }
-
     // Initialization of shared variables.
     *post_is_closed = 0;
     *first_service_queue = 0;
     *second_service_queue = 0;
     *third_service_queue = 0;
     *action_number = 0;
-    *clerks_number = 0;
-    *customers_numbers = 0;
 
     return 0;
 }
@@ -160,12 +145,6 @@ int shared_memory_dest(void){
     if(munmap(action_number, sizeof(int))){
         return 1;
     }
-    if(munmap(clerks_number, sizeof(int))){
-        return 1;
-    }
-    if(munmap(customers_numbers, sizeof(int))){
-        return 1;
-    }
 
     return 0;
 }
@@ -179,8 +158,6 @@ void cleanup(void){
 
 // Customer-process logic.
 void customer_process(int idZ, int TZ) {
-    (*customers_numbers)++;
-
     sem_wait(sem_mutex);
     // Print the initial message
     fprintf(file, "%d: Z %d: started\n", ++(*action_number), idZ);
@@ -193,7 +170,6 @@ void customer_process(int idZ, int TZ) {
     if ((*post_is_closed)>0) {
         sem_wait(sem_mutex);
         fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
-        (*customers_numbers)--;
         sem_post(sem_mutex);
         //sem_post(sem_customer);
         exit(0);
@@ -230,7 +206,6 @@ void customer_process(int idZ, int TZ) {
 
     sem_wait(sem_mutex);
     fprintf(file, "%d: Z %d: going home\n", ++(*action_number), idZ);
-    (*customers_numbers)--;
     sem_post(sem_mutex);
 
     exit(0);
@@ -238,8 +213,6 @@ void customer_process(int idZ, int TZ) {
 
 // Clerk-process logic.
 void clerk_process(int idU, int TU) {
-    (*clerks_number)++;
-
     sem_wait(sem_mutex);
     fprintf(file, "%d: U %d: started\n", ++(*action_number), idU);
     sem_post(sem_mutex);
@@ -272,7 +245,6 @@ void clerk_process(int idU, int TU) {
             sem_wait(sem_mutex);
             fprintf(file, "%d: U %d: going home\n", ++(*action_number), idU);
             sem_post(sem_mutex);
-            (*clerks_number)--;
 
             exit(0);
         } else if (occupied == 0) {
