@@ -255,6 +255,7 @@ void clerk_process(int idU, int TU) {
             case 3:
                 (*third_service_queue)--;
                 sem_post(sem_third_service);
+
                 break;
             default:
                 fprintf(stderr,"Error; error in clerk function - service switch. Unavailable service type: %d\n", service_type[service]);
