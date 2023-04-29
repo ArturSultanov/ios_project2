@@ -3,11 +3,12 @@
 // IOS project 2 2023
 #include "proj2_header.h"
 
-// Global values
+// Global values declaration
 FILE *file;
 pid_t *child_processes;
 int child_count;
 
+// Semaphores declaration
 sem_t *sem_mutex;
 sem_t *sem_first_service;
 sem_t *sem_second_service;
@@ -24,37 +25,14 @@ int *action_number = NULL;
 int *clerks_number = NULL;
 int *customers_numbers = NULL;
 
-// Kill all Child-processes of Main-process 
+// Kill all Child-processes were created by Main-process.
 void kill_child_processes(void) {
     for (int i = 0; i < child_count; i++) {
         kill(child_processes[i], SIGTERM);
     }
 }
 
-// Semaphores destruction
-void semaphore_dest(void){
-    sem_close(sem_mutex);   
-    sem_unlink(SEMAPHORE_MUTEX);
-
-    sem_close(sem_first_service);   
-    sem_unlink(SEMAPHORE_SERVICEFRST);
-
-    sem_close(sem_second_service);   
-    sem_unlink(SEMAPHORE_SERVICESCND);
-
-    sem_close(sem_third_service);   
-    sem_unlink(SEMAPHORE_SERVICETHRD);
-
-    sem_close(sem_clerk);   
-    sem_unlink(SEMAPHORE_CLERK);
-
-    sem_close(sem_customer);   
-    sem_unlink(SEMAPHORE_CUSTOMER);
-    
-    return;
-}
-
-// Semaphores initialization
+// Semaphores initialization(opening) function.
 int semaphore_init(void){
 
     sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
@@ -94,35 +72,28 @@ int semaphore_init(void){
     return 0;
 }
 
-// Shared memory destruction
-int shared_memory_dest(void){
+// Semaphores destruction(closing, unlinking) function.
+void semaphore_dest(void){
+    sem_close(sem_mutex);   
+    sem_unlink(SEMAPHORE_MUTEX);
 
-    if(munmap(post_is_closed, sizeof(bool))){
-        return 1;
-    }
-    if(munmap(first_service_queue, sizeof(int))){
-        return 1;
-    }
-    if (munmap(second_service_queue, sizeof(int))){
-        return 1;
-    }
-    if(munmap(third_service_queue, sizeof(int))){
-        return 1;
-    }
-    if(munmap(action_number, sizeof(int))){
-        return 1;
-    }
-    if(munmap(clerks_number, sizeof(int))){
-        return 1;
-    }
-    if(munmap(customers_numbers, sizeof(int))){
-        return 1;
-    }
+    sem_close(sem_first_service);   
+    sem_unlink(SEMAPHORE_SERVICEFRST);
 
-    return 0;
+    sem_close(sem_second_service);   
+    sem_unlink(SEMAPHORE_SERVICESCND);
+
+    sem_close(sem_third_service);   
+    sem_unlink(SEMAPHORE_SERVICETHRD);
+
+    sem_close(sem_clerk);   
+    sem_unlink(SEMAPHORE_CLERK);
+
+    sem_close(sem_customer);   
+    sem_unlink(SEMAPHORE_CUSTOMER);
 }
 
-// Shared memory initialization
+// Shared memory initialization(mapping) function.
 int shared_memory_init(void){
 
     post_is_closed = mmap(NULL, sizeof(bool), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
@@ -159,7 +130,7 @@ int shared_memory_init(void){
         return 1;
     }
 
-    // inicializacia zdielanych premennych
+    // Initialization of shared variables.
     *post_is_closed = 0;
     *first_service_queue = 0;
     *second_service_queue = 0;
@@ -171,13 +142,42 @@ int shared_memory_init(void){
     return 0;
 }
 
+// Shared memory destruction(unmapping) function.
+int shared_memory_dest(void){
+
+    if(munmap(post_is_closed, sizeof(bool))){
+        return 1;
+    }
+    if(munmap(first_service_queue, sizeof(int))){
+        return 1;
+    }
+    if (munmap(second_service_queue, sizeof(int))){
+        return 1;
+    }
+    if(munmap(third_service_queue, sizeof(int))){
+        return 1;
+    }
+    if(munmap(action_number, sizeof(int))){
+        return 1;
+    }
+    if(munmap(clerks_number, sizeof(int))){
+        return 1;
+    }
+    if(munmap(customers_numbers, sizeof(int))){
+        return 1;
+    }
+
+    return 0;
+}
+
+// Semaphores and shared variables destruction, closing output *file, if it wasn't.
 void cleanup(void){
     if (file != NULL) fclose(file);
     shared_memory_dest();
     semaphore_dest();
 }
 
-// Customer process function
+// Customer-process logic.
 void customer_process(int idZ, int TZ) {
     (*customers_numbers)++;
 
@@ -236,7 +236,7 @@ void customer_process(int idZ, int TZ) {
     exit(0);
 }
 
-// Clerk process function
+// Clerk-process logic.
 void clerk_process(int idU, int TU) {
     (*clerks_number)++;
 
@@ -329,7 +329,7 @@ void clerk_process(int idU, int TU) {
     }
 }
 
-////////////////////////////    MAIN START  ////////////////////////////
+// Main function.
 int main(int argc, char *argv[]) {
     if (argc != 6) {
         fprintf(stderr, "Error: Invalid number of arguments.\n");
@@ -342,14 +342,13 @@ int main(int argc, char *argv[]) {
     int TU = atoi(argv[4]);
     int F = atoi(argv[5]);
 
-
     // Check if input values are within allowed range
     if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     }   
 
-    pid_t wpid;
+    pid_t wpid;    
     int status = 0;
 
     // Set output file and output buffer
@@ -439,14 +438,12 @@ int main(int argc, char *argv[]) {
     fprintf(file, "%d: closing\n", ++(*action_number));
     sem_post(sem_mutex);
 
-    while ((wpid = wait(&status)) > 0);
+    while ((wpid = wait(&status)) > 0); // Main-process waiting for all Child-processes to terminate.
 
-    printf("HELLO\nCustomer number: %d\nClkerks number: %d\n", (*customers_numbers), (*clerks_number));
     // Clean up shared memory and semaphores
     cleanup();
     free(child_processes);
 
-    //printf("END");
     return 0;
 }
 

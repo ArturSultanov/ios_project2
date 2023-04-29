@@ -5,6 +5,8 @@
 #ifndef PROJ2_HEADER_FILE
 #define PROJ2_HEADER_FILE
 
+// Headers
+
 #include <stdio.h>      // standard input/output functions
 #include <stdbool.h>    // the bool type
 #include <stdlib.h>     // functions like exit, malloc, and free
@@ -27,17 +29,18 @@
 #define SEMAPHORE_CUSTOMER "/xsulta01_customer"
 
 
-#define NUM_SERVICES 3
-#define upsleep_for_random_time(time_max) usleep((rand() % (time_max + 1)) * 1000)
+#define NUM_SERVICES 3  // Number of Post services: dopisy:1, balíky:2, peněžní služby:3.
+#define upsleep_for_random_time(time_max) usleep((rand() % (time_max + 1)) * 1000) // Macros for usleep random time in range [0; time_max].
 
 // Function prototypes
-void semaphore_dest(void);
-int semaphore_init(void);
-int shared_memory_dest(void);
-int shared_memory_init(void);
-void customer_process(int idZ, int TZ);
-void clerk_process(int idU, int TU);
-void cleanup(void);
-void kill_child_processes(void);
 
+int semaphore_init(void);               // Semaphores initialization(opening) function.
+void semaphore_dest(void);              // Semaphores destruction(closing, unlinking) function.
+int shared_memory_init(void);           // Shared memory initialization(mapping) function.
+int shared_memory_dest(void);           // Shared memory destruction(unmapping) function.
+void customer_process(int idZ, int TZ); // Customer-process logic.
+void clerk_process(int idU, int TU);    // Clerk-process logic.
+void cleanup(void);                     // Semaphores and shared variables destruction, closing output *file, if it wasn't.
+void kill_child_processes(void);        // Kill all Child-processes were created by Main-process.
+ 
 #endif
