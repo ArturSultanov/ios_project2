@@ -331,18 +331,19 @@ void clerk_process(int idU, int TU) {
 
 // Main function.
 int main(int argc, char *argv[]) {
+    // Check input arguments number.
     if (argc != 6) {
         fprintf(stderr, "Error: Invalid number of arguments.\n");
         return 1;
     }
 
-    int NZ = atoi(argv[1]); //počet zákazníků
-    int NU = atoi(argv[2]); //počet úředníků
-    int TZ = atoi(argv[3]); 
-    int TU = atoi(argv[4]);
-    int F = atoi(argv[5]);
+    int NZ = atoi(argv[1]); // Number of customers
+    int NU = atoi(argv[2]); // Number of clerks
+    int TZ = atoi(argv[3]); // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
+    int TU = atoi(argv[4]); // Maximum time of clerk's break (in milliseconds).
+    int F = atoi(argv[5]);  // Maximum time (in milliseconds) before post office would be closed for new customers.
 
-    // Check if input values are within allowed range
+    // Check if input values are within allowed range.
     if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
@@ -351,12 +352,12 @@ int main(int argc, char *argv[]) {
     pid_t wpid;    
     int status = 0;
 
-    // Set output file and output buffer
+    // Set output file and output buffer.
     if (file != NULL) {
         fclose(file);
     }
     if ((file = fopen("proj2.out", "w+")) == NULL) {
-        fprintf(stderr, "ERROR: Output file could not be opened\n");
+        fprintf(stderr, "Error: Output file could not be opened\n");
         return 1;
     }
     setbuf(file, NULL);
@@ -367,7 +368,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     if(shared_memory_init()){
-        fprintf(stderr, "Cannot alocate shared memory!\n");
+        fprintf(stderr, "Error: Cannot alocate shared memory!\n");
         fclose(file);
         return 1;
     }
@@ -375,27 +376,27 @@ int main(int argc, char *argv[]) {
     semaphore_dest();
 
     if(semaphore_init()){
-        fprintf(stderr, "Cannot open semaphores!\n");
+        fprintf(stderr, "Error: Cannot open semaphores.\n");
         fclose(file);
         semaphore_dest();
         return 1;
     }
 
-    // kill_child_processes() needed values 
+    // kill_child_processes() function needed values.
     child_processes = (pid_t *)malloc((NZ + NU) * sizeof(pid_t));
     child_count = 0;
  
     // Fork customer processes
-    for(int idZ  = 1; idZ <=NZ;idZ++){
+    for(int idZ  = 1; idZ <=NZ;idZ++){  // Creation of NZ customer processes.
         pid_t customer_pid = fork();
         
         if(customer_pid == 0){
-            srand((int)time(0) % getpid()); // To get random value using upsleep_for_random_time(time_max)
+            srand((int)time(0) % getpid()); // To get random value for each process when using upsleep_for_random_time(time_max).
             customer_process(idZ, TZ);
             exit(0);
         }
         else if (customer_pid == -1){
-            fprintf(stderr, "Fork customer processes error!\n");
+            fprintf(stderr, "Error: Fork customer processes error.\n");
             cleanup();
 
             kill_child_processes();
@@ -406,20 +407,17 @@ int main(int argc, char *argv[]) {
         }
     }
 
-
-
-
     // Fork clerk processes
-    for(int idU  = 1; idU <=NU;idU++){
+    for(int idU  = 1; idU <=NU;idU++){  /// Creation of NU clerks processes.
         pid_t clerk_pid = fork();
 
         if(clerk_pid == 0){
-            srand((int)time(0) % getpid()); // To get random value using upsleep_for_random_time(time_max)
+            srand((int)time(0) % getpid()); // To get random value for each process when using upsleep_for_random_time(time_max).
             clerk_process(idU, TU);
             exit(0);
         }
         else if (clerk_pid == -1){
-            fprintf(stderr, "Fork clerk processes error!\n");            
+            fprintf(stderr, "Error: Fork clerk processes error.\n");            
             cleanup();
             
             kill_child_processes();
@@ -430,17 +428,17 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000);
+    usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000); // Waiting for post office to close.
     (*post_is_closed) = 1;
 
-   //Close the post office
+    //Closing of the post office.
     sem_wait(sem_mutex);
     fprintf(file, "%d: closing\n", ++(*action_number));
     sem_post(sem_mutex);
 
     while ((wpid = wait(&status)) > 0); // Main-process waiting for all Child-processes to terminate.
 
-    // Clean up shared memory and semaphores
+    // Clean up memory and semaphores
     cleanup();
     free(child_processes);
 
