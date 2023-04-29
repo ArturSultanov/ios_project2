@@ -219,7 +219,6 @@ void cleanup(void){
     semaphore_dest();
 }
 
-
 // Customer process function
 void customer_process(int idZ, int TZ) {
     (*customers_numbers)++;

@@ -5,22 +5,19 @@
 #ifndef PROJ2_HEADER_FILE
 #define PROJ2_HEADER_FILE
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <time.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <sys/sem.h>
-//#include <sys/shm.h>
-//#include <errno.h>
-#include <fcntl.h>
-#include <semaphore.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <sys/mman.h>
-#include <signal.h>
+#include <stdio.h>      // standard input/output functions
+#include <stdbool.h>    // the bool type
+#include <stdlib.h>     // functions like exit, malloc, and free
+
+#include <unistd.h>     // the fork, usleep 
+#include <sys/types.h>  // data type 'pid_t'
+#include <time.h>       // time-related functions
+#include <fcntl.h>      // flags like O_CREAT, O_EXCL
+#include <semaphore.h>  // POSIX semaphore functions
+#include <sys/wait.h>   // wait and waitpid functions
+#include <sys/mman.h>   // shared memory functions
+#include <signal.h>     // signal handling functions
+
 
 #define SEMAPHORE_MUTEX "/xsulta01_sem_mutex"
 #define SEMAPHORE_SERVICEFRST "/xsulta01_servicefrst" 
