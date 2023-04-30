@@ -20,7 +20,7 @@
 #include <sys/wait.h>   // wait and waitpid functions
 #include <sys/mman.h>   // shared memory functions
 #include <signal.h>     // signal handling functions
-#include <ctype.h>      // 
+#include <ctype.h>      // input check types
 
 #define SEMAPHORE_MUTEX "/xsulta01_sem_mutex"
 #define SEMAPHORE_SERVICEFRST "/xsulta01_servicefrst" 
