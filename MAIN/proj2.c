@@ -215,7 +215,7 @@ void customer_process(int idZ, int TZ) {
     (*processes_number)++;
 
     if((*processes_number) < (NU + NZ)){
-        sem_post(sem_process_barrier); // Wait at the barrier
+        sem_wait(sem_process_barrier); // Wait at the barrier
     } else {
         sem_post(sem_main_barrier);
     }
@@ -276,7 +276,7 @@ void clerk_process(int idU, int TU) {
     (*processes_number)++;
 
     if((*processes_number) < (NU + NZ)){
-        sem_post(sem_process_barrier); // Wait at the barrier
+        sem_wait(sem_process_barrier); // Wait at the barrier
     } else {
         sem_post(sem_main_barrier);
     }
