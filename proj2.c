@@ -31,6 +31,7 @@ int *first_service_queue = NULL;
 int *second_service_queue = NULL;
 int *third_service_queue = NULL;
 int *action_number = NULL;
+int *processes_number = NULL;
 
 // Kill all Child-processes were created by Main-process.
 void kill_child_processes(void) {
@@ -65,7 +66,7 @@ int semaphore_init(void){
         return 1;
     }
 
-    sem_barrier = sem_open(SEMAPHORE_BARRIER, O_CREAT | O_EXCL, 0666, NZ + NU);
+    sem_barrier = sem_open(SEMAPHORE_BARRIER, O_CREAT | O_EXCL, 0666, 0);
     if (sem_barrier == SEM_FAILED){
         return 1;
     }
@@ -119,12 +120,18 @@ int shared_memory_init(void){
         return 1;
     }
 
+    processes_number = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if ( MAP_FAILED == processes_number) {
+        return 1;
+    }
+
     // Initialization of shared variables.
     *post_is_closed = 0;
     *first_service_queue = 0;
     *second_service_queue = 0;
     *third_service_queue = 0;
     *action_number = 0;
+    *processes_number = 0;
 
     return 0;
 }
@@ -144,6 +151,9 @@ int shared_memory_dest(void){
         return 1;
     }
     if(munmap(action_number, sizeof(int))){
+        return 1;
+    }
+    if(munmap(processes_number, sizeof(int))){
         return 1;
     }
 
@@ -192,8 +202,13 @@ void customer_process(int idZ, int TZ) {
     sem_wait(sem_mutex);
     fprintf(file, "%d: Z %d: started\n", ++(*action_number), idZ); // Print the initial message.
     sem_post(sem_mutex);
+    
+    (*processes_number)++;
 
-    sem_wait(sem_barrier); // Wait at the barrier.
+    if((*processes_number) < (NU + NZ)){
+        sem_post(sem_barrier); // Wait at the barrier
+    } 
+
     sem_post(sem_barrier); // Allow the next process to pass through the barrier.
 
     upsleep_for_random_time(TZ); // Wait for a random time between 0 and TZ
@@ -247,7 +262,12 @@ void clerk_process(int idU, int TU) {
     fprintf(file, "%d: U %d: started\n", ++(*action_number), idU);  // Print the initial message
     sem_post(sem_mutex);
 
-    sem_wait(sem_barrier); // Wait at the barrier.
+    (*processes_number)++;
+
+    if((*processes_number) < (NU + NZ)){
+        sem_post(sem_barrier); // Wait at the barrier
+    } 
+
     sem_post(sem_barrier); // Allow the next process to pass through the barrier.
 
     while (1) {
