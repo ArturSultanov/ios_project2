@@ -40,6 +40,8 @@ void kill_child_processes(void) {
 
 // Semaphores initialization(opening) function.
 int semaphore_init(void){
+    semaphore_dest();
+
     sem_mutex = sem_open(SEMAPHORE_MUTEX, O_CREAT | O_EXCL, 0666, 1) ;
     if (sem_mutex == SEM_FAILED){
         return 1;
@@ -352,7 +354,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     // Initialize semaphores
-    semaphore_dest();
 
     if(semaphore_init()){
         fprintf(stderr, "Error: Cannot open semaphores.\n");
