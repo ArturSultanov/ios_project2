@@ -1,0 +1,1155 @@
+1: Z 1: started
+2: Z 2: started
+3: Z 3: started
+4: Z 4: started
+5: Z 4: entering office for a service 1
+6: Z 5: started
+7: Z 6: started
+8: Z 7: started
+9: Z 8: started
+10: Z 9: started
+11: Z 10: started
+12: Z 12: started
+13: Z 11: started
+14: Z 13: started
+15: Z 14: started
+16: Z 15: started
+17: Z 16: started
+18: Z 17: started
+19: Z 18: started
+20: Z 19: started
+21: Z 20: started
+22: Z 20: entering office for a service 3
+23: Z 21: started
+24: Z 22: started
+25: Z 22: entering office for a service 1
+26: Z 23: started
+27: Z 17: entering office for a service 1
+28: Z 24: started
+29: Z 18: entering office for a service 3
+30: Z 25: started
+31: Z 26: started
+32: Z 27: started
+33: Z 14: entering office for a service 2
+34: Z 28: started
+35: Z 7: entering office for a service 1
+36: Z 29: started
+37: Z 30: started
+38: Z 31: started
+39: Z 10: entering office for a service 3
+40: Z 2: entering office for a service 1
+41: Z 32: started
+42: Z 33: started
+43: Z 34: started
+44: Z 35: started
+45: Z 13: entering office for a service 3
+46: Z 36: started
+47: Z 6: entering office for a service 1
+48: Z 16: entering office for a service 2
+49: Z 37: started
+50: Z 38: started
+51: Z 39: started
+52: Z 40: started
+53: Z 40: entering office for a service 1
+54: Z 41: started
+55: Z 42: started
+56: Z 43: started
+57: Z 44: started
+58: Z 19: entering office for a service 3
+59: Z 45: started
+60: Z 46: started
+61: Z 47: started
+62: Z 48: started
+63: Z 9: entering office for a service 2
+64: Z 49: started
+65: Z 23: entering office for a service 1
+66: Z 50: started
+67: Z 41: entering office for a service 3
+68: Z 51: started
+69: Z 52: started
+70: Z 53: started
+71: Z 44: entering office for a service 2
+72: Z 54: started
+73: Z 45: entering office for a service 3
+74: Z 27: entering office for a service 3
+75: Z 55: started
+76: Z 56: started
+77: Z 57: started
+78: Z 58: started
+79: Z 58: entering office for a service 1
+80: Z 31: entering office for a service 1
+81: Z 3: entering office for a service 3
+82: Z 5: entering office for a service 3
+83: Z 59: started
+84: Z 60: started
+85: Z 61: started
+86: Z 12: entering office for a service 3
+87: Z 62: started
+88: Z 35: entering office for a service 1
+89: Z 37: entering office for a service 2
+90: Z 63: started
+91: Z 64: started
+92: Z 65: started
+93: Z 66: started
+94: Z 48: entering office for a service 2
+95: Z 67: started
+96: Z 39: entering office for a service 2
+97: Z 68: started
+98: Z 69: started
+99: Z 70: started
+100: Z 71: started
+101: Z 43: entering office for a service 2
+102: Z 72: started
+103: Z 73: started
+104: Z 74: started
+105: Z 74: entering office for a service 1
+106: Z 15: entering office for a service 3
+107: Z 47: entering office for a service 3
+108: Z 1: entering office for a service 1
+109: Z 49: entering office for a service 1
+110: Z 75: started
+111: Z 76: started
+112: Z 77: started
+113: Z 78: started
+114: Z 69: entering office for a service 1
+115: Z 52: entering office for a service 3
+116: Z 79: started
+117: Z 51: entering office for a service 3
+118: Z 33: entering office for a service 2
+119: Z 80: started
+120: Z 81: started
+121: Z 82: started
+122: Z 55: entering office for a service 3
+123: Z 83: started
+124: Z 8: entering office for a service 2
+125: Z 84: started
+126: Z 85: started
+127: Z 86: started
+128: Z 87: started
+129: Z 59: entering office for a service 3
+130: Z 88: started
+131: Z 89: started
+132: Z 62: entering office for a service 2
+133: Z 54: entering office for a service 2
+134: Z 63: entering office for a service 3
+135: Z 90: started
+136: Z 90: entering office for a service 1
+137: Z 91: started
+138: Z 92: started
+139: Z 56: entering office for a service 3
+140: Z 93: started
+141: Z 29: entering office for a service 1
+142: Z 67: entering office for a service 2
+143: Z 50: entering office for a service 2
+144: Z 94: started
+145: Z 95: started
+146: Z 96: started
+147: Z 97: started
+148: Z 98: started
+149: Z 53: entering office for a service 1
+150: Z 99: started
+151: Z 73: entering office for a service 3
+152: Z 46: entering office for a service 2
+153: Z 100: started
+154: Z 101: started
+155: Z 93: entering office for a service 2
+156: Z 24: entering office for a service 3
+157: Z 102: started
+158: Z 11: entering office for a service 2
+159: Z 79: entering office for a service 3
+160: Z 103: started
+161: Z 25: entering office for a service 3
+162: Z 78: entering office for a service 3
+163: Z 38: entering office for a service 1
+164: Z 28: entering office for a service 2
+165: Z 42: entering office for a service 2
+166: Z 96: entering office for a service 1
+167: Z 60: entering office for a service 3
+168: Z 104: started
+169: Z 105: started
+170: Z 106: started
+171: Z 106: entering office for a service 1
+172: Z 107: started
+173: Z 108: started
+174: Z 109: started
+175: Z 110: started
+176: Z 111: started
+177: Z 34: entering office for a service 1
+178: Z 30: entering office for a service 3
+179: Z 57: entering office for a service 1
+180: Z 26: entering office for a service 2
+181: Z 32: entering office for a service 3
+182: Z 21: entering office for a service 2
+183: Z 88: entering office for a service 3
+184: Z 112: started
+185: Z 113: started
+186: Z 91: entering office for a service 3
+187: Z 77: entering office for a service 3
+188: Z 64: entering office for a service 2
+189: Z 114: started
+190: Z 115: started
+191: Z 66: entering office for a service 1
+192: Z 116: started
+193: Z 94: entering office for a service 3
+194: Z 117: started
+195: Z 118: started
+196: Z 97: entering office for a service 3
+197: Z 119: started
+198: Z 120: started
+199: Z 121: started
+200: Z 122: started
+201: Z 123: started
+202: Z 101: entering office for a service 3
+203: Z 71: entering office for a service 3
+204: Z 36: entering office for a service 1
+205: Z 124: started
+206: Z 124: entering office for a service 1
+207: Z 125: started
+208: Z 126: started
+209: Z 68: entering office for a service 2
+210: Z 103: entering office for a service 3
+211: Z 82: entering office for a service 3
+212: Z 127: started
+213: Z 128: started
+214: Z 129: started
+215: Z 130: started
+216: Z 131: started
+217: Z 132: started
+218: Z 122: entering office for a service 3
+219: Z 133: started
+220: Z 134: started
+221: Z 109: entering office for a service 3
+222: Z 135: started
+223: Z 116: entering office for a service 2
+224: Z 61: entering office for a service 1
+225: Z 72: entering office for a service 2
+226: Z 136: started
+227: Z 110: entering office for a service 2
+228: Z 137: started
+229: Z 138: started
+230: Z 139: started
+231: Z 140: started
+232: Z 81: entering office for a service 2
+233: Z 83: entering office for a service 2
+234: Z 108: entering office for a service 3
+235: Z 141: started
+236: Z 142: started
+237: Z 142: entering office for a service 1
+238: Z 143: started
+239: Z 115: entering office for a service 1
+240: Z 144: started
+241: Z 144: entering office for a service 3
+242: Z 145: started
+243: Z 146: started
+244: Z 147: started
+245: Z 70: entering office for a service 1
+246: Z 148: started
+247: Z 117: entering office for a service 3
+248: Z 149: started
+249: Z 150: started
+250: Z 151: started
+251: Z 98: entering office for a service 1
+252: Z 76: entering office for a service 1
+253: Z 152: started
+254: Z 153: started
+255: Z 95: entering office for a service 2
+256: Z 154: started
+257: Z 100: entering office for a service 3
+258: Z 155: started
+259: Z 156: started
+260: Z 125: entering office for a service 2
+261: Z 127: entering office for a service 3
+262: Z 157: started
+263: Z 65: entering office for a service 1
+264: U 1: started
+265: U 1: serving a service of type 2
+266: Z 14: called by office worker
+267: U 1: service finished
+268: U 1: serving a service of type 3
+269: Z 20: called by office worker
+270: U 1: service finished
+271: U 2: started
+272: U 1: serving a service of type 2
+273: Z 16: called by office worker
+274: U 2: serving a service of type 2
+275: Z 9: called by office worker
+276: U 1: service finished
+277: U 2: service finished
+278: U 3: started
+279: U 1: serving a service of type 1
+280: Z 4: called by office worker
+281: U 2: serving a service of type 3
+282: U 3: serving a service of type 1
+283: Z 18: called by office worker
+284: Z 22: called by office worker
+285: U 1: service finished
+286: U 4: started
+287: U 2: service finished
+288: U 3: service finished
+289: U 1: serving a service of type 2
+290: Z 44: called by office worker
+291: U 5: started
+292: U 4: serving a service of type 2
+293: Z 37: called by office worker
+294: U 2: serving a service of type 2
+295: Z 130: entering office for a service 2
+296: Z 48: called by office worker
+297: Z 86: entering office for a service 2
+298: U 3: serving a service of type 3
+299: Z 10: called by office worker
+300: U 6: started
+301: U 1: service finished
+302: U 5: serving a service of type 3
+303: Z 13: called by office worker
+304: U 4: service finished
+305: Z 37: going home
+306: U 2: service finished
+307: U 7: started
+308: U 3: service finished
+309: Z 133: entering office for a service 3
+310: U 6: serving a service of type 1
+311: Z 17: called by office worker
+312: U 8: started
+313: U 1: serving a service of type 1
+314: Z 7: called by office worker
+315: Z 92: entering office for a service 2
+316: Z 85: entering office for a service 1
+317: U 5: service finished
+318: U 4: serving a service of type 3
+319: Z 19: called by office worker
+320: U 2: serving a service of type 1
+321: U 7: serving a service of type 1
+322: U 9: started
+323: Z 2: called by office worker
+324: Z 6: called by office worker
+325: U 3: serving a service of type 3
+326: Z 41: called by office worker
+327: U 10: started
+328: Z 80: entering office for a service 3
+329: Z 84: entering office for a service 3
+330: U 8: serving a service of type 3
+331: Z 136: entering office for a service 3
+332: Z 45: called by office worker
+333: U 6: service finished
+334: U 1: service finished
+335: U 5: serving a service of type 2
+336: U 11: started
+337: Z 39: called by office worker
+338: Z 20: going home
+339: U 4: service finished
+340: U 2: service finished
+341: U 7: service finished
+342: U 9: serving a service of type 1
+343: Z 40: called by office worker
+344: Z 6: going home
+345: U 12: started
+346: U 3: service finished
+347: U 10: serving a service of type 3
+348: Z 27: called by office worker
+349: U 13: started
+350: Z 139: entering office for a service 2
+351: U 8: service finished
+352: Z 150: entering office for a service 1
+353: U 6: serving a service of type 2
+354: U 1: serving a service of type 2
+355: Z 43: called by office worker
+356: Z 33: called by office worker
+357: U 14: started
+358: U 5: service finished
+359: U 11: serving a service of type 1
+360: Z 23: called by office worker
+361: Z 141: entering office for a service 1
+362: Z 107: entering office for a service 1
+363: Z 75: entering office for a service 3
+364: U 15: started
+365: U 4: serving a service of type 2
+366: Z 8: called by office worker
+367: U 2: serving a service of type 1
+368: Z 58: called by office worker
+369: U 7: serving a service of type 2
+370: Z 62: called by office worker
+371: U 9: service finished
+372: U 16: started
+373: Z 48: going home
+374: Z 118: entering office for a service 2
+375: U 12: serving a service of type 1
+376: Z 31: called by office worker
+377: U 17: started
+378: U 3: serving a service of type 1
+379: Z 35: called by office worker
+380: U 10: service finished
+381: U 13: serving a service of type 2
+382: Z 54: called by office worker
+383: U 18: started
+384: U 8: serving a service of type 1
+385: Z 74: called by office worker
+386: U 6: service finished
+387: U 1: service finished
+388: U 14: serving a service of type 2
+389: Z 67: called by office worker
+390: U 19: started
+391: U 5: serving a service of type 1
+392: Z 1: called by office worker
+393: U 11: service finished
+394: Z 87: entering office for a service 1
+395: Z 23: going home
+396: U 20: started
+397: U 15: serving a service of type 1
+398: Z 49: called by office worker
+399: U 4: service finished
+400: Z 128: entering office for a service 2
+401: U 2: service finished
+402: U 7: service finished
+403: Z 151: entering office for a service 3
+404: U 9: serving a service of type 1
+405: U 21: started
+406: Z 69: called by office worker
+407: U 16: serving a service of type 2
+408: Z 50: called by office worker
+409: Z 149: entering office for a service 2
+410: U 22: started
+411: Z 89: entering office for a service 3
+412: U 12: service finished
+413: U 17: serving a service of type 3
+414: Z 3: called by office worker
+415: U 3: service finished
+416: U 23: started
+417: U 10: serving a service of type 3
+418: Z 5: called by office worker
+419: U 13: service finished
+420: U 18: serving a service of type 1
+421: Z 90: called by office worker
+422: U 8: service finished
+423: U 24: started
+424: U 6: serving a service of type 1
+425: Z 29: called by office worker
+426: U 1: serving a service of type 1
+427: Z 53: called by office worker
+428: U 14: service finished
+429: Z 10: going home
+430: U 19: serving a service of type 1
+431: Z 38: called by office worker
+432: U 5: service finished
+433: U 25: started
+434: U 11: serving a service of type 3
+435: Z 12: called by office worker
+436: U 20: serving a service of type 3
+437: Z 15: called by office worker
+438: U 26: started
+439: U 15: service finished
+440: U 4: serving a service of type 1
+441: Z 96: called by office worker
+442: U 2: serving a service of type 3
+443: U 7: serving a service of type 3
+444: Z 52: called by office worker
+445: U 27: started
+446: Z 47: called by office worker
+447: Z 27: going home
+448: Z 156: entering office for a service 1
+449: Z 120: entering office for a service 3
+450: Z 138: entering office for a service 1
+451: U 9: service finished
+452: Z 43: going home
+453: U 28: started
+454: U 21: serving a service of type 1
+455: Z 157: entering office for a service 1
+456: Z 106: called by office worker
+457: Z 102: entering office for a service 3
+458: U 16: service finished
+459: U 22: serving a service of type 3
+460: Z 51: called by office worker
+461: U 29: started
+462: U 12: serving a service of type 2
+463: Z 46: called by office worker
+464: U 3: serving a service of type 2
+465: U 17: service finished
+466: Z 93: called by office worker
+467: U 23: serving a service of type 1
+468: Z 34: called by office worker
+469: U 10: service finished
+470: Z 45: going home
+471: U 30: started
+472: Z 119: entering office for a service 2
+473: U 13: serving a service of type 2
+474: Z 11: called by office worker
+475: U 8: serving a service of type 2
+476: U 18: service finished
+477: Z 28: called by office worker
+478: U 24: serving a service of type 1
+479: Z 57: called by office worker
+480: U 31: started
+481: U 6: service finished
+482: U 1: service finished
+483: U 14: serving a service of type 2
+484: Z 42: called by office worker
+485: U 32: started
+486: U 19: service finished
+487: U 5: serving a service of type 3
+488: U 25: serving a service of type 3
+489: Z 55: called by office worker
+490: Z 59: called by office worker
+491: U 33: started
+492: Z 105: entering office for a service 2
+493: U 11: service finished
+494: U 20: service finished
+495: U 26: serving a service of type 2
+496: Z 26: called by office worker
+497: U 15: serving a service of type 1
+498: U 34: started
+499: Z 66: called by office worker
+500: U 4: service finished
+501: U 2: service finished
+502: U 7: service finished
+503: U 27: serving a service of type 1
+504: U 35: started
+505: Z 36: called by office worker
+506: Z 47: going home
+507: Z 49: going home
+508: U 9: serving a service of type 2
+509: U 36: started
+510: Z 21: called by office worker
+511: U 28: serving a service of type 2
+512: Z 64: called by office worker
+513: U 37: started
+514: U 21: service finished
+515: Z 19: going home
+516: U 16: serving a service of type 2
+517: Z 68: called by office worker
+518: U 38: started
+519: Z 2: going home
+520: U 22: service finished
+521: Z 99: entering office for a service 1
+522: U 29: serving a service of type 2
+523: Z 116: called by office worker
+524: U 12: service finished
+525: U 39: started
+526: U 3: service finished
+527: U 17: serving a service of type 1
+528: Z 124: called by office worker
+529: U 23: service finished
+530: U 10: serving a service of type 3
+531: Z 63: called by office worker
+532: U 40: started
+533: U 30: serving a service of type 1
+534: Z 61: called by office worker
+535: U 13: service finished
+536: U 41: started
+537: U 18: serving a service of type 3
+538: Z 4: going home
+539: Z 56: called by office worker
+540: Z 29: going home
+541: U 8: service finished
+542: U 24: service finished
+543: Z 135: entering office for a service 1
+544: Z 113: entering office for a service 2
+545: Z 57: going home
+546: Z 126: entering office for a service 1
+547: Z 112: entering office for a service 1
+548: U 31: serving a service of type 1
+549: Z 142: called by office worker
+550: U 6: serving a service of type 3
+551: U 1: serving a service of type 2
+552: Z 73: called by office worker
+553: Z 72: called by office worker
+554: U 14: service finished
+555: Z 12: going home
+556: U 42: started
+557: U 32: serving a service of type 3
+558: U 19: serving a service of type 2
+559: Z 24: called by office worker
+560: U 43: started
+561: Z 110: called by office worker
+562: U 5: service finished
+563: Z 104: entering office for a service 1
+564: U 25: service finished
+565: U 44: started
+566: U 33: serving a service of type 1
+567: Z 115: called by office worker
+568: U 11: serving a service of type 2
+569: U 20: serving a service of type 3
+570: Z 81: called by office worker
+571: Z 79: called by office worker
+572: U 26: service finished
+573: U 45: started
+574: U 34: serving a service of type 3
+575: U 15: service finished
+576: Z 25: called by office worker
+577: U 4: serving a service of type 3
+578: U 2: serving a service of type 2
+579: Z 83: called by office worker
+580: Z 78: called by office worker
+581: U 46: started
+582: U 7: serving a service of type 3
+583: Z 60: called by office worker
+584: U 27: service finished
+585: U 35: serving a service of type 1
+586: Z 70: called by office worker
+587: Z 36: going home
+588: U 47: started
+589: U 36: serving a service of type 1
+590: U 9: service finished
+591: Z 98: called by office worker
+592: U 48: started
+593: U 49: started
+594: U 28: service finished
+595: Z 146: entering office for a service 1
+596: Z 13: going home
+597: Z 9: going home
+598: Z 152: entering office for a service 3
+599: Z 121: entering office for a service 1
+600: U 37: serving a service of type 3
+601: U 50: started
+602: U 21: serving a service of type 1
+603: Z 76: called by office worker
+604: Z 30: called by office worker
+605: Z 147: entering office for a service 3
+606: U 16: service finished
+607: U 51: started
+608: U 38: serving a service of type 1
+609: Z 65: called by office worker
+610: U 52: started
+611: U 22: serving a service of type 1
+612: Z 85: called by office worker
+613: U 29: service finished
+614: U 12: serving a service of type 1
+615: U 39: serving a service of type 1
+616: Z 150: called by office worker
+617: Z 141: called by office worker
+618: U 53: started
+619: U 3: serving a service of type 1
+620: Z 107: called by office worker
+621: U 17: service finished
+622: Z 140: entering office for a service 3
+623: Z 62: going home
+624: U 23: serving a service of type 3
+625: Z 114: entering office for a service 1
+626: U 54: started
+627: Z 32: called by office worker
+628: Z 63: going home
+629: U 40: serving a service of type 2
+630: Z 95: called by office worker
+631: U 30: service finished
+632: U 10: service finished
+633: Z 111: entering office for a service 2
+634: U 55: started
+635: Z 51: going home
+636: U 13: serving a service of type 3
+637: Z 88: called by office worker
+638: U 41: serving a service of type 2
+639: Z 125: called by office worker
+640: U 18: service finished
+641: U 56: started
+642: U 8: serving a service of type 3
+643: Z 91: called by office worker
+644: U 24: serving a service of type 1
+645: U 57: started
+646: Z 87: called by office worker
+647: Z 137: entering office for a service 1
+648: Z 41: going home
+649: Z 129: entering office for a service 3
+650: U 58: started
+651: U 31: service finished
+652: U 6: service finished
+653: U 1: service finished
+654: U 14: serving a service of type 1
+655: U 59: started
+656: U 42: serving a service of type 1
+657: Z 138: called by office worker
+658: Z 156: called by office worker
+659: U 32: service finished
+660: U 19: service finished
+661: U 43: serving a service of type 1
+662: Z 157: called by office worker
+663: U 5: serving a service of type 1
+664: Z 99: called by office worker
+665: U 25: serving a service of type 1
+666: Z 135: called by office worker
+667: Z 66: going home
+668: Z 50: going home
+669: U 44: serving a service of type 3
+670: Z 77: called by office worker
+671: U 60: started
+672: U 33: service finished
+673: Z 123: entering office for a service 2
+674: U 11: service finished
+675: Z 81: going home
+676: U 20: service finished
+677: U 26: serving a service of type 2
+678: Z 130: called by office worker
+679: U 45: serving a service of type 1
+680: Z 126: called by office worker
+681: U 34: service finished
+682: U 61: started
+683: Z 93: going home
+684: U 15: serving a service of type 3
+685: Z 94: called by office worker
+686: Z 35: going home
+687: Z 18: going home
+688: Z 54: going home
+689: Z 7: going home
+690: Z 1: going home
+691: Z 53: going home
+692: U 4: service finished
+693: U 2: service finished
+694: U 46: serving a service of type 1
+695: Z 112: called by office worker
+696: U 62: started
+697: Z 64: going home
+698: U 7: service finished
+699: Z 38: going home
+700: Z 132: entering office for a service 3
+701: Z 148: entering office for a service 3
+702: Z 134: entering office for a service 3
+703: U 27: serving a service of type 3
+704: Z 97: called by office worker
+705: U 35: service finished
+706: U 63: started
+707: U 47: serving a service of type 1
+708: Z 104: called by office worker
+709: Z 142: going home
+710: Z 39: going home
+711: U 36: service finished
+712: Z 14: going home
+713: U 9: serving a service of type 2
+714: U 64: started
+715: Z 86: called by office worker
+716: U 48: serving a service of type 3
+717: Z 101: called by office worker
+718: U 49: serving a service of type 3
+719: Z 71: called by office worker
+720: U 28: serving a service of type 2
+721: Z 92: called by office worker
+722: U 65: started
+723: U 66: started
+724: U 37: service finished
+725: U 50: serving a service of type 1
+726: Z 131: entering office for a service 1
+727: Z 146: called by office worker
+728: Z 145: entering office for a service 2
+729: Z 8: going home
+730: Z 153: entering office for a service 1
+731: U 21: service finished
+732: U 67: started
+733: U 16: serving a service of type 3
+734: U 51: serving a service of type 1
+735: Z 103: called by office worker
+736: Z 121: called by office worker
+737: U 38: service finished
+738: U 52: serving a service of type 3
+739: Z 82: called by office worker
+740: U 68: started
+741: U 22: service finished
+742: U 29: serving a service of type 2
+743: Z 139: called by office worker
+744: U 12: service finished
+745: U 39: service finished
+746: U 69: started
+747: U 53: serving a service of type 2
+748: Z 118: called by office worker
+749: U 3: service finished
+750: U 17: serving a service of type 3
+751: Z 122: called by office worker
+752: U 70: started
+753: U 23: service finished
+754: U 54: serving a service of type 1
+755: Z 114: called by office worker
+756: Z 42: going home
+757: Z 44: going home
+758: U 71: started
+759: Z 154: entering office for a service 1
+760: U 40: service finished
+761: U 30: serving a service of type 3
+762: Z 109: called by office worker
+763: U 10: serving a service of type 3
+764: Z 108: called by office worker
+765: U 72: started
+766: U 55: serving a service of type 3
+767: Z 144: called by office worker
+768: U 13: service finished
+769: U 73: started
+770: U 41: service finished
+771: U 18: serving a service of type 3
+772: Z 117: called by office worker
+773: U 56: serving a service of type 3
+774: Z 100: called by office worker
+775: U 8: service finished
+776: Z 90: going home
+777: U 74: started
+778: U 24: service finished
+779: U 57: serving a service of type 3
+780: Z 127: called by office worker
+781: Z 87: going home
+782: U 58: serving a service of type 1
+783: U 31: serving a service of type 2
+784: Z 137: called by office worker
+785: U 6: serving a service of type 2
+786: Z 128: called by office worker
+787: Z 149: called by office worker
+788: U 1: serving a service of type 2
+789: Z 119: called by office worker
+790: U 14: service finished
+791: Z 31: going home
+792: U 75: started
+793: U 59: serving a service of type 3
+794: Z 133: called by office worker
+795: U 42: service finished
+796: Z 22: going home
+797: Z 143: entering office for a service 3
+798: Z 85: going home
+799: Z 79: going home
+800: U 32: serving a service of type 3
+801: Z 80: called by office worker
+802: U 19: serving a service of type 3
+803: Z 84: called by office worker
+804: U 76: started
+805: U 43: service finished
+806: U 5: service finished
+807: U 25: service finished
+808: U 77: started
+809: U 78: started
+810: U 44: service finished
+811: U 60: serving a service of type 3
+812: Z 136: called by office worker
+813: U 79: started
+814: U 33: serving a service of type 3
+815: Z 75: called by office worker
+816: U 11: serving a service of type 2
+817: Z 105: called by office worker
+818: U 80: started
+819: U 20: serving a service of type 2
+820: Z 113: called by office worker
+821: U 26: service finished
+822: Z 16: going home
+823: Z 68: going home
+824: Z 67: going home
+825: Z 40: going home
+826: U 34: serving a service of type 3
+827: U 81: started
+828: U 45: service finished
+829: Z 151: called by office worker
+830: U 61: serving a service of type 2
+831: Z 111: called by office worker
+832: U 15: service finished
+833: U 82: started
+834: U 83: started
+835: Z 26: going home
+836: Z 17: going home
+837: U 84: started
+838: U 4: serving a service of type 2
+839: Z 123: called by office worker
+840: U 2: serving a service of type 3
+841: Z 89: called by office worker
+842: U 46: service finished
+843: U 62: serving a service of type 3
+844: U 85: started
+845: Z 120: called by office worker
+846: Z 156: going home
+847: Z 96: going home
+848: U 7: serving a service of type 3
+849: Z 155: entering office for a service 3
+850: Z 102: called by office worker
+851: U 86: started
+852: U 27: service finished
+853: Z 33: going home
+854: U 35: serving a service of type 3
+855: U 87: started
+856: U 63: serving a service of type 3
+857: Z 152: called by office worker
+858: Z 147: called by office worker
+859: U 47: service finished
+860: Z 11: going home
+861: U 88: started
+862: U 36: serving a service of type 3
+863: Z 140: called by office worker
+864: U 89: started
+865: U 9: service finished
+866: U 64: serving a service of type 3
+867: Z 129: called by office worker
+868: U 90: started
+869: Z 101: going home
+870: U 48: service finished
+871: U 49: service finished
+872: U 91: started
+873: U 28: service finished
+874: U 65: serving a service of type 3
+875: Z 132: called by office worker
+876: U 66: serving a service of type 3
+877: Z 148: called by office worker
+878: U 92: started
+879: U 37: serving a service of type 3
+880: Z 134: called by office worker
+881: U 50: service finished
+882: Z 65: going home
+883: U 93: started
+884: U 21: serving a service of type 1
+885: U 67: serving a service of type 2
+886: Z 131: called by office worker
+887: Z 145: called by office worker
+888: U 16: service finished
+889: U 51: service finished
+890: Z 103: going home
+891: U 94: started
+892: U 38: serving a service of type 1
+893: Z 153: called by office worker
+894: U 52: service finished
+895: Z 60: going home
+896: Z 5: going home
+897: U 68: taking break
+898: U 95: started
+899: Z 70: going home
+900: U 29: service finished
+901: U 96: started
+902: U 53: service finished
+903: U 17: service finished
+904: Z 58: going home
+905: U 97: started
+906: Z 21: going home
+907: U 54: service finished
+908: U 98: started
+909: Z 28: going home
+910: Z 95: going home
+911: Z 116: going home
+912: U 99: started
+913: U 30: service finished
+914: Z 88: going home
+915: U 10: service finished
+916: U 100: started
+917: U 55: service finished
+918: U 18: service finished
+919: U 56: service finished
+920: U 57: service finished
+921: Z 46: going home
+922: Z 15: going home
+923: U 58: service finished
+924: Z 52: going home
+925: U 31: service finished
+926: U 6: service finished
+927: U 1: service finished
+928: U 59: service finished
+929: Z 30: going home
+930: Z 82: going home
+931: U 32: service finished
+932: Z 74: going home
+933: U 19: service finished
+934: U 60: service finished
+935: Z 34: going home
+936: Z 141: going home
+937: Z 59: going home
+938: Z 110: going home
+939: Z 55: going home
+940: U 33: service finished
+941: Z 3: going home
+942: U 11: service finished
+943: Z 69: going home
+944: U 20: service finished
+945: Z 77: going home
+946: U 34: service finished
+947: U 61: service finished
+948: Z 126: going home
+949: U 4: service finished
+950: U 2: service finished
+951: U 62: service finished
+952: Z 120: going home
+953: U 7: service finished
+954: U 35: service finished
+955: U 63: service finished
+956: U 36: service finished
+957: U 64: service finished
+958: U 65: service finished
+959: U 66: service finished
+960: Z 134: going home
+961: U 37: service finished
+962: U 21: service finished
+963: U 67: service finished
+964: U 38: service finished
+965: Z 115: going home
+966: Z 111: going home
+967: Z 144: going home
+968: Z 92: going home
+969: Z 106: going home
+970: Z 24: going home
+971: Z 98: going home
+972: Z 25: going home
+973: Z 99: going home
+974: Z 121: going home
+975: Z 104: going home
+976: Z 91: going home
+977: Z 76: going home
+978: Z 130: going home
+979: Z 117: going home
+980: Z 100: going home
+981: Z 112: going home
+982: Z 135: going home
+983: Z 150: going home
+984: Z 125: going home
+985: Z 133: going home
+986: Z 124: going home
+987: Z 32: going home
+988: Z 136: going home
+989: Z 97: going home
+990: Z 151: going home
+991: Z 72: going home
+992: Z 61: going home
+993: Z 56: going home
+994: Z 129: going home
+995: Z 122: going home
+996: Z 78: going home
+997: Z 109: going home
+998: Z 73: going home
+999: Z 127: going home
+1000: Z 83: going home
+1001: Z 157: going home
+1002: Z 145: going home
+1003: Z 86: going home
+1004: Z 119: going home
+1005: Z 138: going home
+1006: Z 107: going home
+1007: Z 146: going home
+1008: Z 140: going home
+1009: Z 132: going home
+1010: Z 131: going home
+1011: Z 71: going home
+1012: Z 137: going home
+1013: Z 105: going home
+1014: Z 102: going home
+1015: Z 89: going home
+1016: Z 84: going home
+1017: Z 94: going home
+1018: Z 108: going home
+1019: Z 114: going home
+1020: Z 153: going home
+1021: Z 113: going home
+1022: Z 139: going home
+1023: Z 118: going home
+1024: Z 149: going home
+1025: Z 152: going home
+1026: Z 75: going home
+1027: Z 148: going home
+1028: Z 123: going home
+1029: Z 128: going home
+1030: Z 147: going home
+1031: Z 80: going home
+1032: U 68: break finished
+1033: U 22: serving a service of type 3
+1034: Z 143: called by office worker
+1035: U 22: service finished
+1036: U 12: serving a service of type 1
+1037: Z 154: called by office worker
+1038: U 39: serving a service of type 3
+1039: Z 155: called by office worker
+1040: U 69: taking break
+1041: U 12: service finished
+1042: U 39: service finished
+1043: Z 155: going home
+1044: Z 143: going home
+1045: Z 154: going home
+1046: U 69: break finished
+1047: U 3: taking break
+1048: U 3: break finished
+1049: U 70: taking break
+1050: U 70: break finished
+1051: U 23: taking break
+1052: U 23: break finished
+1053: U 71: taking break
+1054: closing
+1055: U 71: break finished
+1056: U 40: going home
+1057: U 72: going home
+1058: U 13: going home
+1059: U 73: going home
+1060: U 41: going home
+1061: U 8: going home
+1062: U 74: going home
+1063: U 24: going home
+1064: U 14: going home
+1065: U 75: going home
+1066: U 42: going home
+1067: U 76: going home
+1068: U 43: going home
+1069: U 5: going home
+1070: U 25: going home
+1071: U 77: going home
+1072: U 78: going home
+1073: U 44: going home
+1074: U 79: going home
+1075: U 80: going home
+1076: U 26: going home
+1077: U 81: going home
+1078: U 45: going home
+1079: U 15: going home
+1080: U 82: going home
+1081: U 83: going home
+1082: U 84: going home
+1083: U 46: going home
+1084: U 85: going home
+1085: U 86: going home
+1086: U 27: going home
+1087: U 87: going home
+1088: U 47: going home
+1089: U 88: going home
+1090: U 89: going home
+1091: U 9: going home
+1092: U 90: going home
+1093: U 49: going home
+1094: U 48: going home
+1095: U 28: going home
+1096: U 91: going home
+1097: U 92: going home
+1098: U 50: going home
+1099: U 93: going home
+1100: U 16: going home
+1101: U 51: going home
+1102: U 94: going home
+1103: U 52: going home
+1104: U 95: going home
+1105: U 29: going home
+1106: U 96: going home
+1107: U 17: going home
+1108: U 53: going home
+1109: U 97: going home
+1110: U 54: going home
+1111: U 98: going home
+1112: U 99: going home
+1113: U 30: going home
+1114: U 10: going home
+1115: U 100: going home
+1116: U 55: going home
+1117: U 18: going home
+1118: U 56: going home
+1119: U 57: going home
+1120: U 58: going home
+1121: U 31: going home
+1122: U 6: going home
+1123: U 1: going home
+1124: U 59: going home
+1125: U 32: going home
+1126: U 19: going home
+1127: U 60: going home
+1128: U 33: going home
+1129: U 11: going home
+1130: U 20: going home
+1131: U 34: going home
+1132: U 61: going home
+1133: U 4: going home
+1134: U 2: going home
+1135: U 62: going home
+1136: U 7: going home
+1137: U 35: going home
+1138: U 63: going home
+1139: U 36: going home
+1140: U 64: going home
+1141: U 65: going home
+1142: U 66: going home
+1143: U 37: going home
+1144: U 21: going home
+1145: U 67: going home
+1146: U 38: going home
+1147: U 68: going home
+1148: U 22: going home
+1149: U 12: going home
+1150: U 39: going home
+1151: U 69: going home
+1152: U 3: going home
+1153: U 70: going home
+1154: U 23: going home
+1155: U 71: going home

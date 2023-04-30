@@ -41,6 +41,6 @@ int check_input_arguments(int argc, char *argv[]); // Check if inputs arguments 
 void customer_process(int idZ, int TZ); // Customer-process logic.
 void clerk_process(int idU, int TU);    // Clerk-process logic.
 void cleanup(void);                     // Semaphores and shared variables destruction, closing output *file, if it wasn't.
-void kill_child_processes(void);        // Kill all Child-processes were created by Main-process.
+void kill_child_processes(void);        // Kill all Child-processes were created by Main-process, in case segmentation fault occurs.
  
 #endif

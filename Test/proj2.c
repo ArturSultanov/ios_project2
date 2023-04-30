@@ -342,6 +342,7 @@ int main(int argc, char *argv[]) {
     // Initialize shared memory
     if(shared_memory_dest()){
         fprintf(stderr, "Error: Can't dealocate needed shared memory at the start of program.\n");
+        fclose(file);
         return 1;
     }
     if(shared_memory_init()){
@@ -374,10 +375,10 @@ int main(int argc, char *argv[]) {
         }
         else if (customer_pid == -1){
             fprintf(stderr, "Error: Fork customer processes error.\n");
-            cleanup();
-
+            
             kill_child_processes();
             free(child_processes);
+            cleanup();
             exit(1);
         } else {
             child_processes[child_count++] = customer_pid;
@@ -395,10 +396,10 @@ int main(int argc, char *argv[]) {
         }
         else if (clerk_pid == -1){
             fprintf(stderr, "Error: Fork clerk processes error.\n");            
-            cleanup();
             
             kill_child_processes();
             free(child_processes);
+            cleanup();
             exit(1);
         } else {
             child_processes[child_count++] = clerk_pid;

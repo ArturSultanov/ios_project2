@@ -24,7 +24,7 @@ int *second_service_queue = NULL;
 int *third_service_queue = NULL;
 int *action_number = NULL;
 
-// Kill all Child-processes were created by Main-process.
+// Kill all Child-processes were created by Main-process, in case segmentation fault occurs.
 void kill_child_processes(void) {
     for (int i = 0; i < child_count; i++) {
         kill(child_processes[i], SIGTERM);
