@@ -322,24 +322,6 @@ void clerk_process(int idU, int TU) {
 
 // Main function.
 int main(int argc, char *argv[]) {
-    // Check input arguments number.
-    // if (argc != 6) {
-    //     fprintf(stderr, "Error: Invalid number of arguments.\n");
-    //     return 1;
-    // }
-
-    // int NZ = atoi(argv[1]); // Number of customers
-    // int NU = atoi(argv[2]); // Number of clerks
-    // int TZ = atoi(argv[3]); // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
-    // int TU = atoi(argv[4]); // Maximum time of clerk's break (in milliseconds).
-    // int F = atoi(argv[5]);  // Maximum time (in milliseconds) before post office would be closed for new customers.
-
-    // // Check if input values are within allowed range.
-    // if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
-    //     fprintf(stderr, "Error: Invalid input values.\n");
-    //     return 1;
-    // }   
-
     if (check_input_arguments(argc, argv)) {
         return 1;
     }
