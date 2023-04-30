@@ -20,6 +20,7 @@
 #include <sys/wait.h>   // wait and waitpid functions
 #include <sys/mman.h>   // shared memory functions
 #include <signal.h>     // signal handling functions
+#include <ctype.h>      // 
 
 #define SEMAPHORE_MUTEX "/xsulta01_sem_mutex"
 #define SEMAPHORE_SERVICEFRST "/xsulta01_servicefrst" 
@@ -36,6 +37,7 @@ int semaphore_init(void);               // Semaphores initialization(opening) fu
 void semaphore_dest(void);              // Semaphores destruction(closing, unlinking) function.
 int shared_memory_init(void);           // Shared memory initialization(mapping) function.
 int shared_memory_dest(void);           // Shared memory destruction(unmapping) function.
+int check_input_arguments(int argc, char *argv[]); // Check if inputs arguments is correct.
 void customer_process(int idZ, int TZ); // Customer-process logic.
 void clerk_process(int idU, int TU);    // Clerk-process logic.
 void cleanup(void);                     // Semaphores and shared variables destruction, closing output *file, if it wasn't.

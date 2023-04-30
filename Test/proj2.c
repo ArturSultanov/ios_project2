@@ -10,6 +10,12 @@ FILE *file;
 pid_t *child_processes;
 int child_count;
 
+int NZ = NULL; // Number of customers
+int NU = NULL; // Number of clerks
+int TZ = NULL; // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
+int TU = NULL; // Maximum time of clerk's break (in milliseconds).
+int F = NULL;  // Maximum time (in milliseconds) before post office would be closed for new customers.
+
 // Semaphores declaration
 sem_t *sem_mutex;
 sem_t *sem_first_service;
@@ -139,6 +145,36 @@ void cleanup(void){
     if (file != NULL) fclose(file);
     shared_memory_dest();
     semaphore_dest();
+}
+
+int check_input_arguments(int argc, char *argv[]) {
+
+    if (argc != 6) { // Check if the number og arguments is correct
+        fprintf(stderr, "Error: Invalid number of arguments. Please use 5 argumetns: ./proj2 NZ NU TZ TU F. \n");
+        return 1;
+    }
+
+    for (int i = 1; i < argc; i++) {
+        for (int j = 0; argv[i][j] != '\0'; j++) {
+            if (!isdigit(argv[i][j])) {
+                fprintf(stderr, "Error: Invalid type of arguments. Please use numerical-type argunemts.\n");
+                return 1;
+            }
+        }
+    }
+
+    NZ = atoi(argv[1]); // Number of customers
+    NU = atoi(argv[2]); // Number of clerks
+    TZ = atoi(argv[3]); // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
+    TU = atoi(argv[4]); // Maximum time of clerk's break (in milliseconds).
+    F = atoi(argv[5]);  // Maximum time (in milliseconds) before post office would be closed for new customers.
+
+    // Check if input values are within allowed range.
+    if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
+        fprintf(stderr, "Error: Invalid input values.\n");
+        return 1;
+    } 
+    return 0;
 }
 
 // Customer-process logic.
@@ -287,22 +323,26 @@ void clerk_process(int idU, int TU) {
 // Main function.
 int main(int argc, char *argv[]) {
     // Check input arguments number.
-    if (argc != 6) {
-        fprintf(stderr, "Error: Invalid number of arguments.\n");
+    // if (argc != 6) {
+    //     fprintf(stderr, "Error: Invalid number of arguments.\n");
+    //     return 1;
+    // }
+
+    // int NZ = atoi(argv[1]); // Number of customers
+    // int NU = atoi(argv[2]); // Number of clerks
+    // int TZ = atoi(argv[3]); // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
+    // int TU = atoi(argv[4]); // Maximum time of clerk's break (in milliseconds).
+    // int F = atoi(argv[5]);  // Maximum time (in milliseconds) before post office would be closed for new customers.
+
+    // // Check if input values are within allowed range.
+    // if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
+    //     fprintf(stderr, "Error: Invalid input values.\n");
+    //     return 1;
+    // }   
+
+    if (check_input_arguments(argc, argv)) {
         return 1;
     }
-
-    int NZ = atoi(argv[1]); // Number of customers
-    int NU = atoi(argv[2]); // Number of clerks
-    int TZ = atoi(argv[3]); // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
-    int TU = atoi(argv[4]); // Maximum time of clerk's break (in milliseconds).
-    int F = atoi(argv[5]);  // Maximum time (in milliseconds) before post office would be closed for new customers.
-
-    // Check if input values are within allowed range.
-    if (NZ < 0 || NU < 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
-        fprintf(stderr, "Error: Invalid input values.\n");
-        return 1;
-    }   
 
     pid_t wpid;    
     int status = 0;
