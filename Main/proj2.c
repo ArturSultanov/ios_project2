@@ -173,7 +173,7 @@ int check_input_arguments(int argc, char *argv[]) {
     F = atoi(argv[5]);  // Maximum time (in milliseconds) before post office would be closed for new customers.
 
     // Check if input values are within allowed range.
-    if (NZ < 0 || NU <= 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
+    if (NZ <= 0 || NU <= 0 || TZ < 0 || TZ > 10000 || TU < 0 || TU > 100 || F < 0 || F > 10000) {
         fprintf(stderr, "Error: Invalid input values.\n");
         return 1;
     } 
