@@ -329,9 +329,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    pid_t wpid;    
-    int status = 0;
-
     // Set output file and output buffer.
     if (file != NULL) {
         fclose(file);
@@ -362,6 +359,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    pid_t wpid;    
+    int status = 0;
+    
     // kill_child_processes() function needed values.
     child_processes = (pid_t *)malloc((NZ + NU) * sizeof(pid_t));
     child_count = 0;
