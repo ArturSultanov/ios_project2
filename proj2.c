@@ -22,7 +22,8 @@ sem_t *sem_first_service;
 sem_t *sem_second_service;
 sem_t *sem_third_service;
 sem_t *sem_clerk;
-sem_t *sem_barrier;
+sem_t *sem_process_barrier;
+sem_t *sem_main_barrier;
 
 
 // Shared memory declaration
@@ -66,8 +67,13 @@ int semaphore_init(void){
         return 1;
     }
 
-    sem_barrier = sem_open(SEMAPHORE_BARRIER, O_CREAT | O_EXCL, 0666, 0);
-    if (sem_barrier == SEM_FAILED){
+    sem_process_barrier = sem_open(SEMAPHORE_BARRIER, O_CREAT | O_EXCL, 0666, 0);
+    if (sem_process_barrier == SEM_FAILED){
+        return 1;
+    }
+
+    sem_main_barrier = sem_open(SEMAPHORE_MAINBARRIER, O_CREAT | O_EXCL, 0666, 0);
+    if (sem_main_barrier == SEM_FAILED){
         return 1;
     }
 
@@ -91,8 +97,11 @@ void semaphore_dest(void){
     sem_close(sem_clerk);   
     sem_unlink(SEMAPHORE_CLERK);
 
-    sem_close(sem_barrier);
+    sem_close(sem_process_barrier);
     sem_unlink(SEMAPHORE_BARRIER);
+
+    sem_close(sem_main_barrier);
+    sem_unlink(SEMAPHORE_MAINBARRIER);
 }
 
 // Shared memory initialization(mapping) function.
@@ -202,14 +211,16 @@ void customer_process(int idZ, int TZ) {
     sem_wait(sem_mutex);
     fprintf(file, "%d: Z %d: started\n", ++(*action_number), idZ); // Print the initial message.
     sem_post(sem_mutex);
-    
+
     (*processes_number)++;
 
     if((*processes_number) < (NU + NZ)){
-        sem_post(sem_barrier); // Wait at the barrier
-    } 
+        sem_post(sem_process_barrier); // Wait at the barrier
+    } else {
+        sem_post(sem_main_barrier);
+    }
 
-    sem_post(sem_barrier); // Allow the next process to pass through the barrier.
+    sem_post(sem_process_barrier); // Allow the next process to pass through the barrier.
 
     upsleep_for_random_time(TZ); // Wait for a random time between 0 and TZ
 
@@ -265,10 +276,12 @@ void clerk_process(int idU, int TU) {
     (*processes_number)++;
 
     if((*processes_number) < (NU + NZ)){
-        sem_post(sem_barrier); // Wait at the barrier
-    } 
+        sem_post(sem_process_barrier); // Wait at the barrier
+    } else {
+        sem_post(sem_main_barrier);
+    }
 
-    sem_post(sem_barrier); // Allow the next process to pass through the barrier.
+    sem_post(sem_process_barrier); // Allow the next process to pass through the barrier.
 
     while (1) {
         sem_wait(sem_clerk); // Semaphore to prevent changing of variables value caused by another clerk process.
@@ -441,6 +454,8 @@ int main(int argc, char *argv[]) {
             child_processes[child_count++] = clerk_pid;
         }
     }
+
+    sem_wait(sem_main_barrier);
 
     usleep((rand() % ((F / 2) + 1)) * 1000 + F / 2 * 1000); // Waiting for post office to close.
     (*post_is_closed) = 1;
