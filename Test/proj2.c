@@ -10,11 +10,11 @@ FILE *file;
 pid_t *child_processes;
 int child_count;
 
-int NZ = NULL; // Number of customers
-int NU = NULL; // Number of clerks
-int TZ = NULL; // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
-int TU = NULL; // Maximum time of clerk's break (in milliseconds).
-int F = NULL;  // Maximum time (in milliseconds) before post office would be closed for new customers.
+int NZ; // Number of customers
+int NU; // Number of clerks
+int TZ; // Maximum time (in milliseconds) of customer waiting before entering post office for a service. 
+int TU; // Maximum time of clerk's break (in milliseconds).
+int F;  // Maximum time (in milliseconds) before post office would be closed for new customers.
 
 // Semaphores declaration
 sem_t *sem_mutex;
