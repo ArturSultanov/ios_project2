@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -std=gnu99 -Wall -Wextra -Werror -pedantic
-LDFLAGS = -lpthread
+LDFLAGS = -lrt -lpthread
 TARGET = proj2
 
 all: $(TARGET)
