@@ -50,246 +50,1954 @@
 50: Z 50: started
 51: Z 51: started
 52: Z 52: started
-53: U 1: started
-54: U 2: started
-55: U 3: started
-56: U 4: started
-57: U 5: started
-58: U 6: started
-59: U 7: started
-60: U 8: started
-61: U 9: started
-62: U 10: started
-63: U 11: started
-64: U 12: started
-65: U 13: started
-66: U 14: started
-67: U 15: started
-68: U 16: started
-69: U 17: started
-70: U 18: started
-71: U 19: started
-72: U 20: started
-73: U 21: started
-74: U 22: started
-75: U 23: started
-76: U 24: started
-77: U 25: started
-78: U 26: started
-79: U 27: started
-80: U 28: started
-81: U 29: started
-82: U 30: started
-83: U 31: started
-84: U 32: started
-85: U 33: started
-86: U 34: started
-87: U 35: started
-88: U 36: started
-89: U 37: started
-90: U 38: started
-91: U 39: started
-92: U 40: started
-93: U 41: started
-94: U 42: started
-95: U 43: started
-96: U 44: started
-97: U 45: started
-98: U 46: started
-99: U 47: started
-100: U 48: started
-101: U 49: started
-102: U 50: started
-103: U 51: started
-104: U 52: started
-105: U 53: started
-106: U 54: started
-107: U 55: started
-108: U 56: started
-109: U 57: started
-110: U 58: started
-111: U 59: started
-112: U 60: started
-113: U 61: started
-114: U 62: started
-115: U 63: started
-116: U 64: started
-117: U 65: started
-118: U 66: started
-119: U 67: started
-120: U 68: started
-121: U 69: started
-122: U 70: started
-123: U 71: started
-124: U 72: started
-125: U 73: started
-126: U 74: started
-127: U 75: started
-128: U 76: started
-129: U 77: started
-130: U 78: started
-131: U 79: started
-132: U 80: started
-133: U 81: started
-134: U 82: started
-135: U 83: started
-136: U 84: started
-137: U 85: started
-138: U 86: started
-139: U 86: taking break
-140: Z 4: entering office for a service 2
-141: Z 15: entering office for a service 3
-142: Z 35: entering office for a service 3
-143: Z 2: entering office for a service 2
-144: Z 27: going home
-145: closing
-146: Z 45: going home
-147: Z 23: going home
-148: Z 38: going home
-149: Z 51: going home
-150: Z 32: going home
-151: Z 14: going home
-152: Z 10: going home
-153: U 86: break finished
-154: U 1: serving a service of type 3
-155: Z 15: called by office worker
-156: U 2: serving a service of type 2
-157: Z 4: called by office worker
-158: U 1: service finished
-159: U 3: serving a service of type 3
-160: Z 35: called by office worker
-161: U 5: serving a service of type 2
-162: Z 2: called by office worker
-163: U 4: going home
-164: U 2: service finished
-165: Z 4: going home
-166: U 6: going home
-167: U 7: going home
-168: U 8: going home
-169: U 9: going home
-170: U 3: service finished
-171: U 10: going home
-172: U 11: going home
-173: U 12: going home
-174: U 13: going home
-175: U 5: service finished
-176: U 14: going home
-177: U 15: going home
-178: U 16: going home
-179: U 17: going home
-180: U 18: going home
-181: U 19: going home
-182: U 20: going home
-183: U 21: going home
-184: U 22: going home
-185: U 23: going home
-186: U 24: going home
-187: U 25: going home
-188: U 26: going home
-189: U 27: going home
-190: U 28: going home
-191: U 29: going home
-192: U 30: going home
-193: U 31: going home
-194: U 32: going home
-195: U 33: going home
-196: U 34: going home
-197: U 35: going home
-198: U 36: going home
-199: U 37: going home
-200: U 38: going home
-201: U 39: going home
-202: U 41: going home
-203: U 42: going home
-204: U 43: going home
-205: U 44: going home
-206: U 45: going home
-207: U 40: going home
-208: U 46: going home
-209: U 47: going home
-210: U 48: going home
-211: U 49: going home
-212: U 50: going home
-213: U 51: going home
-214: U 52: going home
-215: U 53: going home
-216: U 54: going home
-217: U 55: going home
-218: U 56: going home
-219: U 57: going home
-220: U 58: going home
-221: U 59: going home
-222: U 60: going home
-223: U 61: going home
-224: U 62: going home
-225: U 63: going home
-226: U 64: going home
-227: U 65: going home
-228: U 66: going home
-229: U 67: going home
-230: U 68: going home
-231: U 69: going home
-232: U 70: going home
-233: U 71: going home
-234: U 72: going home
-235: U 73: going home
-236: U 74: going home
-237: U 75: going home
-238: U 76: going home
-239: U 77: going home
-240: U 78: going home
-241: U 79: going home
-242: U 80: going home
-243: U 81: going home
-244: U 82: going home
-245: U 83: going home
-246: U 84: going home
-247: U 85: going home
-248: U 86: going home
-249: U 1: going home
-250: U 2: going home
-251: U 3: going home
-252: U 5: going home
-253: Z 7: going home
-254: Z 2: going home
-255: Z 3: going home
-256: Z 15: going home
-257: Z 30: going home
-258: Z 35: going home
-259: Z 46: going home
-260: Z 37: going home
-261: Z 24: going home
-262: Z 49: going home
-263: Z 13: going home
-264: Z 40: going home
-265: Z 34: going home
-266: Z 41: going home
-267: Z 42: going home
-268: Z 43: going home
-269: Z 5: going home
-270: Z 44: going home
-271: Z 12: going home
-272: Z 28: going home
-273: Z 36: going home
-274: Z 47: going home
-275: Z 25: going home
-276: Z 31: going home
-277: Z 52: going home
-278: Z 9: going home
-279: Z 17: going home
-280: Z 8: going home
-281: Z 48: going home
-282: Z 18: going home
-283: Z 26: going home
-284: Z 19: going home
-285: Z 50: going home
-286: Z 20: going home
-287: Z 21: going home
-288: Z 33: going home
-289: Z 1: going home
-290: Z 16: going home
-291: Z 6: going home
-292: Z 11: going home
-293: Z 29: going home
-294: Z 22: going home
-295: Z 39: going home
+53: Z 53: started
+54: Z 54: started
+55: Z 55: started
+56: Z 56: started
+57: Z 57: started
+58: Z 58: started
+59: Z 59: started
+60: Z 60: started
+61: Z 61: started
+62: Z 62: started
+63: Z 63: started
+64: Z 64: started
+65: Z 65: started
+66: Z 66: started
+67: Z 67: started
+68: Z 68: started
+69: Z 69: started
+70: Z 70: started
+71: Z 71: started
+72: Z 72: started
+73: Z 73: started
+74: Z 74: started
+75: Z 75: started
+76: Z 76: started
+77: Z 77: started
+78: Z 78: started
+79: Z 79: started
+80: Z 80: started
+81: Z 81: started
+82: Z 82: started
+83: Z 83: started
+84: Z 84: started
+85: Z 85: started
+86: Z 86: started
+87: Z 87: started
+88: Z 88: started
+89: Z 89: started
+90: Z 90: started
+91: Z 91: started
+92: Z 92: started
+93: Z 93: started
+94: Z 94: started
+95: Z 95: started
+96: Z 96: started
+97: Z 97: started
+98: Z 98: started
+99: Z 99: started
+100: Z 100: started
+101: Z 101: started
+102: Z 102: started
+103: Z 103: started
+104: Z 104: started
+105: Z 105: started
+106: Z 106: started
+107: Z 107: started
+108: Z 108: started
+109: Z 109: started
+110: Z 110: started
+111: Z 111: started
+112: Z 112: started
+113: Z 113: started
+114: Z 114: started
+115: Z 115: started
+116: Z 116: started
+117: Z 117: started
+118: Z 118: started
+119: Z 119: started
+120: Z 120: started
+121: Z 121: started
+122: Z 122: started
+123: Z 123: started
+124: Z 124: started
+125: Z 125: started
+126: Z 126: started
+127: Z 127: started
+128: Z 128: started
+129: Z 129: started
+130: Z 130: started
+131: Z 131: started
+132: Z 132: started
+133: Z 133: started
+134: Z 134: started
+135: Z 135: started
+136: Z 136: started
+137: Z 137: started
+138: Z 138: started
+139: Z 139: started
+140: Z 140: started
+141: Z 141: started
+142: Z 142: started
+143: Z 143: started
+144: Z 144: started
+145: Z 145: started
+146: Z 146: started
+147: Z 147: started
+148: Z 148: started
+149: Z 149: started
+150: Z 150: started
+151: Z 151: started
+152: Z 152: started
+153: Z 153: started
+154: Z 154: started
+155: Z 155: started
+156: Z 156: started
+157: Z 157: started
+158: Z 158: started
+159: Z 159: started
+160: Z 160: started
+161: Z 161: started
+162: Z 162: started
+163: Z 163: started
+164: Z 164: started
+165: Z 165: started
+166: Z 166: started
+167: Z 167: started
+168: Z 168: started
+169: Z 169: started
+170: Z 170: started
+171: Z 171: started
+172: Z 172: started
+173: Z 173: started
+174: Z 174: started
+175: Z 175: started
+176: Z 176: started
+177: Z 177: started
+178: Z 178: started
+179: Z 179: started
+180: Z 180: started
+181: Z 181: started
+182: Z 182: started
+183: Z 183: started
+184: Z 184: started
+185: Z 185: started
+186: Z 186: started
+187: Z 187: started
+188: Z 188: started
+189: Z 189: started
+190: Z 190: started
+191: Z 191: started
+192: Z 192: started
+193: Z 193: started
+194: Z 194: started
+195: Z 195: started
+196: Z 196: started
+197: Z 197: started
+198: Z 198: started
+199: Z 199: started
+200: Z 200: started
+201: Z 201: started
+202: Z 202: started
+203: Z 203: started
+204: Z 204: started
+205: Z 205: started
+206: Z 206: started
+207: Z 207: started
+208: Z 208: started
+209: Z 209: started
+210: Z 210: started
+211: Z 211: started
+212: Z 212: started
+213: Z 213: started
+214: Z 214: started
+215: Z 215: started
+216: Z 216: started
+217: Z 217: started
+218: Z 218: started
+219: Z 219: started
+220: Z 220: started
+221: Z 221: started
+222: Z 222: started
+223: Z 223: started
+224: Z 224: started
+225: Z 225: started
+226: Z 226: started
+227: Z 227: started
+228: Z 228: started
+229: Z 229: started
+230: Z 230: started
+231: Z 231: started
+232: Z 232: started
+233: Z 233: started
+234: Z 234: started
+235: Z 235: started
+236: Z 236: started
+237: Z 237: started
+238: Z 238: started
+239: Z 239: started
+240: Z 240: started
+241: Z 241: started
+242: Z 242: started
+243: Z 243: started
+244: Z 244: started
+245: Z 245: started
+246: Z 246: started
+247: Z 247: started
+248: Z 248: started
+249: Z 249: started
+250: Z 250: started
+251: Z 251: started
+252: Z 252: started
+253: Z 253: started
+254: Z 254: started
+255: Z 255: started
+256: Z 256: started
+257: Z 257: started
+258: Z 258: started
+259: Z 259: started
+260: Z 260: started
+261: Z 261: started
+262: Z 262: started
+263: Z 263: started
+264: Z 264: started
+265: Z 265: started
+266: Z 266: started
+267: Z 267: started
+268: Z 268: started
+269: Z 269: started
+270: Z 270: started
+271: Z 271: started
+272: Z 272: started
+273: Z 273: started
+274: Z 274: started
+275: Z 275: started
+276: Z 276: started
+277: Z 277: started
+278: Z 278: started
+279: Z 279: started
+280: Z 280: started
+281: Z 281: started
+282: Z 282: started
+283: Z 283: started
+284: Z 284: started
+285: Z 285: started
+286: Z 286: started
+287: Z 287: started
+288: Z 288: started
+289: Z 289: started
+290: Z 290: started
+291: Z 291: started
+292: Z 292: started
+293: Z 293: started
+294: Z 294: started
+295: Z 295: started
+296: Z 296: started
+297: Z 297: started
+298: Z 298: started
+299: Z 299: started
+300: Z 300: started
+301: Z 301: started
+302: Z 302: started
+303: Z 303: started
+304: Z 304: started
+305: Z 305: started
+306: Z 306: started
+307: Z 307: started
+308: Z 308: started
+309: Z 309: started
+310: Z 310: started
+311: Z 311: started
+312: Z 312: started
+313: Z 313: started
+314: Z 314: started
+315: Z 315: started
+316: Z 316: started
+317: Z 317: started
+318: Z 318: started
+319: Z 319: started
+320: Z 320: started
+321: Z 321: started
+322: Z 322: started
+323: Z 323: started
+324: Z 324: started
+325: Z 325: started
+326: Z 326: started
+327: Z 327: started
+328: Z 328: started
+329: Z 329: started
+330: Z 330: started
+331: Z 331: started
+332: Z 332: started
+333: Z 333: started
+334: Z 334: started
+335: Z 335: started
+336: Z 336: started
+337: Z 337: started
+338: Z 338: started
+339: Z 339: started
+340: Z 340: started
+341: Z 341: started
+342: Z 342: started
+343: Z 343: started
+344: Z 344: started
+345: Z 345: started
+346: Z 346: started
+347: Z 347: started
+348: Z 348: started
+349: Z 349: started
+350: Z 350: started
+351: Z 351: started
+352: Z 352: started
+353: Z 353: started
+354: Z 354: started
+355: Z 355: started
+356: Z 356: started
+357: Z 357: started
+358: Z 358: started
+359: Z 359: started
+360: Z 360: started
+361: Z 361: started
+362: Z 362: started
+363: Z 363: started
+364: Z 364: started
+365: Z 365: started
+366: Z 366: started
+367: Z 367: started
+368: Z 368: started
+369: Z 369: started
+370: Z 370: started
+371: Z 371: started
+372: Z 372: started
+373: Z 373: started
+374: Z 374: started
+375: Z 375: started
+376: Z 376: started
+377: Z 377: started
+378: Z 378: started
+379: Z 379: started
+380: Z 380: started
+381: Z 381: started
+382: Z 382: started
+383: Z 383: started
+384: Z 384: started
+385: Z 385: started
+386: Z 386: started
+387: Z 387: started
+388: Z 388: started
+389: Z 389: started
+390: Z 390: started
+391: Z 391: started
+392: Z 392: started
+393: Z 393: started
+394: Z 394: started
+395: Z 395: started
+396: Z 396: started
+397: Z 397: started
+398: Z 398: started
+399: Z 399: started
+400: Z 400: started
+401: Z 401: started
+402: Z 402: started
+403: Z 403: started
+404: Z 404: started
+405: Z 405: started
+406: Z 406: started
+407: Z 407: started
+408: Z 408: started
+409: Z 409: started
+410: Z 410: started
+411: Z 411: started
+412: Z 412: started
+413: Z 413: started
+414: Z 414: started
+415: Z 415: started
+416: Z 416: started
+417: Z 417: started
+418: Z 418: started
+419: Z 419: started
+420: Z 420: started
+421: Z 421: started
+422: Z 422: started
+423: Z 423: started
+424: Z 424: started
+425: Z 425: started
+426: Z 426: started
+427: Z 427: started
+428: Z 428: started
+429: Z 429: started
+430: Z 430: started
+431: Z 431: started
+432: Z 432: started
+433: Z 433: started
+434: Z 434: started
+435: Z 435: started
+436: Z 436: started
+437: Z 437: started
+438: Z 438: started
+439: Z 439: started
+440: Z 440: started
+441: Z 441: started
+442: Z 442: started
+443: Z 443: started
+444: Z 444: started
+445: Z 445: started
+446: Z 446: started
+447: Z 447: started
+448: Z 448: started
+449: Z 449: started
+450: Z 450: started
+451: Z 451: started
+452: Z 452: started
+453: Z 453: started
+454: Z 454: started
+455: Z 455: started
+456: Z 456: started
+457: Z 457: started
+458: Z 458: started
+459: Z 459: started
+460: Z 460: started
+461: Z 461: started
+462: Z 462: started
+463: Z 463: started
+464: Z 464: started
+465: Z 465: started
+466: Z 466: started
+467: Z 467: started
+468: Z 468: started
+469: Z 469: started
+470: Z 470: started
+471: Z 471: started
+472: Z 472: started
+473: Z 473: started
+474: Z 474: started
+475: Z 475: started
+476: Z 476: started
+477: Z 477: started
+478: Z 478: started
+479: Z 479: started
+480: Z 480: started
+481: Z 481: started
+482: Z 482: started
+483: Z 483: started
+484: Z 484: started
+485: Z 485: started
+486: Z 486: started
+487: Z 487: started
+488: Z 488: started
+489: Z 489: started
+490: Z 490: started
+491: Z 491: started
+492: Z 492: started
+493: Z 493: started
+494: Z 494: started
+495: Z 495: started
+496: Z 496: started
+497: Z 497: started
+498: Z 498: started
+499: Z 499: started
+500: Z 500: started
+501: U 1: started
+502: U 2: started
+503: U 3: started
+504: U 4: started
+505: U 5: started
+506: U 6: started
+507: U 7: started
+508: U 8: started
+509: U 9: started
+510: U 10: started
+511: U 11: started
+512: U 12: started
+513: U 13: started
+514: U 14: started
+515: U 15: started
+516: U 16: started
+517: U 17: started
+518: U 18: started
+519: U 19: started
+520: U 20: started
+521: U 21: started
+522: U 22: started
+523: U 23: started
+524: U 24: started
+525: U 25: started
+526: U 26: started
+527: U 27: started
+528: U 28: started
+529: U 29: started
+530: U 30: started
+531: U 31: started
+532: U 32: started
+533: U 33: started
+534: U 34: started
+535: U 35: started
+536: U 36: started
+537: U 37: started
+538: U 38: started
+539: U 39: started
+540: U 40: started
+541: U 41: started
+542: U 42: started
+543: U 43: started
+544: U 44: started
+545: U 45: started
+546: U 46: started
+547: U 47: started
+548: U 48: started
+549: U 49: started
+550: U 50: started
+551: U 51: started
+552: U 52: started
+553: U 53: started
+554: U 54: started
+555: U 55: started
+556: U 56: started
+557: U 57: started
+558: U 58: started
+559: U 59: started
+560: U 60: started
+561: U 61: started
+562: U 62: started
+563: U 63: started
+564: U 64: started
+565: U 65: started
+566: U 66: started
+567: U 67: started
+568: U 68: started
+569: U 69: started
+570: U 70: started
+571: U 71: started
+572: U 72: started
+573: U 73: started
+574: U 74: started
+575: U 75: started
+576: U 76: started
+577: U 77: started
+578: U 78: started
+579: U 79: started
+580: U 80: started
+581: U 81: started
+582: U 82: started
+583: U 83: started
+584: U 84: started
+585: U 85: started
+586: U 86: started
+587: U 87: started
+588: U 88: started
+589: U 89: started
+590: U 90: started
+591: U 91: started
+592: U 92: started
+593: U 93: started
+594: U 94: started
+595: U 95: started
+596: U 96: started
+597: U 97: started
+598: U 98: started
+599: U 99: started
+600: U 100: started
+601: U 101: started
+602: U 102: started
+603: U 103: started
+604: U 104: started
+605: U 105: started
+606: U 106: started
+607: U 107: started
+608: U 108: started
+609: U 109: started
+610: U 110: started
+611: U 111: started
+612: U 112: started
+613: U 113: started
+614: U 114: started
+615: U 115: started
+616: U 116: started
+617: U 117: started
+618: U 118: started
+619: U 119: started
+620: U 120: started
+621: U 121: started
+622: U 122: started
+623: U 123: started
+624: U 124: started
+625: U 125: started
+626: U 126: started
+627: U 127: started
+628: U 128: started
+629: U 129: started
+630: U 130: started
+631: U 131: started
+632: U 132: started
+633: U 133: started
+634: U 134: started
+635: U 135: started
+636: U 136: started
+637: U 137: started
+638: U 138: started
+639: U 139: started
+640: U 140: started
+641: U 141: started
+642: U 142: started
+643: U 143: started
+644: U 144: started
+645: U 145: started
+646: U 146: started
+647: U 147: started
+648: U 148: started
+649: U 149: started
+650: U 150: started
+651: U 151: started
+652: U 152: started
+653: U 153: started
+654: U 154: started
+655: U 155: started
+656: U 156: started
+657: U 157: started
+658: U 158: started
+659: U 159: started
+660: U 160: started
+661: U 161: started
+662: U 162: started
+663: U 163: started
+664: U 164: started
+665: U 165: started
+666: U 166: started
+667: U 167: started
+668: U 168: started
+669: U 169: started
+670: U 170: started
+671: U 171: started
+672: U 172: started
+673: U 173: started
+674: U 174: started
+675: U 175: started
+676: U 176: started
+677: U 177: started
+678: U 178: started
+679: U 179: started
+680: U 180: started
+681: U 181: started
+682: U 182: started
+683: U 183: started
+684: U 184: started
+685: U 185: started
+686: U 186: started
+687: U 187: started
+688: U 188: started
+689: U 189: started
+690: U 190: started
+691: U 191: started
+692: U 192: started
+693: U 193: started
+694: U 194: started
+695: U 195: started
+696: U 196: started
+697: U 197: started
+698: U 198: started
+699: U 199: started
+700: U 200: started
+701: U 201: started
+702: U 202: started
+703: U 203: started
+704: U 204: started
+705: U 205: started
+706: U 206: started
+707: U 207: started
+708: U 208: started
+709: U 209: started
+710: U 210: started
+711: U 211: started
+712: U 212: started
+713: U 213: started
+714: U 214: started
+715: U 215: started
+716: U 216: started
+717: U 217: started
+718: U 218: started
+719: U 219: started
+720: U 220: started
+721: U 221: started
+722: U 222: started
+723: U 223: started
+724: U 224: started
+725: U 225: started
+726: U 226: started
+727: U 227: started
+728: U 228: started
+729: U 229: started
+730: U 230: started
+731: U 231: started
+732: U 232: started
+733: U 233: started
+734: U 234: started
+735: U 235: started
+736: U 236: started
+737: U 237: started
+738: U 238: started
+739: U 239: started
+740: U 240: started
+741: U 241: started
+742: U 242: started
+743: U 243: started
+744: U 244: started
+745: U 245: started
+746: U 246: started
+747: U 247: started
+748: U 248: started
+749: U 249: started
+750: U 250: started
+751: U 251: started
+752: U 252: started
+753: U 253: started
+754: U 254: started
+755: U 255: started
+756: U 256: started
+757: U 257: started
+758: U 258: started
+759: U 259: started
+760: U 260: started
+761: U 261: started
+762: U 262: started
+763: U 263: started
+764: U 264: started
+765: U 265: started
+766: U 266: started
+767: U 267: started
+768: U 269: started
+769: U 268: started
+770: U 270: started
+771: U 271: started
+772: U 272: started
+773: U 273: started
+774: U 274: started
+775: U 275: started
+776: U 276: started
+777: U 277: started
+778: U 278: started
+779: U 279: started
+780: U 280: started
+781: U 281: started
+782: U 282: started
+783: U 283: started
+784: U 284: started
+785: U 285: started
+786: U 286: started
+787: U 287: started
+788: U 288: started
+789: U 289: started
+790: U 290: started
+791: U 291: started
+792: U 292: started
+793: U 293: started
+794: U 294: started
+795: U 295: started
+796: U 296: started
+797: U 297: started
+798: U 298: started
+799: U 299: started
+800: U 300: started
+801: U 301: started
+802: U 302: started
+803: U 303: started
+804: U 304: started
+805: U 305: started
+806: U 306: started
+807: U 307: started
+808: U 308: started
+809: U 309: started
+810: U 310: started
+811: U 311: started
+812: U 312: started
+813: U 313: started
+814: U 314: started
+815: U 315: started
+816: U 316: started
+817: U 317: started
+818: U 318: started
+819: U 319: started
+820: U 320: started
+821: U 321: started
+822: U 322: started
+823: U 323: started
+824: U 324: started
+825: U 325: started
+826: U 326: started
+827: U 327: started
+828: U 328: started
+829: U 329: started
+830: U 330: started
+831: U 331: started
+832: U 332: started
+833: U 333: started
+834: U 334: started
+835: U 335: started
+836: U 336: started
+837: U 337: started
+838: U 338: started
+839: U 339: started
+840: U 340: started
+841: U 341: started
+842: U 342: started
+843: U 343: started
+844: U 344: started
+845: U 345: started
+846: U 346: started
+847: U 347: started
+848: U 348: started
+849: U 349: started
+850: U 350: started
+851: U 351: started
+852: U 352: started
+853: U 353: started
+854: U 354: started
+855: U 355: started
+856: U 356: started
+857: U 357: started
+858: U 358: started
+859: U 359: started
+860: U 360: started
+861: U 361: started
+862: U 362: started
+863: U 363: started
+864: U 364: started
+865: U 365: started
+866: U 366: started
+867: U 367: started
+868: U 368: started
+869: U 369: started
+870: U 370: started
+871: U 371: started
+872: U 372: started
+873: U 373: started
+874: U 374: started
+875: U 375: started
+876: U 376: started
+877: U 377: started
+878: U 378: started
+879: U 379: started
+880: U 380: started
+881: U 381: started
+882: U 382: started
+883: U 383: started
+884: U 384: started
+885: U 385: started
+886: U 386: started
+887: U 387: started
+888: U 388: started
+889: U 389: started
+890: U 390: started
+891: U 391: started
+892: U 392: started
+893: U 393: started
+894: U 394: started
+895: U 395: started
+896: U 396: started
+897: U 397: started
+898: U 398: started
+899: U 399: started
+900: U 400: started
+901: U 401: started
+902: U 402: started
+903: U 403: started
+904: U 404: started
+905: U 405: started
+906: U 406: started
+907: U 407: started
+908: U 408: started
+909: U 409: started
+910: U 410: started
+911: U 411: started
+912: U 412: started
+913: U 413: started
+914: U 414: started
+915: U 415: started
+916: U 416: started
+917: U 417: started
+918: U 418: started
+919: U 419: started
+920: U 420: started
+921: U 421: started
+922: U 422: started
+923: U 423: started
+924: U 424: started
+925: U 425: started
+926: U 426: started
+927: U 427: started
+928: U 428: started
+929: U 429: started
+930: U 430: started
+931: U 431: started
+932: U 432: started
+933: U 433: started
+934: U 434: started
+935: U 435: started
+936: U 436: started
+937: U 437: started
+938: U 438: started
+939: U 439: started
+940: U 440: started
+941: U 441: started
+942: U 442: started
+943: U 443: started
+944: U 444: started
+945: U 445: started
+946: U 446: started
+947: U 447: started
+948: U 448: started
+949: U 449: started
+950: U 450: started
+951: U 451: started
+952: U 452: started
+953: U 453: started
+954: U 454: started
+955: U 455: started
+956: U 456: started
+957: U 457: started
+958: U 458: started
+959: U 459: started
+960: U 460: started
+961: U 461: started
+962: U 462: started
+963: U 463: started
+964: U 464: started
+965: U 465: started
+966: U 466: started
+967: U 467: started
+968: U 468: started
+969: U 469: started
+970: U 470: started
+971: U 471: started
+972: U 472: started
+973: U 473: started
+974: U 474: started
+975: U 475: started
+976: U 476: started
+977: U 477: started
+978: U 478: started
+979: U 479: started
+980: U 480: started
+981: U 481: started
+982: U 482: started
+983: U 483: started
+984: U 484: started
+985: U 485: started
+986: U 486: started
+987: U 487: started
+988: U 488: started
+989: U 489: started
+990: U 490: started
+991: U 491: started
+992: U 492: started
+993: U 493: started
+994: U 494: started
+995: U 495: started
+996: U 496: started
+997: U 497: started
+998: U 498: started
+999: U 499: started
+1000: U 500: started
+1001: U 500: taking break
+1002: closing
+1003: Z 158: going home
+1004: Z 186: going home
+1005: Z 8: going home
+1006: Z 48: going home
+1007: Z 78: going home
+1008: Z 74: going home
+1009: Z 86: going home
+1010: Z 229: going home
+1011: Z 30: going home
+1012: Z 234: going home
+1013: Z 52: going home
+1014: Z 195: going home
+1015: Z 17: going home
+1016: Z 212: going home
+1017: Z 361: going home
+1018: Z 367: going home
+1019: Z 263: going home
+1020: Z 243: going home
+1021: Z 73: going home
+1022: Z 284: going home
+1023: Z 378: going home
+1024: Z 134: going home
+1025: Z 472: going home
+1026: Z 224: going home
+1027: Z 144: going home
+1028: Z 308: going home
+1029: Z 197: going home
+1030: Z 40: going home
+1031: Z 490: going home
+1032: Z 137: going home
+1033: Z 338: going home
+1034: Z 304: going home
+1035: Z 473: going home
+1036: Z 393: going home
+1037: Z 176: going home
+1038: Z 499: going home
+1039: Z 323: going home
+1040: Z 119: going home
+1041: Z 375: going home
+1042: Z 432: going home
+1043: Z 107: going home
+1044: Z 13: going home
+1045: Z 38: going home
+1046: Z 216: going home
+1047: Z 53: going home
+1048: Z 365: going home
+1049: Z 469: going home
+1050: Z 288: going home
+1051: Z 293: going home
+1052: Z 249: going home
+1053: Z 138: going home
+1054: Z 320: going home
+1055: Z 437: going home
+1056: Z 132: going home
+1057: Z 306: going home
+1058: Z 330: going home
+1059: Z 108: going home
+1060: Z 495: going home
+1061: Z 91: going home
+1062: Z 87: going home
+1063: Z 255: going home
+1064: Z 265: going home
+1065: Z 213: going home
+1066: Z 35: going home
+1067: Z 321: going home
+1068: Z 147: going home
+1069: Z 354: going home
+1070: Z 7: going home
+1071: Z 272: going home
+1072: Z 258: going home
+1073: Z 333: going home
+1074: Z 454: going home
+1075: Z 120: going home
+1076: Z 39: going home
+1077: Z 449: going home
+1078: Z 488: going home
+1079: Z 282: going home
+1080: Z 430: going home
+1081: Z 440: going home
+1082: Z 67: going home
+1083: Z 467: going home
+1084: Z 478: going home
+1085: Z 115: going home
+1086: Z 291: going home
+1087: U 500: break finished
+1088: Z 427: going home
+1089: U 1: going home
+1090: U 2: going home
+1091: U 3: going home
+1092: U 4: going home
+1093: U 5: going home
+1094: U 6: going home
+1095: U 7: going home
+1096: U 8: going home
+1097: U 9: going home
+1098: U 10: going home
+1099: U 11: going home
+1100: U 12: going home
+1101: U 13: going home
+1102: U 14: going home
+1103: U 15: going home
+1104: U 16: going home
+1105: U 17: going home
+1106: U 18: going home
+1107: U 19: going home
+1108: U 20: going home
+1109: U 21: going home
+1110: U 22: going home
+1111: U 23: going home
+1112: U 24: going home
+1113: U 25: going home
+1114: U 26: going home
+1115: U 27: going home
+1116: U 28: going home
+1117: U 29: going home
+1118: U 30: going home
+1119: U 31: going home
+1120: U 32: going home
+1121: U 33: going home
+1122: U 34: going home
+1123: U 35: going home
+1124: Z 411: going home
+1125: Z 88: going home
+1126: Z 151: going home
+1127: U 36: going home
+1128: Z 316: going home
+1129: Z 328: going home
+1130: Z 187: going home
+1131: U 37: going home
+1132: U 38: going home
+1133: U 39: going home
+1134: U 40: going home
+1135: U 41: going home
+1136: U 42: going home
+1137: U 43: going home
+1138: U 44: going home
+1139: U 45: going home
+1140: U 46: going home
+1141: U 47: going home
+1142: U 48: going home
+1143: U 49: going home
+1144: U 50: going home
+1145: U 51: going home
+1146: U 52: going home
+1147: U 53: going home
+1148: U 54: going home
+1149: U 55: going home
+1150: U 56: going home
+1151: U 57: going home
+1152: U 58: going home
+1153: U 59: going home
+1154: U 60: going home
+1155: U 61: going home
+1156: U 62: going home
+1157: U 63: going home
+1158: U 64: going home
+1159: U 65: going home
+1160: U 66: going home
+1161: U 67: going home
+1162: U 68: going home
+1163: U 69: going home
+1164: U 70: going home
+1165: U 71: going home
+1166: U 72: going home
+1167: U 73: going home
+1168: U 74: going home
+1169: U 75: going home
+1170: U 76: going home
+1171: U 77: going home
+1172: U 78: going home
+1173: U 79: going home
+1174: U 80: going home
+1175: U 81: going home
+1176: U 82: going home
+1177: U 83: going home
+1178: U 84: going home
+1179: U 85: going home
+1180: U 86: going home
+1181: U 87: going home
+1182: U 88: going home
+1183: U 89: going home
+1184: U 90: going home
+1185: U 91: going home
+1186: U 92: going home
+1187: U 93: going home
+1188: U 94: going home
+1189: U 95: going home
+1190: U 96: going home
+1191: U 97: going home
+1192: Z 246: going home
+1193: U 98: going home
+1194: U 99: going home
+1195: U 100: going home
+1196: U 101: going home
+1197: U 102: going home
+1198: U 103: going home
+1199: U 104: going home
+1200: Z 112: going home
+1201: Z 283: going home
+1202: Z 59: going home
+1203: Z 489: going home
+1204: U 105: going home
+1205: Z 364: going home
+1206: U 106: going home
+1207: Z 264: going home
+1208: U 107: going home
+1209: U 108: going home
+1210: U 109: going home
+1211: U 110: going home
+1212: U 111: going home
+1213: U 112: going home
+1214: U 113: going home
+1215: U 114: going home
+1216: U 115: going home
+1217: U 116: going home
+1218: U 117: going home
+1219: U 118: going home
+1220: U 119: going home
+1221: U 120: going home
+1222: U 121: going home
+1223: U 122: going home
+1224: Z 444: going home
+1225: Z 101: going home
+1226: Z 276: going home
+1227: U 123: going home
+1228: U 124: going home
+1229: U 125: going home
+1230: U 126: going home
+1231: U 128: going home
+1232: U 127: going home
+1233: U 129: going home
+1234: U 130: going home
+1235: U 131: going home
+1236: U 132: going home
+1237: U 133: going home
+1238: U 134: going home
+1239: U 135: going home
+1240: U 136: going home
+1241: U 137: going home
+1242: U 138: going home
+1243: U 139: going home
+1244: U 140: going home
+1245: U 141: going home
+1246: U 142: going home
+1247: U 143: going home
+1248: U 144: going home
+1249: U 145: going home
+1250: Z 399: going home
+1251: Z 270: going home
+1252: U 146: going home
+1253: Z 182: going home
+1254: Z 18: going home
+1255: U 147: going home
+1256: U 148: going home
+1257: U 149: going home
+1258: Z 19: going home
+1259: U 150: going home
+1260: U 151: going home
+1261: U 152: going home
+1262: U 153: going home
+1263: U 154: going home
+1264: U 155: going home
+1265: U 156: going home
+1266: U 157: going home
+1267: U 158: going home
+1268: U 159: going home
+1269: U 160: going home
+1270: U 161: going home
+1271: U 162: going home
+1272: U 163: going home
+1273: Z 130: going home
+1274: Z 128: going home
+1275: U 164: going home
+1276: Z 431: going home
+1277: U 165: going home
+1278: U 166: going home
+1279: U 167: going home
+1280: U 168: going home
+1281: U 169: going home
+1282: U 170: going home
+1283: U 171: going home
+1284: U 172: going home
+1285: U 173: going home
+1286: U 174: going home
+1287: U 175: going home
+1288: U 176: going home
+1289: U 177: going home
+1290: U 178: going home
+1291: U 179: going home
+1292: U 180: going home
+1293: U 181: going home
+1294: U 182: going home
+1295: U 183: going home
+1296: U 184: going home
+1297: U 185: going home
+1298: U 186: going home
+1299: Z 349: going home
+1300: Z 223: going home
+1301: U 187: going home
+1302: U 188: going home
+1303: U 189: going home
+1304: U 190: going home
+1305: U 191: going home
+1306: U 192: going home
+1307: U 193: going home
+1308: U 194: going home
+1309: U 195: going home
+1310: U 196: going home
+1311: U 197: going home
+1312: U 198: going home
+1313: U 199: going home
+1314: U 200: going home
+1315: U 201: going home
+1316: U 202: going home
+1317: U 203: going home
+1318: U 204: going home
+1319: U 205: going home
+1320: U 206: going home
+1321: U 207: going home
+1322: U 208: going home
+1323: U 209: going home
+1324: U 210: going home
+1325: U 211: going home
+1326: U 212: going home
+1327: U 213: going home
+1328: U 214: going home
+1329: U 215: going home
+1330: U 216: going home
+1331: U 217: going home
+1332: U 218: going home
+1333: U 219: going home
+1334: U 220: going home
+1335: U 221: going home
+1336: U 223: going home
+1337: U 222: going home
+1338: U 224: going home
+1339: U 225: going home
+1340: U 226: going home
+1341: U 227: going home
+1342: U 228: going home
+1343: U 229: going home
+1344: U 230: going home
+1345: U 231: going home
+1346: U 232: going home
+1347: U 233: going home
+1348: U 234: going home
+1349: U 235: going home
+1350: Z 135: going home
+1351: Z 406: going home
+1352: U 236: going home
+1353: U 237: going home
+1354: U 238: going home
+1355: U 239: going home
+1356: U 240: going home
+1357: U 241: going home
+1358: U 242: going home
+1359: U 243: going home
+1360: U 244: going home
+1361: U 245: going home
+1362: U 246: going home
+1363: U 247: going home
+1364: U 248: going home
+1365: U 249: going home
+1366: U 250: going home
+1367: U 251: going home
+1368: U 252: going home
+1369: U 253: going home
+1370: U 254: going home
+1371: Z 63: going home
+1372: Z 70: going home
+1373: Z 445: going home
+1374: Z 226: going home
+1375: U 255: going home
+1376: U 256: going home
+1377: U 257: going home
+1378: U 258: going home
+1379: U 259: going home
+1380: U 260: going home
+1381: U 261: going home
+1382: U 262: going home
+1383: U 263: going home
+1384: U 264: going home
+1385: U 265: going home
+1386: U 266: going home
+1387: U 267: going home
+1388: U 269: going home
+1389: U 268: going home
+1390: U 270: going home
+1391: U 271: going home
+1392: U 272: going home
+1393: U 273: going home
+1394: Z 409: going home
+1395: U 274: going home
+1396: U 275: going home
+1397: U 276: going home
+1398: U 277: going home
+1399: U 278: going home
+1400: U 279: going home
+1401: Z 329: going home
+1402: U 280: going home
+1403: U 281: going home
+1404: U 282: going home
+1405: U 283: going home
+1406: U 284: going home
+1407: U 285: going home
+1408: U 286: going home
+1409: U 287: going home
+1410: U 288: going home
+1411: U 289: going home
+1412: U 290: going home
+1413: U 291: going home
+1414: U 292: going home
+1415: U 293: going home
+1416: U 294: going home
+1417: U 295: going home
+1418: U 296: going home
+1419: U 297: going home
+1420: U 298: going home
+1421: U 299: going home
+1422: U 300: going home
+1423: U 301: going home
+1424: U 302: going home
+1425: U 303: going home
+1426: U 304: going home
+1427: U 305: going home
+1428: U 306: going home
+1429: U 307: going home
+1430: U 308: going home
+1431: U 309: going home
+1432: U 310: going home
+1433: U 311: going home
+1434: U 312: going home
+1435: U 313: going home
+1436: U 314: going home
+1437: U 315: going home
+1438: U 316: going home
+1439: U 317: going home
+1440: U 318: going home
+1441: U 319: going home
+1442: U 320: going home
+1443: U 321: going home
+1444: U 322: going home
+1445: U 323: going home
+1446: U 324: going home
+1447: Z 483: going home
+1448: Z 54: going home
+1449: U 325: going home
+1450: Z 189: going home
+1451: Z 208: going home
+1452: U 326: going home
+1453: U 327: going home
+1454: U 328: going home
+1455: U 329: going home
+1456: U 330: going home
+1457: U 331: going home
+1458: U 332: going home
+1459: U 333: going home
+1460: U 334: going home
+1461: U 335: going home
+1462: U 336: going home
+1463: U 337: going home
+1464: U 338: going home
+1465: U 339: going home
+1466: U 340: going home
+1467: Z 324: going home
+1468: Z 11: going home
+1469: Z 165: going home
+1470: Z 192: going home
+1471: U 341: going home
+1472: U 342: going home
+1473: Z 251: going home
+1474: U 343: going home
+1475: U 344: going home
+1476: U 345: going home
+1477: U 346: going home
+1478: Z 179: going home
+1479: Z 56: going home
+1480: Z 484: going home
+1481: Z 500: going home
+1482: U 347: going home
+1483: U 348: going home
+1484: U 349: going home
+1485: U 350: going home
+1486: U 351: going home
+1487: U 352: going home
+1488: U 353: going home
+1489: U 354: going home
+1490: U 355: going home
+1491: U 356: going home
+1492: U 357: going home
+1493: U 358: going home
+1494: U 359: going home
+1495: U 360: going home
+1496: Z 396: going home
+1497: Z 311: going home
+1498: U 362: going home
+1499: U 361: going home
+1500: Z 104: going home
+1501: Z 93: going home
+1502: Z 294: going home
+1503: U 363: going home
+1504: U 364: going home
+1505: U 365: going home
+1506: U 366: going home
+1507: Z 14: going home
+1508: U 367: going home
+1509: U 368: going home
+1510: U 369: going home
+1511: U 370: going home
+1512: U 371: going home
+1513: U 372: going home
+1514: Z 241: going home
+1515: U 373: going home
+1516: Z 250: going home
+1517: U 374: going home
+1518: U 375: going home
+1519: U 376: going home
+1520: U 377: going home
+1521: U 378: going home
+1522: U 379: going home
+1523: U 380: going home
+1524: U 381: going home
+1525: U 382: going home
+1526: U 383: going home
+1527: U 384: going home
+1528: U 385: going home
+1529: U 386: going home
+1530: U 387: going home
+1531: Z 477: going home
+1532: Z 61: going home
+1533: Z 72: going home
+1534: U 388: going home
+1535: U 389: going home
+1536: U 390: going home
+1537: U 391: going home
+1538: U 392: going home
+1539: U 393: going home
+1540: U 394: going home
+1541: U 395: going home
+1542: U 396: going home
+1543: U 397: going home
+1544: U 398: going home
+1545: U 399: going home
+1546: U 400: going home
+1547: U 401: going home
+1548: U 402: going home
+1549: U 403: going home
+1550: U 404: going home
+1551: U 405: going home
+1552: U 406: going home
+1553: U 407: going home
+1554: U 408: going home
+1555: U 409: going home
+1556: Z 6: going home
+1557: Z 152: going home
+1558: U 410: going home
+1559: U 411: going home
+1560: U 412: going home
+1561: U 413: going home
+1562: U 414: going home
+1563: U 415: going home
+1564: U 416: going home
+1565: U 417: going home
+1566: U 418: going home
+1567: U 419: going home
+1568: Z 65: going home
+1569: Z 492: going home
+1570: Z 425: going home
+1571: Z 95: going home
+1572: U 420: going home
+1573: U 421: going home
+1574: U 422: going home
+1575: U 423: going home
+1576: U 424: going home
+1577: U 425: going home
+1578: U 426: going home
+1579: U 427: going home
+1580: U 428: going home
+1581: U 429: going home
+1582: U 430: going home
+1583: U 431: going home
+1584: U 432: going home
+1585: U 433: going home
+1586: U 434: going home
+1587: U 435: going home
+1588: U 436: going home
+1589: U 437: going home
+1590: U 438: going home
+1591: U 439: going home
+1592: U 440: going home
+1593: U 441: going home
+1594: U 442: going home
+1595: U 443: going home
+1596: U 444: going home
+1597: U 445: going home
+1598: U 446: going home
+1599: U 447: going home
+1600: U 448: going home
+1601: Z 315: going home
+1602: Z 175: going home
+1603: U 449: going home
+1604: Z 337: going home
+1605: U 450: going home
+1606: U 451: going home
+1607: U 452: going home
+1608: U 453: going home
+1609: U 454: going home
+1610: U 455: going home
+1611: U 456: going home
+1612: U 457: going home
+1613: U 458: going home
+1614: U 459: going home
+1615: U 460: going home
+1616: U 461: going home
+1617: U 462: going home
+1618: U 463: going home
+1619: U 464: going home
+1620: U 465: going home
+1621: U 466: going home
+1622: U 467: going home
+1623: U 468: going home
+1624: U 469: going home
+1625: U 470: going home
+1626: U 471: going home
+1627: U 472: going home
+1628: U 473: going home
+1629: U 474: going home
+1630: U 475: going home
+1631: U 476: going home
+1632: U 477: going home
+1633: U 478: going home
+1634: U 479: going home
+1635: U 480: going home
+1636: U 481: going home
+1637: U 482: going home
+1638: Z 287: going home
+1639: Z 163: going home
+1640: U 483: going home
+1641: U 484: going home
+1642: U 485: going home
+1643: U 486: going home
+1644: U 487: going home
+1645: U 488: going home
+1646: U 489: going home
+1647: U 490: going home
+1648: U 491: going home
+1649: U 492: going home
+1650: U 493: going home
+1651: U 494: going home
+1652: U 495: going home
+1653: U 496: going home
+1654: U 497: going home
+1655: U 498: going home
+1656: U 499: going home
+1657: U 500: going home
+1658: Z 25: going home
+1659: Z 279: going home
+1660: Z 405: going home
+1661: Z 143: going home
+1662: Z 391: going home
+1663: Z 266: going home
+1664: Z 268: going home
+1665: Z 188: going home
+1666: Z 382: going home
+1667: Z 33: going home
+1668: Z 347: going home
+1669: Z 290: going home
+1670: Z 90: going home
+1671: Z 380: going home
+1672: Z 267: going home
+1673: Z 392: going home
+1674: Z 274: going home
+1675: Z 71: going home
+1676: Z 465: going home
+1677: Z 55: going home
+1678: Z 481: going home
+1679: Z 242: going home
+1680: Z 89: going home
+1681: Z 174: going home
+1682: Z 121: going home
+1683: Z 269: going home
+1684: Z 36: going home
+1685: Z 423: going home
+1686: Z 31: going home
+1687: Z 228: going home
+1688: Z 99: going home
+1689: Z 436: going home
+1690: Z 335: going home
+1691: Z 83: going home
+1692: Z 77: going home
+1693: Z 314: going home
+1694: Z 122: going home
+1695: Z 369: going home
+1696: Z 428: going home
+1697: Z 295: going home
+1698: Z 480: going home
+1699: Z 22: going home
+1700: Z 413: going home
+1701: Z 194: going home
+1702: Z 217: going home
+1703: Z 491: going home
+1704: Z 49: going home
+1705: Z 142: going home
+1706: Z 360: going home
+1707: Z 37: going home
+1708: Z 97: going home
+1709: Z 421: going home
+1710: Z 309: going home
+1711: Z 43: going home
+1712: Z 125: going home
+1713: Z 400: going home
+1714: Z 451: going home
+1715: Z 332: going home
+1716: Z 470: going home
+1717: Z 200: going home
+1718: Z 27: going home
+1719: Z 58: going home
+1720: Z 68: going home
+1721: Z 29: going home
+1722: Z 92: going home
+1723: Z 4: going home
+1724: Z 339: going home
+1725: Z 196: going home
+1726: Z 207: going home
+1727: Z 358: going home
+1728: Z 105: going home
+1729: Z 106: going home
+1730: Z 183: going home
+1731: Z 448: going home
+1732: Z 206: going home
+1733: Z 5: going home
+1734: Z 260: going home
+1735: Z 307: going home
+1736: Z 401: going home
+1737: Z 415: going home
+1738: Z 408: going home
+1739: Z 312: going home
+1740: Z 341: going home
+1741: Z 191: going home
+1742: Z 494: going home
+1743: Z 348: going home
+1744: Z 60: going home
+1745: Z 435: going home
+1746: Z 280: going home
+1747: Z 281: going home
+1748: Z 230: going home
+1749: Z 232: going home
+1750: Z 111: going home
+1751: Z 57: going home
+1752: Z 116: going home
+1753: Z 20: going home
+1754: Z 446: going home
+1755: Z 80: going home
+1756: Z 148: going home
+1757: Z 1: going home
+1758: Z 190: going home
+1759: Z 198: going home
+1760: Z 123: going home
+1761: Z 127: going home
+1762: Z 455: going home
+1763: Z 34: going home
+1764: Z 359: going home
+1765: Z 117: going home
+1766: Z 247: going home
+1767: Z 244: going home
+1768: Z 313: going home
+1769: Z 153: going home
+1770: Z 331: going home
+1771: Z 303: going home
+1772: Z 69: going home
+1773: Z 218: going home
+1774: Z 21: going home
+1775: Z 46: going home
+1776: Z 277: going home
+1777: Z 102: going home
+1778: Z 441: going home
+1779: Z 168: going home
+1780: Z 352: going home
+1781: Z 149: going home
+1782: Z 319: going home
+1783: Z 146: going home
+1784: Z 10: going home
+1785: Z 325: going home
+1786: Z 211: going home
+1787: Z 124: going home
+1788: Z 305: going home
+1789: Z 76: going home
+1790: Z 447: going home
+1791: Z 453: going home
+1792: Z 171: going home
+1793: Z 203: going home
+1794: Z 254: going home
+1795: Z 439: going home
+1796: Z 370: going home
+1797: Z 154: going home
+1798: Z 476: going home
+1799: Z 296: going home
+1800: Z 457: going home
+1801: Z 184: going home
+1802: Z 385: going home
+1803: Z 173: going home
+1804: Z 390: going home
+1805: Z 110: going home
+1806: Z 214: going home
+1807: Z 394: going home
+1808: Z 414: going home
+1809: Z 15: going home
+1810: Z 240: going home
+1811: Z 297: going home
+1812: Z 286: going home
+1813: Z 24: going home
+1814: Z 126: going home
+1815: Z 371: going home
+1816: Z 310: going home
+1817: Z 346: going home
+1818: Z 422: going home
+1819: Z 50: going home
+1820: Z 344: going home
+1821: Z 464: going home
+1822: Z 355: going home
+1823: Z 388: going home
+1824: Z 114: going home
+1825: Z 485: going home
+1826: Z 496: going home
+1827: Z 133: going home
+1828: Z 438: going home
+1829: Z 366: going home
+1830: Z 397: going home
+1831: Z 9: going home
+1832: Z 257: going home
+1833: Z 363: going home
+1834: Z 3: going home
+1835: Z 160: going home
+1836: Z 178: going home
+1837: Z 418: going home
+1838: Z 340: going home
+1839: Z 85: going home
+1840: Z 262: going home
+1841: Z 334: going home
+1842: Z 275: going home
+1843: Z 225: going home
+1844: Z 180: going home
+1845: Z 474: going home
+1846: Z 84: going home
+1847: Z 2: going home
+1848: Z 248: going home
+1849: Z 113: going home
+1850: Z 205: going home
+1851: Z 100: going home
+1852: Z 498: going home
+1853: Z 42: going home
+1854: Z 377: going home
+1855: Z 141: going home
+1856: Z 164: going home
+1857: Z 166: going home
+1858: Z 322: going home
+1859: Z 395: going home
+1860: Z 172: going home
+1861: Z 381: going home
+1862: Z 66: going home
+1863: Z 103: going home
+1864: Z 300: going home
+1865: Z 420: going home
+1866: Z 450: going home
+1867: Z 456: going home
+1868: Z 222: going home
+1869: Z 162: going home
+1870: Z 383: going home
+1871: Z 342: going home
+1872: Z 389: going home
+1873: Z 468: going home
+1874: Z 292: going home
+1875: Z 204: going home
+1876: Z 26: going home
+1877: Z 462: going home
+1878: Z 416: going home
+1879: Z 129: going home
+1880: Z 345: going home
+1881: Z 475: going home
+1882: Z 463: going home
+1883: Z 252: going home
+1884: Z 442: going home
+1885: Z 51: going home
+1886: Z 139: going home
+1887: Z 131: going home
+1888: Z 201: going home
+1889: Z 253: going home
+1890: Z 23: going home
+1891: Z 285: going home
+1892: Z 181: going home
+1893: Z 238: going home
+1894: Z 157: going home
+1895: Z 12: going home
+1896: Z 350: going home
+1897: Z 75: going home
+1898: Z 155: going home
+1899: Z 219: going home
+1900: Z 16: going home
+1901: Z 343: going home
+1902: Z 379: going home
+1903: Z 41: going home
+1904: Z 239: going home
+1905: Z 326: going home
+1906: Z 426: going home
+1907: Z 199: going home
+1908: Z 374: going home
+1909: Z 417: going home
+1910: Z 434: going home
+1911: Z 261: going home
+1912: Z 298: going home
+1913: Z 410: going home
+1914: Z 460: going home
+1915: Z 289: going home
+1916: Z 419: going home
+1917: Z 327: going home
+1918: Z 169: going home
+1919: Z 140: going home
+1920: Z 145: going home
+1921: Z 458: going home
+1922: Z 231: going home
+1923: Z 136: going home
+1924: Z 471: going home
+1925: Z 245: going home
+1926: Z 273: going home
+1927: Z 302: going home
+1928: Z 386: going home
+1929: Z 299: going home
+1930: Z 404: going home
+1931: Z 318: going home
+1932: Z 398: going home
+1933: Z 459: going home
+1934: Z 233: going home
+1935: Z 64: going home
+1936: Z 486: going home
+1937: Z 372: going home
+1938: Z 79: going home
+1939: Z 156: going home
+1940: Z 356: going home
+1941: Z 193: going home
+1942: Z 461: going home
+1943: Z 177: going home
+1944: Z 209: going home
+1945: Z 487: going home
+1946: Z 317: going home
+1947: Z 202: going home
+1948: Z 479: going home
+1949: Z 62: going home
+1950: Z 98: going home
+1951: Z 466: going home
+1952: Z 271: going home
+1953: Z 402: going home
+1954: Z 82: going home
+1955: Z 185: going home
+1956: Z 482: going home
+1957: Z 118: going home
+1958: Z 387: going home
+1959: Z 170: going home
+1960: Z 433: going home
+1961: Z 227: going home
+1962: Z 94: going home
+1963: Z 215: going home
+1964: Z 357: going home
+1965: Z 373: going home
+1966: Z 159: going home
+1967: Z 221: going home
+1968: Z 210: going home
+1969: Z 32: going home
+1970: Z 167: going home
+1971: Z 429: going home
+1972: Z 47: going home
+1973: Z 384: going home
+1974: Z 336: going home
+1975: Z 278: going home
+1976: Z 424: going home
+1977: Z 362: going home
+1978: Z 220: going home
+1979: Z 236: going home
+1980: Z 237: going home
+1981: Z 161: going home
+1982: Z 353: going home
+1983: Z 407: going home
+1984: Z 301: going home
+1985: Z 259: going home
+1986: Z 96: going home
+1987: Z 109: going home
+1988: Z 403: going home
+1989: Z 150: going home
+1990: Z 81: going home
+1991: Z 443: going home
+1992: Z 44: going home
+1993: Z 45: going home
+1994: Z 376: going home
+1995: Z 452: going home
+1996: Z 28: going home
+1997: Z 368: going home
+1998: Z 235: going home
+1999: Z 412: going home
+2000: Z 351: going home
+2001: Z 493: going home
+2002: Z 256: going home
+2003: Z 497: going home
